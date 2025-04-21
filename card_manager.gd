@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var follower_scene: PackedScene
+
 var card_being_dragged
 
 func _process(delta: float) -> void:
@@ -9,14 +11,20 @@ func _process(delta: float) -> void:
 	
 
 func _input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed:
-			var card = raycast_check_for_card()
-			if card:
+	if event is InputEventMouseButton:
+		var card = raycast_check_for_card()
+		if card and event.button_index == MOUSE_BUTTON_LEFT:
+			if event.pressed:
 				card_being_dragged = card
-		else:
-			card_being_dragged = null
-			
+			else:
+				card_being_dragged = null
+				
+		if card and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+			if $Card/CardImage.z_index == -1:
+				get_node("Card/CardFlip").play("card_flip")
+			if $Card/CardImage.z_index == 0:
+				get_node("Card/CardFlip").play_backwards("card_flip")
+
 func raycast_check_for_card():
 	var space_state = get_world_2d().direct_space_state
 	var parameters = PhysicsPointQueryParameters2D.new()

@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://2amkrnek74r5"]
+
+[ext_resource type="Script" uid="uid://bnok0qbuvwl7e" path="res://card_manager.gd" id="1_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://cca71wt6yarn6" path="res://scenes/card.tscn" id="2_lnu2h"]
+
+[node name="Game" type="Node2D"]
+
+[node name="CardManager" type="Node2D" parent="."]
+script = ExtResource("1_yqjtg")
+
+[node name="Card" parent="CardManager" instance=ExtResource("2_lnu2h")]
+position = Vector2(609, 330)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 498.0
+offset_top = 111.0
+offset_right = 703.0
+offset_bottom = 186.0
+text = "You can move me with left-click and flip me with right-click!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
