@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://2amkrnek74r5"]
+[gd_scene load_steps=6 format=3 uid="uid://2amkrnek74r5"]
 
 [ext_resource type="Script" uid="uid://bnok0qbuvwl7e" path="res://card_manager.gd" id="1_yqjtg"]
 [ext_resource type="Script" uid="uid://cg1wnowg21yqi" path="res://scenes/deck.gd" id="3_p57ef"]
 [ext_resource type="Texture2D" uid="uid://ppvl2uhlvfrr" path="res://assets/Rectangle 1.png" id="4_u5sy4"]
 [ext_resource type="Script" uid="uid://b4qx22upmkcuy" path="res://scenes/input_manager.gd" id="5_gee14"]
-[ext_resource type="Script" uid="uid://cypdak4uq2wku" path="res://scenes/card_grid.gd" id="5_iywne"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vtaks"]
 size = Vector2(141, 192)
@@ -34,5 +33,7 @@ shape = SubResource("RectangleShape2D_vtaks")
 [node name="InputManager" type="Node2D" parent="."]
 script = ExtResource("5_gee14")
 
-[node name="CardGrid" type="Node2D" parent="."]
-script = ExtResource("5_iywne")
+[node name="Board" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CardSlots" type="Node2D" parent="."]
