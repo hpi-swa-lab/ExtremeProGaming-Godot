@@ -1,18 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://2amkrnek74r5"]
+[gd_scene load_steps=10 format=3 uid="uid://2amkrnek74r5"]
 
-[ext_resource type="Script" uid="uid://bnok0qbuvwl7e" path="res://card_manager.gd" id="1_yqjtg"]
-[ext_resource type="Script" uid="uid://cg1wnowg21yqi" path="res://scenes/deck.gd" id="3_p57ef"]
+[ext_resource type="Script" uid="uid://cg1wnowg21yqi" path="res://scripts/deck.gd" id="3_p57ef"]
+[ext_resource type="AudioStream" uid="uid://f1lbrj68nw0y" path="res://assets/flipcard-91468.mp3" id="3_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://ppvl2uhlvfrr" path="res://assets/Rectangle 1.png" id="4_u5sy4"]
-[ext_resource type="Script" uid="uid://b4qx22upmkcuy" path="res://scenes/input_manager.gd" id="5_gee14"]
-[ext_resource type="Script" uid="uid://cypdak4uq2wku" path="res://scenes/card_grid.gd" id="5_iywne"]
+[ext_resource type="Script" uid="uid://b4qx22upmkcuy" path="res://scripts/game_rules.gd" id="5_gee14"]
+[ext_resource type="Script" uid="uid://cypdak4uq2wku" path="res://scripts/backlog.gd" id="5_iywne"]
+[ext_resource type="Script" uid="uid://bfyw8dkcbwkv1" path="res://scripts/supply.gd" id="5_p57ef"]
+[ext_resource type="Texture2D" uid="uid://cdd63m7b0usi7" path="res://assets/supply.png" id="6_p57ef"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vtaks"]
 size = Vector2(141, 192)
 
-[node name="Game" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lbhrr"]
+size = Vector2(407, 240)
 
-[node name="CardManager" type="Node2D" parent="."]
-script = ExtResource("1_yqjtg")
+[node name="Game" type="Node2D"]
 
 [node name="Deck" type="Node2D" parent="."]
 position = Vector2(151, 176)
@@ -31,8 +33,39 @@ collision_mask = 4
 position = Vector2(1, 2)
 shape = SubResource("RectangleShape2D_vtaks")
 
-[node name="InputManager" type="Node2D" parent="."]
+[node name="DrawCardSound" type="AudioStreamPlayer2D" parent="Deck"]
+stream = ExtResource("3_u5sy4")
+
+[node name="GameRules" type="Node2D" parent="."]
 script = ExtResource("5_gee14")
 
-[node name="CardGrid" type="Node2D" parent="."]
+[node name="Backlog" type="Node2D" parent="."]
 script = ExtResource("5_iywne")
+
+[node name="Cardslots" type="Node2D" parent="Backlog"]
+
+[node name="Cards" type="Node2D" parent="Backlog"]
+
+[node name="Supply" type="Node2D" parent="."]
+script = ExtResource("5_p57ef")
+
+[node name="Sprite2D" type="Sprite2D" parent="Supply"]
+position = Vector2(1550.5, 194)
+scale = Vector2(0.880252, 0.834483)
+texture = ExtResource("6_p57ef")
+
+[node name="Area2D" type="Area2D" parent="Supply"]
+modulate = Color(0.0431373, 0.54902, 1, 1)
+position = Vector2(1549, 194)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Supply/Area2D"]
+shape = SubResource("RectangleShape2D_lbhrr")
+
+[node name="Storypoints" type="Node2D" parent="Supply"]
+
+[node name="GameNotifications" type="RichTextLabel" parent="."]
+offset_left = 439.0
+offset_top = 905.0
+offset_right = 1455.0
+offset_bottom = 1042.0
+bbcode_enabled = true

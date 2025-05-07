@@ -1,10 +1,26 @@
-[gd_scene load_steps=7 format=3 uid="uid://cca71wt6yarn6"]
+[gd_scene load_steps=8 format=3 uid="uid://cca71wt6yarn6"]
 
 [ext_resource type="Texture2D" uid="uid://dbcujqyvkqkd5" path="res://assets/cardBack_blue4.png" id="1_6u4wf"]
-[ext_resource type="Script" uid="uid://6tn2x8hyeb63" path="res://scenes/card.gd" id="1_ktuci"]
+[ext_resource type="Script" uid="uid://6tn2x8hyeb63" path="res://scripts/card.gd" id="1_ktuci"]
+[ext_resource type="AudioStream" uid="uid://dvbks8dg6aouh" path="res://assets/select_card.mp3" id="3_ktuci"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rjlel"]
 size = Vector2(141, 192)
+
+[sub_resource type="Animation" id="Animation_6u4wf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CardImage:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_ktuci"]
 resource_name = "card_flip"
@@ -58,21 +74,6 @@ tracks/3/keys = {
 "values": [Vector2(0.3, 0.28), Vector2(0, 0.28), Vector2(0.3, 0.28)]
 }
 
-[sub_resource type="Animation" id="Animation_6u4wf"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CardImage:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sy11y"]
 _data = {
 &"RESET": SubResource("Animation_6u4wf"),
@@ -81,6 +82,13 @@ _data = {
 
 [node name="Card" type="Node2D"]
 script = ExtResource("1_ktuci")
+
+[node name="SelectionBorder" type="ColorRect" parent="."]
+offset_left = -78.0
+offset_top = -103.0
+offset_right = 78.0
+offset_bottom = 105.0
+color = Color(0.890196, 0.0117647, 0.145098, 1)
 
 [node name="CardBackImage" type="Sprite2D" parent="."]
 texture = ExtResource("1_6u4wf")
@@ -99,3 +107,8 @@ shape = SubResource("RectangleShape2D_rjlel")
 libraries = {
 &"": SubResource("AnimationLibrary_sy11y")
 }
+
+[node name="Storypoints" type="Node2D" parent="."]
+
+[node name="ChooseCard" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ktuci")
