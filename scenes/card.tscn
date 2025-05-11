@@ -1,6 +1,5 @@
-[gd_scene load_steps=8 format=3 uid="uid://cca71wt6yarn6"]
+[gd_scene load_steps=6 format=3 uid="uid://cca71wt6yarn6"]
 
-[ext_resource type="Texture2D" uid="uid://dbcujqyvkqkd5" path="res://assets/cardBack_blue4.png" id="1_6u4wf"]
 [ext_resource type="Script" uid="uid://6tn2x8hyeb63" path="res://scripts/card.gd" id="1_ktuci"]
 [ext_resource type="AudioStream" uid="uid://dvbks8dg6aouh" path="res://assets/select_card.mp3" id="3_ktuci"]
 
@@ -8,7 +7,8 @@
 size = Vector2(141, 192)
 
 [sub_resource type="Animation" id="Animation_6u4wf"]
-length = 0.001
+resource_name = "card_flip"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -16,68 +16,51 @@ tracks/0/path = NodePath("CardImage:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_ktuci"]
-resource_name = "card_flip"
-length = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CardBackImage:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0954754, 0.200715),
+"times": PackedFloat32Array(0, 0.233333, 0.466667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(0.1, 1), Vector2(1, 1)]
+"values": [Vector2(0.3, 0.28), Vector2(0.05, 0.28), Vector2(0.3, 0.28)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CardBackImage:z_index")
+tracks/1/path = NodePath("CardImage:z_index")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0954754),
+"times": PackedFloat32Array(0, 0.233333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, -1]
+"values": [1, -1]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CardImage:z_index")
+tracks/2/path = NodePath("CardBackImage:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.0954754),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [-1, 0]
+"times": PackedFloat32Array(0, 0.233333, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.35, 0.35), Vector2(0.05, 0.35), Vector2(0.4, 0.35)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CardImage:scale")
+tracks/3/path = NodePath("CardBackImage:z_index")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0954754, 0.200715),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0.3, 0.28), Vector2(0, 0.28), Vector2(0.3, 0.28)]
+"times": PackedFloat32Array(0, 0.233333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [-1, 3]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sy11y"]
 _data = {
-&"RESET": SubResource("Animation_6u4wf"),
-&"card_flip": SubResource("Animation_ktuci")
+&"card_flip": SubResource("Animation_6u4wf")
 }
 
 [node name="Card" type="Node2D"]
@@ -91,11 +74,13 @@ offset_bottom = 105.0
 color = Color(0.890196, 0.0117647, 0.145098, 1)
 
 [node name="CardBackImage" type="Sprite2D" parent="."]
-texture = ExtResource("1_6u4wf")
+z_index = -1
+scale = Vector2(0.35, 0.35)
 
 [node name="CardImage" type="Sprite2D" parent="."]
-z_index = -1
+z_index = 1
 rotation = 0.00098535
+scale = Vector2(0.3, 0.28)
 
 [node name="Area2D" type="Area2D" parent="."]
 

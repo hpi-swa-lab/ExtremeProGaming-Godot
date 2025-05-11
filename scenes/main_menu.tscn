@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bpa6qjrl4svmm"]
 
-[ext_resource type="Script" uid="uid://dl33j7r33887u" path="res://scenes/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="Script" uid="uid://dl33j7r33887u" path="res://scripts/main_menu.gd" id="1_l6cm7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vue75"]
 bg_color = Color(1, 1, 1, 1)

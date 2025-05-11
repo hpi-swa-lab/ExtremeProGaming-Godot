@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://belm8ywu7txr6"]
+
+[ext_resource type="PackedScene" uid="uid://bwpvo7bj4rxbu" path="res://scenes/deck.tscn" id="1_mxwt7"]
+[ext_resource type="Script" uid="uid://cc6rthqp3v5e1" path="res://scenes/feature_deck.gd" id="2_hvc3o"]
+
+[node name="FeatureDeck" instance=ExtResource("1_mxwt7")]
+script = ExtResource("2_hvc3o")

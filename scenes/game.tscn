@@ -1,50 +1,23 @@
-[gd_scene load_steps=10 format=3 uid="uid://2amkrnek74r5"]
+[gd_scene load_steps=9 format=3 uid="uid://2amkrnek74r5"]
 
-[ext_resource type="Script" uid="uid://cg1wnowg21yqi" path="res://scripts/deck.gd" id="3_p57ef"]
-[ext_resource type="AudioStream" uid="uid://f1lbrj68nw0y" path="res://assets/flipcard-91468.mp3" id="3_u5sy4"]
-[ext_resource type="Texture2D" uid="uid://ppvl2uhlvfrr" path="res://assets/Rectangle 1.png" id="4_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://belm8ywu7txr6" path="res://scenes/feature_deck.tscn" id="1_gee14"]
 [ext_resource type="Script" uid="uid://b4qx22upmkcuy" path="res://scripts/game_rules.gd" id="5_gee14"]
 [ext_resource type="Script" uid="uid://cypdak4uq2wku" path="res://scripts/backlog.gd" id="5_iywne"]
 [ext_resource type="Script" uid="uid://bfyw8dkcbwkv1" path="res://scripts/supply.gd" id="5_p57ef"]
 [ext_resource type="Texture2D" uid="uid://cdd63m7b0usi7" path="res://assets/supply.png" id="6_p57ef"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vtaks"]
-size = Vector2(141, 192)
+[ext_resource type="PackedScene" uid="uid://bynp826y5pibk" path="res://scenes/event_deck.tscn" id="7_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://c3hskgf5pyv7w" path="res://scenes/card_slot.tscn" id="8_gee14"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lbhrr"]
 size = Vector2(407, 240)
 
 [node name="Game" type="Node2D"]
 
-[node name="Deck" type="Node2D" parent="."]
-position = Vector2(151, 176)
-script = ExtResource("3_p57ef")
-
-[node name="Sprite2D" type="Sprite2D" parent="Deck"]
-position = Vector2(1.5, 2.49998)
-scale = Vector2(1.00714, 1.00526)
-texture = ExtResource("4_u5sy4")
-
-[node name="Area2D" type="Area2D" parent="Deck"]
-collision_layer = 4
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Deck/Area2D"]
-position = Vector2(1, 2)
-shape = SubResource("RectangleShape2D_vtaks")
-
-[node name="DrawCardSound" type="AudioStreamPlayer2D" parent="Deck"]
-stream = ExtResource("3_u5sy4")
-
 [node name="GameRules" type="Node2D" parent="."]
 script = ExtResource("5_gee14")
 
 [node name="Backlog" type="Node2D" parent="."]
 script = ExtResource("5_iywne")
-
-[node name="Cardslots" type="Node2D" parent="Backlog"]
-
-[node name="Cards" type="Node2D" parent="Backlog"]
 
 [node name="Supply" type="Node2D" parent="."]
 script = ExtResource("5_p57ef")
@@ -64,8 +37,71 @@ shape = SubResource("RectangleShape2D_lbhrr")
 [node name="Storypoints" type="Node2D" parent="Supply"]
 
 [node name="GameNotifications" type="RichTextLabel" parent="."]
-offset_left = 439.0
-offset_top = 905.0
-offset_right = 1455.0
-offset_bottom = 1042.0
+offset_left = 46.0
+offset_top = 649.0
+offset_right = 306.0
+offset_bottom = 767.0
 bbcode_enabled = true
+
+[node name="EndInterationButton" type="Button" parent="."]
+offset_left = 60.0
+offset_top = 821.0
+offset_right = 241.0
+offset_bottom = 883.0
+text = "Press to end iteration."
+
+[node name="DiscardPile" parent="." instance=ExtResource("8_gee14")]
+position = Vector2(1432, 638)
+
+[node name="DarkenedBackground" type="ColorRect" parent="."]
+visible = false
+z_index = 2
+offset_right = 1914.0
+offset_bottom = 1085.0
+color = Color(0, 0, 0, 0.74902)
+
+[node name="StartIterationButton" type="Button" parent="."]
+visible = false
+z_index = 3
+offset_left = 880.0
+offset_top = 947.0
+offset_right = 1103.0
+offset_bottom = 1009.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "Press to start new iteration."
+
+[node name="FeatureDeck" parent="." instance=ExtResource("1_gee14")]
+position = Vector2(153, 485)
+
+[node name="EventDeck" parent="." instance=ExtResource("7_u5sy4")]
+position = Vector2(153, 198)
+
+[node name="EventDiscardPile" parent="." instance=ExtResource("8_gee14")]
+position = Vector2(368, 195)
+
+[node name="GameNotifications2" type="RichTextLabel" parent="."]
+offset_left = 1383.0
+offset_top = 493.0
+offset_right = 1485.0
+offset_bottom = 525.0
+bbcode_enabled = true
+text = "Discard Pile"
+
+[node name="GameNotifications3" type="RichTextLabel" parent="."]
+offset_left = 102.0
+offset_top = 58.0
+offset_right = 198.0
+offset_bottom = 98.0
+bbcode_enabled = true
+text = "Event Deck"
+
+[node name="GameNotifications4" type="RichTextLabel" parent="."]
+offset_left = 288.0
+offset_top = 60.0
+offset_right = 452.0
+offset_bottom = 87.0
+bbcode_enabled = true
+text = "Last/Current Event"
+
+[connection signal="button_down" from="EndInterationButton" to="GameRules" method="_on_end_interation_button_down"]
+[connection signal="button_down" from="StartIterationButton" to="GameRules" method="_on_start_iteration_button_down"]
