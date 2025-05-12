@@ -85,6 +85,8 @@ func move_cards_to_front(chosen_cards):
 
 	for i in range(card_count):
 		var card = chosen_cards[i]
+		card.get_parent().remove_child(card)
+		add_child(card)
 		card.z_index = 4
 		var tween = create_tween()
 
@@ -93,6 +95,7 @@ func move_cards_to_front(chosen_cards):
 
 		tween.tween_property(card, "global_position", target_pos, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 		tween.tween_property(card, "scale", Vector2(2, 2), 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		card.get_parent().remove_child(card)
 
 
 
