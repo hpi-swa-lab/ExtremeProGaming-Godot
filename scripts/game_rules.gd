@@ -38,7 +38,7 @@ func _on_start_iteration_button_down() -> void:
 		var card_slot = card.get_parent()
 		card_slot.is_card_in_slot = false
 		card_slot.card_in_slot = null
-		card.choose_card() # we execute this to make the unusable in that state
+		card.choose_card() # we execute this to make the card unusable in that state
 		move_card_to_discard_pile(card, discard_pile)
 		
 	iteration += 1
@@ -64,17 +64,19 @@ func _process(delta):
 	
 func darken_background():
 	$"../DarkenedBackground".visible = true
+	$"../DarkenedBackground".z_index = 3
 	var tween = create_tween()
 	tween.tween_property($ColorRect, "modulate:a", 0.5, 0.5) # fade in
 	
 func lighten_background():
 	$"../DarkenedBackground".visible = false
+	$"../DarkenedBackground".z_index = 3
 	var tween = create_tween()
 	tween.tween_property($ColorRect, "modulate:a", 0.5, 0.5) # fade in
 	
 func move_cards_to_front(chosen_cards):
 	var card_count = chosen_cards.size()
-	var screen_size = get_viewport_rect().size
+	var screen_size = Vector2(1920, 1080) #get_viewport_rect().size
 	var screen_center = screen_size / 2
 	var spacing = 500  # Space between cards
 
@@ -86,7 +88,6 @@ func move_cards_to_front(chosen_cards):
 		card.z_index = 4
 		var tween = create_tween()
 
-		# Calculate position: center-aligned fan-out
 		var x_offset = -total_width / 2 + i * spacing
 		var target_pos = screen_center + Vector2(x_offset, 0)
 
