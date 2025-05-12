@@ -16,9 +16,6 @@ size = Vector2(407, 240)
 [node name="GameRules" type="Node2D" parent="."]
 script = ExtResource("5_gee14")
 
-[node name="Backlog" type="Node2D" parent="."]
-script = ExtResource("5_iywne")
-
 [node name="Supply" type="Node2D" parent="."]
 script = ExtResource("5_p57ef")
 
@@ -35,6 +32,16 @@ position = Vector2(1549, 194)
 shape = SubResource("RectangleShape2D_lbhrr")
 
 [node name="Storypoints" type="Node2D" parent="Supply"]
+
+[node name="DarkenedBackground" type="ColorRect" parent="."]
+visible = false
+z_index = 2
+offset_right = 1914.0
+offset_bottom = 1085.0
+color = Color(0, 0, 0, 0.74902)
+
+[node name="Backlog" type="Node2D" parent="."]
+script = ExtResource("5_iywne")
 
 [node name="GameNotifications" type="RichTextLabel" parent="."]
 offset_left = 46.0
@@ -71,13 +78,6 @@ position = Vector2(153, 198)
 
 [node name="EventDiscardPile" parent="." instance=ExtResource("8_gee14")]
 position = Vector2(368, 195)
-
-[node name="DarkenedBackground" type="ColorRect" parent="."]
-visible = false
-z_index = 2
-offset_right = 1914.0
-offset_bottom = 1085.0
-color = Color(0, 0, 0, 0.74902)
 
 [node name="GameNotifications2" type="RichTextLabel" parent="."]
 offset_left = 1383.0
