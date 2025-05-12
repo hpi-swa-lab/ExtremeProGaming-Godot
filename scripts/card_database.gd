@@ -23,13 +23,13 @@ const ALL_FEATURE_CARDS = {
 	}
 	
 const ALL_EVENT_CARDS = {
-	"Event0": ["res://assets/cards/event1.png","res://assets/cards/event1_back.png"],
-	"Event1": ["res://assets/cards/event2.png","res://assets/cards/event2_back.png"],
-	"Event2": ["res://assets/cards/event3.png","res://assets/cards/event3_back.png"],
-	"Event3": ["res://assets/cards/event1.png","res://assets/cards/event1_back.png"],
-	"Event4": ["res://assets/cards/event2.png","res://assets/cards/event2_back.png"],
-	"Event5": ["res://assets/cards/event3.png","res://assets/cards/event3_back.png"],
-	"Event6": ["res://assets/cards/event1.png","res://assets/cards/event1_back.png"],
-	"Event7": ["res://assets/cards/event2.png","res://assets/cards/event2_back.png"],
-	"Event8": ["res://assets/cards/event3.png","res://assets/cards/event3_back.png"]
+	"Event0": ["res://assets/cards/event1.PNG","res://assets/cards/event1_back.PNG"],
+	"Event1": ["res://assets/cards/event2.PNG","res://assets/cards/event2_back.PNG"],
+	"Event2": ["res://assets/cards/event3.PNG","res://assets/cards/event3_back.PNG"],
+	"Event3": ["res://assets/cards/event1.PNG","res://assets/cards/event1_back.PNG"],
+	"Event4": ["res://assets/cards/event2.PNG","res://assets/cards/event2_back.PNG"],
+	"Event5": ["res://assets/cards/event3.PNG","res://assets/cards/event3_back.PNG"],
+	"Event6": ["res://assets/cards/event1.PNG","res://assets/cards/event1_back.PNG"],
+	"Event7": ["res://assets/cards/event2.PNG","res://assets/cards/event2_back.PNG"],
+	"Event8": ["res://assets/cards/event3.PNG","res://assets/cards/event3_back.PNG"]
 	}
