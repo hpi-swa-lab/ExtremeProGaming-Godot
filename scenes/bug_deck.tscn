@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://biahy8phfe8m"]
+
+[ext_resource type="PackedScene" uid="uid://bwpvo7bj4rxbu" path="res://scenes/deck.tscn" id="1_la7jm"]
+[ext_resource type="Script" uid="uid://c0qcsbgvr3tli" path="res://bug_deck.gd" id="2_bkaib"]
+
+[node name="BugDeck" instance=ExtResource("1_la7jm")]
+script = ExtResource("2_bkaib")

@@ -3,54 +3,61 @@ extends Node2D
 var STORYPOINTS = 6
 const STORYPOINTS_SCENE_PATH = "res://scenes/storypoint.tscn"
 const MIN_DISTANCE = 50
+const STORYPOINT_TEXTURES = {
+	"turquoise":"res://assets/gummy_blue.png",
+	"red":"res://assets/gummy_red.png"
+}
 
 @onready var storypoints_reference = $Storypoints
 
 func _ready() -> void:
-	var positions := []
+	spawn_storypoints_in_line(STORYPOINTS, "turquoise", 10000)
 
-	for i in range(STORYPOINTS):
-		var new_pos := get_valid_random_position(positions, MIN_DISTANCE)
-		positions.append(new_pos)
-
-		var storypoint_scene = preload(STORYPOINTS_SCENE_PATH)
+		
+func change_storypoints(effect_value):
+	var amount = effect_value[0]
+	var self_destroy = effect_value[1]
+	STORYPOINTS += amount
+	if self_destroy > 1:
+		spawn_storypoints_in_line(amount, "turquoise", self_destroy)
+	else:
+		spawn_storypoints_in_line(amount, "red", self_destroy)
+		
+func spawn_storypoints_in_line(amount, color, self_destroy):
+	# get point where to start generation
+	var position = get_valid_in_line_position()
+	
+	# generate storypoints
+	var current_x = position.x + 55
+	var fixed_y = position.y
+	for i in amount:
+		var storypoint_scene = preload(STORYPOINTS_SCENE_PATH)  
 		var new_storypoint = storypoint_scene.instantiate()
+		storypoints_reference.add_child(new_storypoint)
+		new_storypoint.get_node("StorypointImage").texture = load(STORYPOINT_TEXTURES[color]) 
 		new_storypoint.get_node("StorypointImage").scale = Vector2(0.01, 0.009)
-		new_storypoint.position = new_pos
+		new_storypoint.global_position = Vector2(current_x, fixed_y)
 		new_storypoint.original_position = new_storypoint.global_position
 		new_storypoint.z_index = 2
-		storypoints_reference.add_child(new_storypoint)
+		new_storypoint.self_destroy = self_destroy
+		current_x += 55
+		print(new_storypoint.global_position)
 		
-
-
-func get_valid_random_position(existing_positions: Array, min_distance: float) -> Vector2:
-	var area_node: Node = find_child("Area2D", false) 
-	var shape = area_node.get_node("CollisionShape2D").shape
-	var area_size = shape.extents * 2 # change if shape changes
-	var margin = min_distance  # distance from edges
-
-	# Shrink placement area by margin
-	var usable_area_size = area_size - Vector2(margin * 2, margin * 2)
-	var area_origin = area_node.position - area_size / 2 + Vector2(margin, margin)
-
-	var max_attempts = 50
-	for i in range(max_attempts):
-		var random_pos = area_origin + Vector2(
-			randf_range(0, usable_area_size.x),
-			randf_range(0, usable_area_size.y)
-		)
-
-		var too_close := false
-		for pos in existing_positions:
-			if pos.distance_to(random_pos) < min_distance:
-				too_close = true
-				break
-
-		if not too_close:
-			return random_pos
-
-	# Fallback (may overlap)
-	return area_origin + Vector2(
-		randf_range(0, usable_area_size.x),
-		randf_range(0, usable_area_size.y)
+func get_valid_in_line_position() -> Vector2:
+	var position : Vector2
+	var existing_storypoints = storypoints_reference.get_children().filter(
+	func(sp): return !sp.is_queued_for_deletion()
 	)
+	
+	if existing_storypoints.size() == 0:
+		position = storypoints_reference.global_position
+	else:
+		existing_storypoints.sort_custom(func(a, b):
+			if a.position.y != b.position.y:
+				return a.position.y < b.position.y
+			return a.position.x < b.position.x
+		)
+		position = existing_storypoints[-1].global_position
+	
+	print(position)
+	return position

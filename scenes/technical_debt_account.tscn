@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dswqyygw0txpy"]
+
+[ext_resource type="Texture2D" uid="uid://cdd63m7b0usi7" path="res://assets/supply.png" id="2_4qgrs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lbhrr"]
+size = Vector2(588, 87)
+
+[node name="TechnicalDebtAccount" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(18.5, -1)
+scale = Vector2(1.2542, 0.324138)
+texture = ExtResource("2_4qgrs")
+
+[node name="Area2D" type="Area2D" parent="."]
+modulate = Color(0.0431373, 0.54902, 1, 1)
+position = Vector2(0.999969, 5.53131e-05)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(17, -1.50006)
+shape = SubResource("RectangleShape2D_lbhrr")
+
+[node name="TechnicalDebt" type="Node2D" parent="."]
+position = Vector2(-329, -4)

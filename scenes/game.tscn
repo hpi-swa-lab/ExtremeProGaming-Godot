@@ -1,37 +1,22 @@
-[gd_scene load_steps=9 format=3 uid="uid://2amkrnek74r5"]
+[gd_scene load_steps=10 format=3 uid="uid://2amkrnek74r5"]
 
 [ext_resource type="PackedScene" uid="uid://belm8ywu7txr6" path="res://scenes/feature_deck.tscn" id="1_gee14"]
+[ext_resource type="PackedScene" uid="uid://cp6orqhxx6agb" path="res://scenes/supply.tscn" id="2_u5sy4"]
 [ext_resource type="Script" uid="uid://b4qx22upmkcuy" path="res://scripts/game_rules.gd" id="5_gee14"]
 [ext_resource type="Script" uid="uid://cypdak4uq2wku" path="res://scripts/backlog.gd" id="5_iywne"]
-[ext_resource type="Script" uid="uid://bfyw8dkcbwkv1" path="res://scripts/supply.gd" id="5_p57ef"]
-[ext_resource type="Texture2D" uid="uid://cdd63m7b0usi7" path="res://assets/supply.png" id="6_p57ef"]
+[ext_resource type="PackedScene" uid="uid://biahy8phfe8m" path="res://scenes/bug_deck.tscn" id="7_gee14"]
 [ext_resource type="PackedScene" uid="uid://bynp826y5pibk" path="res://scenes/event_deck.tscn" id="7_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://dswqyygw0txpy" path="res://scenes/technical_debt_account.tscn" id="8_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://c3hskgf5pyv7w" path="res://scenes/card_slot.tscn" id="8_gee14"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lbhrr"]
-size = Vector2(407, 240)
+[ext_resource type="Script" uid="uid://d1wlm0qb32qmj" path="res://scenes/technical_debt_account.gd" id="9_0tnpc"]
 
 [node name="Game" type="Node2D"]
 
+[node name="Supply" parent="." instance=ExtResource("2_u5sy4")]
+position = Vector2(1535, 125)
+
 [node name="GameRules" type="Node2D" parent="."]
 script = ExtResource("5_gee14")
-
-[node name="Supply" type="Node2D" parent="."]
-script = ExtResource("5_p57ef")
-
-[node name="Sprite2D" type="Sprite2D" parent="Supply"]
-position = Vector2(1550.5, 194)
-scale = Vector2(0.880252, 0.834483)
-texture = ExtResource("6_p57ef")
-
-[node name="Area2D" type="Area2D" parent="Supply"]
-modulate = Color(0.0431373, 0.54902, 1, 1)
-position = Vector2(1549, 194)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Supply/Area2D"]
-shape = SubResource("RectangleShape2D_lbhrr")
-
-[node name="Storypoints" type="Node2D" parent="Supply"]
 
 [node name="DarkenedBackground" type="ColorRect" parent="."]
 visible = false
@@ -41,6 +26,7 @@ offset_bottom = 1085.0
 color = Color(0, 0, 0, 0.74902)
 
 [node name="Backlog" type="Node2D" parent="."]
+position = Vector2(-1, 0)
 script = ExtResource("5_iywne")
 
 [node name="GameNotifications" type="RichTextLabel" parent="."]
@@ -51,10 +37,10 @@ offset_bottom = 767.0
 bbcode_enabled = true
 
 [node name="EndInterationButton" type="Button" parent="."]
-offset_left = 60.0
-offset_top = 821.0
-offset_right = 241.0
-offset_bottom = 883.0
+offset_left = 64.0
+offset_top = 877.0
+offset_right = 245.0
+offset_bottom = 939.0
 text = "Press to end iteration."
 
 [node name="DiscardPile" parent="." instance=ExtResource("8_gee14")]
@@ -71,7 +57,10 @@ theme_override_colors/font_color = Color(1, 0, 0, 1)
 text = "Press to start new iteration."
 
 [node name="FeatureDeck" parent="." instance=ExtResource("1_gee14")]
-position = Vector2(153, 485)
+position = Vector2(150, 457)
+
+[node name="BugDeck" parent="." instance=ExtResource("7_gee14")]
+position = Vector2(157, 713)
 
 [node name="EventDeck" parent="." instance=ExtResource("7_u5sy4")]
 position = Vector2(153, 198)
@@ -102,6 +91,22 @@ offset_right = 452.0
 offset_bottom = 87.0
 bbcode_enabled = true
 text = "Last/Current Event"
+
+[node name="TechnicalDebtAccount" parent="." instance=ExtResource("8_0tnpc")]
+position = Vector2(1535, 325)
+script = ExtResource("9_0tnpc")
+
+[node name="ChooseSPorDebtLabel" type="RichTextLabel" parent="."]
+visible = false
+z_index = 4
+offset_left = 473.0
+offset_top = 86.0
+offset_right = 1495.0
+offset_bottom = 311.0
+theme_override_font_sizes/normal_font_size = 40
+text = "Please choose if you would like to spend an additional Storypoint on that Ticket, or if you are want to build up debt."
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [connection signal="button_down" from="EndInterationButton" to="GameRules" method="_on_end_interation_button_down"]
 [connection signal="button_down" from="StartIterationButton" to="GameRules" method="_on_start_iteration_button_down"]

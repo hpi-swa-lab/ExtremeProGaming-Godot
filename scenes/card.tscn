@@ -67,10 +67,10 @@ _data = {
 script = ExtResource("1_ktuci")
 
 [node name="SelectionBorder" type="ColorRect" parent="."]
-offset_left = -78.0
-offset_top = -103.0
-offset_right = 78.0
-offset_bottom = 105.0
+offset_left = -92.0
+offset_top = -127.0
+offset_right = 87.0
+offset_bottom = 131.0
 color = Color(0.890196, 0.0117647, 0.145098, 1)
 
 [node name="CardBackImage" type="Sprite2D" parent="."]
