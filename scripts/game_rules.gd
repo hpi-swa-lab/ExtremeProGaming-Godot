@@ -263,6 +263,7 @@ func move_card_to_discard_pile(card, pile):
 	var start_pos = card.global_position
 	card.get_parent().remove_child(card)
 	pile.add_child(card)
+	card.z_index = 1
 	card.global_position = start_pos
 
 	var end_pos = pile.global_position

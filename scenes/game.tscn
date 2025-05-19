@@ -18,22 +18,18 @@ position = Vector2(1535, 125)
 [node name="GameRules" type="Node2D" parent="."]
 script = ExtResource("5_gee14")
 
-[node name="DarkenedBackground" type="ColorRect" parent="."]
-visible = false
-z_index = 2
-offset_right = 1914.0
-offset_bottom = 1085.0
-color = Color(0, 0, 0, 0.74902)
+[node name="DiscardPile" parent="." instance=ExtResource("8_gee14")]
+position = Vector2(1432, 638)
 
 [node name="Backlog" type="Node2D" parent="."]
 position = Vector2(-1, 0)
 script = ExtResource("5_iywne")
 
 [node name="GameNotifications" type="RichTextLabel" parent="."]
-offset_left = 46.0
-offset_top = 649.0
-offset_right = 306.0
-offset_bottom = 767.0
+offset_left = 749.0
+offset_top = 913.0
+offset_right = 1009.0
+offset_bottom = 1031.0
 bbcode_enabled = true
 
 [node name="EndInterationButton" type="Button" parent="."]
@@ -42,9 +38,6 @@ offset_top = 877.0
 offset_right = 245.0
 offset_bottom = 939.0
 text = "Press to end iteration."
-
-[node name="DiscardPile" parent="." instance=ExtResource("8_gee14")]
-position = Vector2(1432, 638)
 
 [node name="StartIterationButton" type="Button" parent="."]
 visible = false
@@ -67,6 +60,10 @@ position = Vector2(153, 198)
 
 [node name="EventDiscardPile" parent="." instance=ExtResource("8_gee14")]
 position = Vector2(368, 195)
+
+[node name="TechnicalDebtAccount" parent="." instance=ExtResource("8_0tnpc")]
+position = Vector2(1535, 325)
+script = ExtResource("9_0tnpc")
 
 [node name="GameNotifications2" type="RichTextLabel" parent="."]
 offset_left = 1383.0
@@ -92,9 +89,12 @@ offset_bottom = 87.0
 bbcode_enabled = true
 text = "Last/Current Event"
 
-[node name="TechnicalDebtAccount" parent="." instance=ExtResource("8_0tnpc")]
-position = Vector2(1535, 325)
-script = ExtResource("9_0tnpc")
+[node name="DarkenedBackground" type="ColorRect" parent="."]
+visible = false
+z_index = 3
+offset_right = 1914.0
+offset_bottom = 1085.0
+color = Color(0, 0, 0, 0.74902)
 
 [node name="ChooseSPorDebtLabel" type="RichTextLabel" parent="."]
 visible = false
