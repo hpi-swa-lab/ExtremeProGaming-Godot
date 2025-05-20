@@ -167,6 +167,7 @@ func choose_story_point_or_debt(card):
 	var storypoint_scene = preload("res://scenes/storypoint.tscn")  
 	var new_storypoint = storypoint_scene.instantiate()
 	new_storypoint.global_position = Vector2(700, 600)
+	new_storypoint.get_node("StorypointImage").texture = load("res://assets/gummy_blue.png")
 	new_storypoint.get_node("StorypointImage").scale = Vector2(0.05, 0.03)
 	new_storypoint.z_index = 5
 	add_child(new_storypoint)
