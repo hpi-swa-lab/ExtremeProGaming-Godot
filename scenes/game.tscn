@@ -88,7 +88,7 @@ color = Color(0, 0, 0, 0.74902)
 
 [node name="StartIterationButton" type="Button" parent="."]
 visible = false
-z_index = 4
+z_index = 5
 offset_left = 880.0
 offset_top = 947.0
 offset_right = 1103.0
