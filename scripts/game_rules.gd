@@ -11,8 +11,6 @@ extends Node2D
 @onready var event_discard_pile = $"../EventDiscardPile"
 @onready var choose_sp_or_debt_label = $"../ChooseSPorDebtLabel"
 @onready var canvas_layer = $"../CanvasLayer"
-#@onready var sp_button = $"../ChooseSPButton"
-#@onready var debt_button = $"../ChooseDebtButton"
 @onready var iteration = 1
 @onready var current_phase
 var event_card_drawn_once = false
@@ -57,7 +55,8 @@ func _on_start_iteration_button_down() -> void:
 		else:
 			supply.STORYPOINTS -= 1
 	for card in chosen_cards:
-		execute_card_effect(card.effects)
+		if card.cannot_be_unchosen == false:
+			execute_card_effect(card)
 	iteration += 1
 	prepare_iteration()
 		
@@ -78,7 +77,6 @@ func _process(delta):
 		$"../EndInterationButton".disabled = true
 	else:
 		$"../EndInterationButton".disabled = false
-	
 	
 func darken_background():
 	$"../DarkenedBackground".visible = true
@@ -101,7 +99,7 @@ func move_cards_to_front(chosen_cards):
 
 	for i in range(card_count):
 		var card = chosen_cards[i]
-		card.z_index = 4
+		card.z_index = 5
 		var tween = create_tween()
 
 		var x_offset = -total_width / 2 + i * spacing
@@ -109,8 +107,6 @@ func move_cards_to_front(chosen_cards):
 
 		tween.tween_property(card, "global_position", target_pos, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 		tween.tween_property(card, "scale", Vector2(2, 2), 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-
-
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -130,7 +126,7 @@ func _input(event):
 					await get_tree().create_timer(2.0).timeout
 					lighten_background()
 					move_card_to_discard_pile(drawn_card, event_discard_pile)
-					drawn_card.z_index = -1
+					drawn_card.z_index = -2
 					current_phase = Phase.DRAW_FEATURE
 					label.text = ("Please draw at least 1 Feature Card.")
 			Phase.DRAW_FEATURE:
@@ -152,13 +148,7 @@ func _input(event):
 				elif card_can_be_unchoosen(event, card):
 					card.choose_card()
 					move_storypoints_to_supply(card)
-					remove_technical_debt(card)
-
-func remove_technical_debt(card):
-	if card.storypoint_or_debt == "debt":
-		var children = techical_debt_account.debt_reference.get_children()
-		children[-1].queue_free()
-	card.storypoint_or_debt = null
+					techical_debt_account.remove_technical_debt(card)
 
 func choose_story_point_or_debt(card):
 	await get_tree().create_timer(0.5).timeout
@@ -186,13 +176,11 @@ func choose_story_point_or_debt(card):
 	var debt_button = create_button("Technical Debt", Vector2(1147, 791), canvas_layer, 5)
 	debt_button.connect("button_down", func(): _on_choose_debt_button_down(card))
 	
-	
-					
 func card_can_be_choosen(event, card, needed_storypoints):
-	return event.pressed and not card.uncovered and card.on_card_grid and card.chosen == false and needed_storypoints <= available_storypoints() and (card.type == card.CardType.FEATURE or card.type == card.CardType.BUG) 
+	return event.pressed and not card.uncovered and card.on_card_grid and card.chosen == false and needed_storypoints <= supply.available_storypoints() and (card.type == card.CardType.FEATURE or card.type == card.CardType.BUG) 
 	
 func card_can_be_unchoosen(event, card):
-	return event.pressed and not card.uncovered and card.on_card_grid and card.chosen and card.type == card.CardType.FEATURE
+	return event.pressed and not card.uncovered and card.on_card_grid and card.chosen and card.type == card.CardType.FEATURE and card.cannot_be_unchosen == false
 	
 func feature_card_can_be_drawn(event, card):
 	return event.pressed and not card.uncovered and !card.on_card_grid and card.type == card.CardType.FEATURE
@@ -200,23 +188,40 @@ func feature_card_can_be_drawn(event, card):
 func event_card_can_be_drawn(event, card):
 	return event.pressed and not card.uncovered and card.type == card.CardType.EVENT
 	
-func execute_card_effect(effects):
+func execute_card_effect(card):
+	var effects = card.effects
 	for effect in effects:
 		var effect_name = effect[0]
 		var effect_value = effect[1]
 		match effect_name:
 			"storypoints":
-				supply.change_storypoints(effect_value)
-			"technical_debt":
-				change_debt(effect_value)
+				await supply.change_storypoints(effect_value)
+			"add_technical_debt":
+				await techical_debt_account.add_debt(effect_value)
+			"remove_technical_debt":
+				await techical_debt_account.remove_debt(effect_value)
 			"bugs":
-				spawn_bug(effect_value)
+				await spawn_bug(effect_value)
+			"features":
+				for i in range(0, effect_value):
+					var drawn_card = feature_deck.draw_card()
+					await move_card_to_cardslot(drawn_card)
+			"must_choose":
+				await must_choose_card(card)
+			"new_texture":
+				await card.use_new_texture(effect_value)
 			_:
 				push_warning("Unknown Effect: %s" % effect_name)
-		await get_tree().create_timer(2.0).timeout
 	
-func change_debt(effect_value):
-	pass
+func must_choose_card(card):
+	card.cannot_be_unchosen = true
+	move_card_to_cardslot(card)
+	card.z_index = 2
+	card.back_flip_card()
+	await get_tree().create_timer(1.0).timeout
+	card.choose_card()
+	move_storypoints_to_card(card, card.storypoints)
+	choose_story_point_or_debt(card)
 	
 func spawn_bug(effect_value):
 	for i in range(0, effect_value):
@@ -247,6 +252,7 @@ func move_card_to_cardslot(card):
 		card.z_index = 3
 		card.get_parent().remove_child(card)
 		next_free_card_slot.add_child(card)
+		card.scale = Vector2.ONE
 		card.global_position = start_pos
 
 		var tween := get_tree().create_tween()
@@ -264,19 +270,14 @@ func move_card_to_discard_pile(card, pile):
 	var start_pos = card.global_position
 	card.get_parent().remove_child(card)
 	pile.add_child(card)
+	card.scale = Vector2.ONE
 	card.z_index = 1
 	card.global_position = start_pos
 
 	var end_pos = pile.global_position
-
 	var tween := get_tree().create_tween()
 	tween.tween_property(card, "scale", Vector2(0.8, 0.8), 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.tween_property(card, "global_position", end_pos, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-
-
-func available_storypoints():
-	var storypoints_in_supply = supply.storypoints_reference.get_children()
-	return storypoints_in_supply.size()
 		
 func move_storypoints_to_card(card, needed_storypoints):
 	var storypoints_in_supply = supply.storypoints_reference.get_children()
@@ -295,6 +296,7 @@ func move_storypoints_to_card(card, needed_storypoints):
 		var start_pos = sp.global_position
 		supply.storypoints_reference.remove_child(sp)
 		card.storypoints_reference.add_child(sp)
+		sp.scale = Vector2.ONE
 		sp.global_position = start_pos
 
 	# Get all storypoints currently on the card (old and new)
@@ -314,8 +316,6 @@ func move_storypoints_to_card(card, needed_storypoints):
 		var tween = get_tree().create_tween()
 		tween.tween_property(sp, "global_position", target_pos, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
-
-		
 func move_storypoints_to_supply(card):
 	var storypoints_on_card = card.storypoints_reference.get_children()
 		
@@ -343,10 +343,9 @@ func _on_choose_sp_button_down(card) -> void:
 	move_storypoints_to_card(card, 1)
 	card.storypoint_or_debt = "storypoint"
 
-
 func _on_choose_debt_button_down(card) -> void:
 	blend_out_choosing_screen()
-	techical_debt_account.spawn_debt("frontend")
+	techical_debt_account.spawn_debt(card.area)
 	card.storypoint_or_debt = "debt"
 
 func create_button(text: String, position: Vector2, parent: Node, z_index) -> Button:

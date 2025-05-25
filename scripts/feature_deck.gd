@@ -21,13 +21,14 @@ func _ready() -> void:
 		
 		new_card.name = name
 		new_card.storypoints = card_database_reference.ALL_FEATURE_CARDS_META[name][0]
+		new_card.area = card_database_reference.ALL_FEATURE_CARDS_META[name][1]
 		new_card.type = new_card.CardType.FEATURE
 		new_card.effects = card_database_reference.ALL_FEATURE_CARDS_BACK_META[name]
 
 		var new_card_front_image_path = card_database_reference.ALL_FEATURE_CARDS[name][0]
 		var new_card_back_image_path = card_database_reference.ALL_FEATURE_CARDS[name][1]
 		new_card.get_node("CardImage").texture = load(new_card_front_image_path)
-		new_card.get_node("CardImage").scale = Vector2(0.3, 0.28)
+		new_card.get_node("CardImage").scale = Vector2(0.3, 0.3)
 		
 		new_card.get_node("CardBackImage").texture = load(new_card_back_image_path)
 		new_card.get_node("CardBackImage").scale = Vector2(0.3, 0.3)

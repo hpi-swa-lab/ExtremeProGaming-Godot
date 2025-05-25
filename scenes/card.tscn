@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cca71wt6yarn6"]
+[gd_scene load_steps=7 format=3 uid="uid://cca71wt6yarn6"]
 
 [ext_resource type="Script" uid="uid://6tn2x8hyeb63" path="res://scripts/card.gd" id="1_ktuci"]
 [ext_resource type="AudioStream" uid="uid://dvbks8dg6aouh" path="res://assets/select_card.mp3" id="3_ktuci"]
@@ -43,7 +43,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.233333, 0.466667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0.35, 0.35), Vector2(0.05, 0.35), Vector2(0.4, 0.35)]
+"values": [Vector2(0.36, 0.35), Vector2(0.05, 0.35), Vector2(0.36, 0.35)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -57,9 +57,37 @@ tracks/3/keys = {
 "update": 1,
 "values": [-1, 3]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CardBackImage:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.164714),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_ktuci"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CardBackImage:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sy11y"]
 _data = {
+&"RESET": SubResource("Animation_ktuci"),
 &"card_flip": SubResource("Animation_6u4wf")
 }
 
@@ -67,6 +95,7 @@ _data = {
 script = ExtResource("1_ktuci")
 
 [node name="SelectionBorder" type="ColorRect" parent="."]
+z_index = -2
 offset_left = -92.0
 offset_top = -127.0
 offset_right = 87.0
@@ -74,13 +103,14 @@ offset_bottom = 131.0
 color = Color(0.890196, 0.0117647, 0.145098, 1)
 
 [node name="CardBackImage" type="Sprite2D" parent="."]
-z_index = -1
-scale = Vector2(0.35, 0.35)
+visible = false
+z_index = 3
+scale = Vector2(0.141166, 0.35)
 
 [node name="CardImage" type="Sprite2D" parent="."]
-z_index = 1
+z_index = -1
 rotation = 0.00098535
-scale = Vector2(0.3, 0.28)
+scale = Vector2(0.123521, 0.28)
 
 [node name="Area2D" type="Area2D" parent="."]
 

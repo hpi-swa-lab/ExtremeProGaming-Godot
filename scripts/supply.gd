@@ -59,5 +59,8 @@ func get_valid_in_line_position() -> Vector2:
 		)
 		position = existing_storypoints[-1].global_position
 	
-	print(position)
 	return position
+
+func available_storypoints():
+	var storypoints_in_supply = storypoints_reference.get_children()
+	return storypoints_in_supply.size()
