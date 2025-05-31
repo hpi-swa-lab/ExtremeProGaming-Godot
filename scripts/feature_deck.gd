@@ -22,6 +22,7 @@ func _ready() -> void:
 		new_card.name = name
 		new_card.storypoints = card_database_reference.ALL_FEATURE_CARDS_META[name][0]
 		new_card.area = card_database_reference.ALL_FEATURE_CARDS_META[name][1]
+		new_card.count_for_debt_calculatiom = card_database_reference.ALL_FEATURE_CARDS_META[name][2]
 		new_card.type = new_card.CardType.FEATURE
 		new_card.effects = card_database_reference.ALL_FEATURE_CARDS_BACK_META[name]
 

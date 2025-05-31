@@ -18,8 +18,10 @@ func _ready() -> void:
 		var new_card = card_scene.instantiate()
 		
 		new_card.name = name
+		new_card.area = card_database_reference.ALL_BUG_CARDS_META[name][1]
 		new_card.type = new_card.CardType.BUG
 		new_card.storypoints = card_database_reference.ALL_BUG_CARDS_META[name][0]
+		new_card.count_for_debt_calculatiom = card_database_reference.ALL_BUG_CARDS_META[name][2]
 		new_card.effects = card_database_reference.ALL_BUG_CARDS_BACK_META[name]
 
 		var new_card_front_image_path = card_database_reference.ALL_BUG_CARDS[name][0]

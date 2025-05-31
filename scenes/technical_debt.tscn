@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://boypr0janl4bu" path="res://scenes/technical_debt.gd" id="1_x4rpl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x4rpl"]
-radius = 47.0
+radius = 54.0
 
 [node name="TechnicalDebt" type="Node2D"]
 script = ExtResource("1_x4rpl")
@@ -18,3 +18,5 @@ texture = ExtResource("1_aly5d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_x4rpl")
+
+[node name="Storypoint" type="Node2D" parent="."]

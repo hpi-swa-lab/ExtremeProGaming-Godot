@@ -5,12 +5,11 @@ class_name Card
 @export var uncovered = false
 @export var chosen = false
 @export var storypoints = null
-@export var storypoint_or_debt = null
 @export var cannot_be_unchosen = false
 @export var type = null
 @export var area = null
 @export var effects = []
-
+@export var count_for_debt_calculatiom = null
 @onready var storypoints_reference = $Storypoints
 
 

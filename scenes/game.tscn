@@ -86,16 +86,6 @@ offset_right = 1914.0
 offset_bottom = 1085.0
 color = Color(0, 0, 0, 0.74902)
 
-[node name="StartIterationButton" type="Button" parent="."]
-visible = false
-z_index = 5
-offset_left = 880.0
-offset_top = 947.0
-offset_right = 1103.0
-offset_bottom = 1009.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-text = "Press to start new iteration."
-
 [node name="ChooseSPorDebtLabel" type="RichTextLabel" parent="."]
 visible = false
 z_index = 4
@@ -109,4 +99,3 @@ text = "Please choose if you would like to spend an additional Storypoint on tha
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [connection signal="button_down" from="EndInterationButton" to="GameRules" method="_on_end_interation_button_down"]
-[connection signal="button_down" from="StartIterationButton" to="GameRules" method="_on_start_iteration_button_down"]

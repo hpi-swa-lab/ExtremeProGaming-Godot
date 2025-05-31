@@ -21,6 +21,7 @@ func _ready() -> void:
 		
 		new_card.name = name
 		new_card.type = new_card.CardType.EVENT
+		new_card.effects = card_database_reference.ALL_EVENT_CARDS_BACK_META[name]
 
 		var new_card_front_image_path = card_database_reference.ALL_EVENT_CARDS[name][0]
 		var new_card_back_image_path = card_database_reference.ALL_EVENT_CARDS[name][1]

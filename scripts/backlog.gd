@@ -54,6 +54,16 @@ func get_chosen_cards():
 
 	return chosen_cards
 	
+func get_chosen_cards_from_area(area):
+	var chosen_cards = []
+
+	for slot in get_children():
+		for child in slot.get_children():
+			if child.has_method("is_card") and child.chosen and child.area == area:
+				chosen_cards.append(child)
+
+	return chosen_cards
+	
 func get_card_container() -> Node2D:
 	var cards_reference = $Cards
 	return cards_reference
