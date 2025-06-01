@@ -173,7 +173,7 @@ func _input(event):
 					plan_iteration()
 
 			Phase.PLAN:
-				if card and card.type == card.CardType.FEATURE:
+				if card and (card.type == card.CardType.FEATURE or card.type == card.CardType.BUG):
 					var needed_storypoints = card.storypoints + techical_debt_account.calculate_needed_storypoints(card.area)
 					if card and feature_card_can_be_drawn(event, card):
 						var drawn_card = feature_deck.draw_card()
@@ -195,10 +195,10 @@ func _input(event):
 func card_can_be_choosen(event, card, needed_storypoints):
 	if techical_debt_account.get_currently_refactored_debt_for_area(card.area) != 0:
 		label.text = ("You can select cards in "+ card.area + " if you have no debt to be refactored from "+ card.area)
-	return event.pressed and not card.uncovered and card.on_card_grid and card.chosen == false and needed_storypoints <= supply.available_storypoints() and (card.type == card.CardType.FEATURE or card.type == card.CardType.BUG) and techical_debt_account.get_currently_refactored_debt_for_area(card.area) == 0 
+	return event.pressed and not card.uncovered and card.on_card_grid and card.chosen == false and needed_storypoints <= supply.available_storypoints() and techical_debt_account.get_currently_refactored_debt_for_area(card.area) == 0 
 	
 func card_can_be_unchoosen(event, card):
-	return event.pressed and not card.uncovered and card.on_card_grid and card.chosen and (card.type == card.CardType.FEATURE or card.type == card.CardType.BUG) and card.cannot_be_unchosen == false
+	return event.pressed and not card.uncovered and card.on_card_grid and card.chosen and card.cannot_be_unchosen == false
 	
 func feature_card_can_be_drawn(event, card):
 	return event.pressed and not card.uncovered and !card.on_card_grid and card.type == card.CardType.FEATURE and feature_deck.CARDS_IN_DECK != []
