@@ -37,17 +37,17 @@ func plan_iteration():
 	label.text = ("Now plan your iteration. You can draw more cards or place select Cards for this iteration.")
 	
 func _on_read_event_button_down(drawn_card) -> void:
-	get_tree().paused = true
 	lighten_background()
+	drawn_card.z_index = 4
 	move_card_to_discard_pile(drawn_card, event_discard_pile)
-	drawn_card.z_index = -2
-	current_phase = Phase.DRAW_FEATURE
 	for child in canvas_layer.get_children():
 		child.queue_free()
+	await get_tree().create_timer(1.0).timeout
+	await execute_card_effect(drawn_card)
 	await get_tree().create_timer(2.0).timeout
-	execute_card_effect(drawn_card)
+	drawn_card.z_index = -2
+	current_phase = Phase.DRAW_FEATURE
 	label.text = ("Please draw at least 1 Feature Card.")
-	get_tree().paused = false
 	
 func _on_start_iteration_button_down() -> void:
 	for child in canvas_layer.get_children():
@@ -62,8 +62,6 @@ func _on_start_iteration_button_down() -> void:
 		card.choose_card() # we execute this to make the card unusable in that state
 		move_card_to_discard_pile(card, discard_pile)
 	techical_debt_account.remove_refactored_debt()
-	var needed_debt = calculate_technical_debt(chosen_cards)
-	techical_debt_account.add_debt_after_round(needed_debt)
 		
 	await get_tree().create_timer(2.0).timeout
 	for sp in supply.storypoints_reference.get_children():
@@ -72,9 +70,12 @@ func _on_start_iteration_button_down() -> void:
 			sp.queue_free()
 		else:
 			supply.STORYPOINTS -= 1
+	await get_tree().create_timer(1.0).timeout
 	for card in chosen_cards:
 		if card.cannot_be_unchosen == false:
-			execute_card_effect(card)
+			await execute_card_effect(card)
+	await get_tree().create_timer(2.0).timeout
+	techical_debt_account.calculate_and_add_technical_debt_after_iteration(chosen_cards)
 	iteration += 1
 	prepare_iteration()
 	
@@ -83,15 +84,15 @@ func _on_start_iteration_button_down() -> void:
 func _on_end_interation_button_down() -> void:
 	current_phase = Phase.END
 	var chosen_cards = backlog.get_chosen_cards()
-	var chosem_debt = techical_debt_account.get_all_debt_selected_for_refactoring()
+	var chosen_debt = techical_debt_account.get_all_debt_selected_for_refactoring()
 	for card in chosen_cards:
 		card.flip_card()
 		move_storypoints_to_supply(card)
-	for debt in chosem_debt:
+	for debt in chosen_debt:
 		move_storypoints_to_supply(debt)
 
 	darken_background()
-	move_cards_to_front(chosen_cards, chosem_debt)
+	move_cards_to_front(chosen_cards, chosen_debt)
 	
 	var start_iteration_button = create_button("Start new iteration", Vector2(880.0, 947.0), 5)
 	start_iteration_button.connect("button_down", func(): _on_start_iteration_button_down())
@@ -117,7 +118,7 @@ func move_cards_to_front(chosen_cards, chosen_debt):
 	var screen_center = screen_size / 2
 	
 	var card_count = chosen_cards.size()
-	var card_spacing = 500
+	var card_spacing = 400
 	var total_card_width = (card_count - 1) * card_spacing
 	
 	for i in range(card_count):
@@ -127,7 +128,7 @@ func move_cards_to_front(chosen_cards, chosen_debt):
 		var x_offset = -total_card_width / 2 + i * card_spacing
 		var target_pos = screen_center + Vector2(x_offset, 50)
 		tween.tween_property(card, "global_position", target_pos, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-		tween.tween_property(card, "scale", Vector2(2, 2), 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		tween.tween_property(card, "scale", Vector2(1.5, 1.5), 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	
 	if chosen_debt != null and chosen_debt.size() > 0:
 		var debt_count = chosen_debt.size()
@@ -172,7 +173,7 @@ func _input(event):
 					plan_iteration()
 
 			Phase.PLAN:
-				if card:
+				if card and card.type == card.CardType.FEATURE:
 					var needed_storypoints = card.storypoints + techical_debt_account.calculate_needed_storypoints(card.area)
 					if card and feature_card_can_be_drawn(event, card):
 						var drawn_card = feature_deck.draw_card()
@@ -183,7 +184,6 @@ func _input(event):
 					elif card and card_can_be_unchoosen(event, card):
 						card.choose_card()
 						move_storypoints_to_supply(card)
-						techical_debt_account.remove_technical_debt(card)
 				elif debt and debt_can_be_refactored(event, debt):
 					debt.to_be_refectored = true
 					move_storypoints_to_debt(debt)
@@ -191,21 +191,6 @@ func _input(event):
 					debt.to_be_refectored = false
 					move_storypoints_to_supply(debt)
 					
-func calculate_technical_debt(choosen_cards):
-	var frontend = 0
-	var backend = 0
-	for card in choosen_cards:
-		if card.area == "backend" and card.count_for_debt_calculatiom == true:
-			backend += 1
-		if card.area == "frontend" and card.count_for_debt_calculatiom == true:
-			frontend += 1
-	
-	if backend > 0:
-		backend = 1
-	if frontend > 0:
-		frontend = 1
-		
-	return {"backend": backend, "frontend": frontend}
 	
 func card_can_be_choosen(event, card, needed_storypoints):
 	if techical_debt_account.get_currently_refactored_debt_for_area(card.area) != 0:
@@ -216,7 +201,7 @@ func card_can_be_unchoosen(event, card):
 	return event.pressed and not card.uncovered and card.on_card_grid and card.chosen and (card.type == card.CardType.FEATURE or card.type == card.CardType.BUG) and card.cannot_be_unchosen == false
 	
 func feature_card_can_be_drawn(event, card):
-	return event.pressed and not card.uncovered and !card.on_card_grid and card.type == card.CardType.FEATURE
+	return event.pressed and not card.uncovered and !card.on_card_grid and card.type == card.CardType.FEATURE and feature_deck.CARDS_IN_DECK != []
 	
 func event_card_can_be_drawn(event, card):
 	return event.pressed and not card.uncovered and card.type == card.CardType.EVENT
@@ -232,17 +217,19 @@ func debt_can_be_unchoosen(event, debt):
 	return event.pressed and debt.to_be_refectored
 	
 func execute_card_effect(card):
+	label.text = ("Card Effects are being applied.")
 	var effects = card.effects
 	for effect in effects:
+		await get_tree().create_timer(0.2).timeout
 		var effect_name = effect[0]
 		var effect_value = effect[1]
 		match effect_name:
 			"add_storypoints":
 				await supply.change_storypoints(effect_value)
 			"add_technical_debt":
-				await techical_debt_account.add_debt_effect(effect_value)
+				techical_debt_account.add_debt_effect(effect_value)
 			"remove_technical_debt":
-				await techical_debt_account.remove_debt_effect(effect_value)
+				techical_debt_account.remove_debt_effect(effect_value)
 			"bugs":
 				await spawn_bug(effect_value)
 			"features":

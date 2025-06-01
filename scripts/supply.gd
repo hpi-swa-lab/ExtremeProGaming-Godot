@@ -41,7 +41,6 @@ func spawn_storypoints_in_line(amount, color, self_destroy):
 		new_storypoint.z_index = 2
 		new_storypoint.self_destroy = self_destroy
 		current_x += 55
-		print(new_storypoint.global_position)
 		
 func get_valid_in_line_position() -> Vector2:
 	var position : Vector2

@@ -4,7 +4,7 @@ const ALL_FEATURE_CARDS_META = {
 	"Card2": [2,"frontend", true],
 	"Card3": [1,"backend", true],
 	"Card4": [1,"frontend", true],
-	"Card5": [1,"backend", true],
+	"Card5": [1,"backend", false],
 	"Card6": [1,"frontend", true],
 	"Card7": [3,"backend", true],
 	"Card8": [3,"backend", true]
@@ -12,7 +12,7 @@ const ALL_FEATURE_CARDS_META = {
 
 const ALL_FEATURE_CARDS_BACK_META = {
 	"Card0": [["bugs",1]],
-	"Card1": [["add_technical_debt",[1, "backend"]]],
+	"Card1": [["remove_technical_debt",[1, "backend"]]],
 	"Card2": [["bugs",1]],
 	"Card3": [["add_storypoints",[1, 1]]],
 	"Card4": [["new_texture",["res://assets/cards/features/feature7_front_new.PNG", 3]],["must_choose", 0]],
