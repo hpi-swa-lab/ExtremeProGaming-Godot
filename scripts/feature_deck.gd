@@ -3,6 +3,8 @@ extends "res://scripts/deck.gd"
 const CARD_COUNT = 9
 const CARD_SCENE_PATH = "res://scenes/card.tscn"
 var CARDS_IN_DECK = []
+@export var START_CARDS = []
+signal cards_ready
 
 @onready var card_grid_reference = $"../Backlog"
 @onready var card_database_reference = preload("res://scripts/card_database.gd")
@@ -22,7 +24,8 @@ func _ready() -> void:
 		new_card.name = name
 		new_card.storypoints = card_database_reference.ALL_FEATURE_CARDS_META[name][0]
 		new_card.area = card_database_reference.ALL_FEATURE_CARDS_META[name][1]
-		new_card.count_for_debt_calculatiom = card_database_reference.ALL_FEATURE_CARDS_META[name][2]
+		new_card.count_for_debt_calculation = card_database_reference.ALL_FEATURE_CARDS_META[name][2]
+		new_card.is_start_card = card_database_reference.ALL_FEATURE_CARDS_META[name][3]
 		new_card.type = new_card.CardType.FEATURE
 		new_card.effects = card_database_reference.ALL_FEATURE_CARDS_BACK_META[name]
 
@@ -34,10 +37,15 @@ func _ready() -> void:
 		new_card.get_node("CardBackImage").texture = load(new_card_back_image_path)
 		new_card.get_node("CardBackImage").scale = Vector2(0.3, 0.3)
 		new_card.get_node("CardBackImage").z_index = -1
-		new_card.position = get_node("Area2D").position 
+		new_card.position = get_node("Area2D").position
 		self.add_child(new_card)
-		CARDS_IN_DECK.append(new_card)
-
+		if new_card.is_start_card == true:
+			START_CARDS.append(new_card)
+		else:
+			
+			CARDS_IN_DECK.append(new_card)
+	emit_signal("cards_ready")
+		
 	
 func draw_card():
 	var card_drawn = CARDS_IN_DECK.back() # the last generated card in rendered on top

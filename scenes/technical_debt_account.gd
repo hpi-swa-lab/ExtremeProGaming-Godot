@@ -113,13 +113,19 @@ func get_currently_refactored_debt_for_area(area):
 
 	return refactored_debt.size()
 	
+func get_all_debt():
+	var debt = []
+	for child in debt_reference.get_children():
+			debt.append(child)
+	return debt
+	
 func calculate_and_add_technical_debt_after_iteration(choosen_cards):
 	var frontend = 0
 	var backend = 0
 	for card in choosen_cards:
-		if card.area == "backend" and card.count_for_debt_calculatiom == true:
+		if card.area == "backend" and card.count_for_debt_calculation == true:
 			backend += 1
-		if card.area == "frontend" and card.count_for_debt_calculatiom == true:
+		if card.area == "frontend" and card.count_for_debt_calculation == true:
 			frontend += 1
 	
 	if backend > 0:

@@ -1,13 +1,25 @@
-const ALL_FEATURE_CARDS_META = {
-	"Card0": [2,"frontend", true],
-	"Card1": [1,"backend", false],
-	"Card2": [2,"frontend", true],
-	"Card3": [1,"backend", true],
-	"Card4": [1,"frontend", true],
-	"Card5": [1,"backend", false],
-	"Card6": [1,"frontend", true],
-	"Card7": [3,"backend", true],
-	"Card8": [3,"backend", true]
+const ALL_FEATURE_CARDS_META = { # storypoints, area, counts for debt calc, is start card
+	"Card0": [2,"frontend", true, true],
+	"Card1": [1,"backend", false, false],
+	"Card2": [2,"frontend", true, true],
+	"Card3": [1,"backend", true, false],
+	"Card4": [1,"frontend", true, false],
+	"Card5": [1,"backend", false, false],
+	"Card6": [1,"frontend", true, false],
+	"Card7": [3,"backend", true, false],
+	"Card8": [3,"backend", true, false]
+}
+
+const ALL_FEATURE_TEXT = {
+	"Card0": ["This is card 0", "This is the back"],
+	"Card1":["This is card 1", "This is the back"],
+	"Card2": ["This is card 2", "This is the back"],
+	"Card3": ["This is card 3", "This is the back"],
+	"Card4": ["This is card 4", "This is the back"],
+	"Card5":["This is card 5", "This is the back"],
+	"Card6": ["This is card 6", "This is the back"],
+	"Card7": ["This is card 7", "This is the back"],
+	"Card8": ["This is card 8", "This is the back"]
 }
 
 const ALL_FEATURE_CARDS_BACK_META = {
@@ -47,14 +59,14 @@ const ALL_EVENT_CARDS = {
 	
 const ALL_EVENT_CARDS_BACK_META = {
 	"Event0": [["features",2]],
-	"Event1": [],
-	"Event2": [],
-	"Event3": [["features",2]],
-	"Event4": [],
-	"Event5": [],
-	"Event6": [["features",2]],
-	"Event7": [],
-	"Event8": []
+	"Event1": [["goal",1]],
+	"Event2": [["remove_storypoints",[2, 1]]],
+	"Event3": [["half_storypoints", 10000]],
+	"Event4": [["add_storypoints",[2, 1]]],
+	"Event5": [["add_storypoints",[2, 10000]]],
+	"Event6": [["features",1], ["bugs",1]],
+	"Event7": [["remove_cheapest_feature", 1]],
+	"Event8": [["prohibit_refactoring", 1]]
 	}
 	
 const ALL_BUG_CARDS = {
@@ -82,15 +94,15 @@ const ALL_BUG_CARDS_BACK_META = {
 	}
 
 const ALL_BUG_CARDS_META = {
-	"Bug0": [2,"frontend", true], #[Storypoints]
-	"Bug1": [1,"backend", true],
-	"Bug2": [2,"frontend", true],
-	"Bug3": [1,"backend", true],
-	"Bug4": [2,"frontend", true],
-	"Bug5": [1,"backend", true],
-	"Bug6": [2,"frontend", true],
-	"Bug7": [1,"backend", true],
-	"Bug8": [2,"frontend", true]
+	"Bug0": [2,"frontend", true, true], #[Storypoints]
+	"Bug1": [1,"backend", true, false],
+	"Bug2": [2,"frontend", true, false],
+	"Bug3": [1,"backend", true, false],
+	"Bug4": [2,"frontend", true, false],
+	"Bug5": [1,"backend", true, false],
+	"Bug6": [2,"frontend", true, false],
+	"Bug7": [1,"backend", true, false],
+	"Bug8": [2,"frontend", true, false]
 }
 	
 	# back_to_backlog, technical debt, storypoints

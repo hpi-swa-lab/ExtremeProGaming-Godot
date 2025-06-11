@@ -7,14 +7,31 @@ const STORYPOINT_TEXTURES = {
 	"turquoise":"res://assets/gummy_blue.png",
 	"red":"res://assets/gummy_red.png"
 }
+var storypoints_to_revive = 0
 
 @onready var storypoints_reference = $Storypoints
 
 func _ready() -> void:
 	spawn_storypoints_in_line(STORYPOINTS, "turquoise", 10000)
 
+func half_storypoints_effect(effect_value):
+	var halfed_storypoints = round(available_storypoints() / 2.0)
+	for i in range(STORYPOINTS - halfed_storypoints):
+		var children_to_be_removed = []
+		for child in storypoints_reference.get_children():
+			children_to_be_removed.append(child)
+
+		if children_to_be_removed.size() == 0:
+			break
+
+		var max_x_child = children_to_be_removed[0]
+		for child in children_to_be_removed:
+			if child.position.x > max_x_child.position.x:
+				max_x_child = child
+
+		max_x_child.free()
 		
-func change_storypoints(effect_value):
+func add_storypoints_effect(effect_value):
 	var amount = effect_value[0]
 	var self_destroy = effect_value[1]
 	STORYPOINTS += amount
@@ -22,6 +39,27 @@ func change_storypoints(effect_value):
 		spawn_storypoints_in_line(amount, "turquoise", self_destroy)
 	else:
 		spawn_storypoints_in_line(amount, "red", self_destroy)
+		
+func remove_storypoints_effect(effect_value):
+	var amount = effect_value[0]
+	storypoints_to_revive += amount
+	STORYPOINTS -= amount
+	print(amount)
+	for i in range(amount):
+		var children_to_be_removed = []
+		for child in storypoints_reference.get_children():
+			if child.self_destroy > 2:
+				children_to_be_removed.append(child)
+
+		if children_to_be_removed.size() == 0:
+			break
+
+		var max_x_child = children_to_be_removed[0]
+		for child in children_to_be_removed:
+			if child.position.x > max_x_child.position.x:
+				max_x_child = child
+
+		max_x_child.free()
 		
 func spawn_storypoints_in_line(amount, color, self_destroy):
 	# get point where to start generation
@@ -63,3 +101,14 @@ func get_valid_in_line_position() -> Vector2:
 func available_storypoints():
 	var storypoints_in_supply = storypoints_reference.get_children()
 	return storypoints_in_supply.size()
+
+func calculate_storypoints_for_iteration():
+	for sp in storypoints_reference.get_children():
+			sp.self_destroy -= 1
+			if sp.self_destroy <= 0:
+				sp.queue_free()
+			else:
+				STORYPOINTS -= 1
+	if storypoints_to_revive >= 1:
+		spawn_storypoints_in_line(storypoints_to_revive, "turquoise", 10000)
+		storypoints_to_revive = 0

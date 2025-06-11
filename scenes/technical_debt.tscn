@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://coaxu6r25ldlb"]
+[gd_scene load_steps=5 format=3 uid="uid://coaxu6r25ldlb"]
 
 [ext_resource type="Texture2D" uid="uid://dge46y4wdjfya" path="res://assets/technicaldebt_backend.png" id="1_aly5d"]
 [ext_resource type="Script" uid="uid://boypr0janl4bu" path="res://scenes/technical_debt.gd" id="1_x4rpl"]
+[ext_resource type="Texture2D" uid="uid://dy28g78xwr1eo" path="res://assets/technicaldebt_frontend.png" id="2_oyc8y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x4rpl"]
 radius = 54.0
@@ -9,14 +10,22 @@ radius = 54.0
 [node name="TechnicalDebt" type="Node2D"]
 script = ExtResource("1_x4rpl")
 
+[node name="SelectionBorder" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0.5, 0.500003)
+scale = Vector2(0.106445, 0.106445)
+texture = ExtResource("2_oyc8y")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0.999996, 0.500002)
 scale = Vector2(0.09375, 0.0947266)
 texture = ExtResource("1_aly5d")
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 shape = SubResource("CircleShape2D_x4rpl")
 
 [node name="Storypoint" type="Node2D" parent="."]

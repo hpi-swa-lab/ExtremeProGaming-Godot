@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://2amkrnek74r5"]
+[gd_scene load_steps=11 format=3 uid="uid://2amkrnek74r5"]
 
 [ext_resource type="PackedScene" uid="uid://belm8ywu7txr6" path="res://scenes/feature_deck.tscn" id="1_gee14"]
 [ext_resource type="PackedScene" uid="uid://cp6orqhxx6agb" path="res://scenes/supply.tscn" id="2_u5sy4"]
@@ -9,8 +9,17 @@
 [ext_resource type="PackedScene" uid="uid://dswqyygw0txpy" path="res://scenes/technical_debt_account.tscn" id="8_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://c3hskgf5pyv7w" path="res://scenes/card_slot.tscn" id="8_gee14"]
 [ext_resource type="Script" uid="uid://d1wlm0qb32qmj" path="res://scenes/technical_debt_account.gd" id="9_0tnpc"]
+[ext_resource type="Texture2D" uid="uid://4qm1qy3r1ka7" path="res://assets/wood.jpg" id="10_vtaks"]
 
 [node name="Game" type="Node2D"]
+
+[node name="Background" type="TextureRect" parent="."]
+z_index = -20
+offset_right = 1933.0
+offset_bottom = 1091.0
+texture = ExtResource("10_vtaks")
+flip_h = true
+flip_v = true
 
 [node name="Supply" parent="." instance=ExtResource("2_u5sy4")]
 position = Vector2(1535, 125)
@@ -31,13 +40,6 @@ offset_top = 913.0
 offset_right = 1009.0
 offset_bottom = 1031.0
 bbcode_enabled = true
-
-[node name="EndInterationButton" type="Button" parent="."]
-offset_left = 64.0
-offset_top = 877.0
-offset_right = 245.0
-offset_bottom = 939.0
-text = "Press to end iteration."
 
 [node name="FeatureDeck" parent="." instance=ExtResource("1_gee14")]
 position = Vector2(150, 457)
@@ -79,6 +81,14 @@ offset_bottom = 87.0
 bbcode_enabled = true
 text = "Last/Current Event"
 
+[node name="EndInterationButton" type="Button" parent="."]
+offset_left = 64.0
+offset_top = 877.0
+offset_right = 245.0
+offset_bottom = 939.0
+button_mask = 7
+text = "Press to end iteration."
+
 [node name="DarkenedBackground" type="ColorRect" parent="."]
 visible = false
 z_index = 3
@@ -86,15 +96,21 @@ offset_right = 1914.0
 offset_bottom = 1085.0
 color = Color(0, 0, 0, 0.74902)
 
-[node name="ChooseSPorDebtLabel" type="RichTextLabel" parent="."]
-visible = false
-z_index = 4
-offset_left = 473.0
-offset_top = 86.0
-offset_right = 1495.0
-offset_bottom = 311.0
-theme_override_font_sizes/normal_font_size = 40
-text = "Please choose if you would like to spend an additional Storypoint on that Ticket, or if you are want to build up debt."
+[node name="GameStats" type="RichTextLabel" parent="."]
+offset_left = 1586.0
+offset_top = 491.0
+offset_right = 1925.0
+offset_bottom = 788.0
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = "Game Stats
+Current Iteration:
+Finished Features:
+Backend:
+Frontend:
+Finished Bugs:
+Backend:
+Frontend:"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

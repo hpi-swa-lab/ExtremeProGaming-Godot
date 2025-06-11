@@ -48,17 +48,37 @@ func get_chosen_cards():
 	var chosen_cards = []
 
 	for slot in get_children():
-		for child in slot.get_children():
+		for child in slot.card_reference.get_children():
 			if child.has_method("is_card") and child.chosen:
 				chosen_cards.append(child)
 
 	return chosen_cards
+
+func get_cheapest_feature_effect(amount):
+	var cheapest_card
+	var costs = 10000
+	var cards = get_all_cards_in_backlog()
+	
+	cards.sort_custom(
+		func(card1, card2):
+			return int(card2.storypoints) - int(card1.storypoints)
+	)
+	return cards.slice(0, amount)
+	
+func get_all_cards_in_backlog():
+	var cards = []
+	for slot in get_children():
+		for child in slot.card_reference.get_children():
+			if child.has_method("is_card"):
+				cards.append(child)
+	return cards
+				
 	
 func get_chosen_cards_from_area(area):
 	var chosen_cards = []
 
 	for slot in get_children():
-		for child in slot.get_children():
+		for child in slot.card_reference.get_children():
 			if child.has_method("is_card") and child.chosen and child.area == area:
 				chosen_cards.append(child)
 

@@ -5,3 +5,13 @@
 
 [node name="FeatureDeck" instance=ExtResource("1_mxwt7")]
 script = ExtResource("2_hvc3o")
+START_CARDS = []
+
+[node name="SelectionBorder" type="ColorRect" parent="." index="3"]
+visible = false
+z_index = -2
+offset_left = -92.0
+offset_top = -127.0
+offset_right = 87.0
+offset_bottom = 131.0
+color = Color(0.890196, 0.0117647, 0.145098, 1)

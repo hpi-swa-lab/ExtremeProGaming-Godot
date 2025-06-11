@@ -9,8 +9,10 @@ extends Node2D
 @onready var label = $"../GameNotifications"
 @onready var discard_pile = $"../DiscardPile"
 @onready var event_discard_pile = $"../EventDiscardPile"
-@onready var choose_sp_or_debt_label = $"../ChooseSPorDebtLabel"
 @onready var canvas_layer = $"../CanvasLayer"
+@onready var game_stats =$"../GameStats"
+@onready var allow_refactoring = true
+@onready var reward_after_goal_is_reached = false
 @onready var iteration = 1
 @onready var current_phase
 var event_card_drawn_once = false
@@ -25,14 +27,28 @@ enum Phase {
 
 func _ready():
 	label.text = "[center][font_size=24]Draw cards![/font_size][/center]"
+	await feature_deck.cards_ready
+	await bug_deck.cards_ready
+	draw_start_cards()
 	prepare_iteration()
 	
+func draw_start_cards():
+	var start_cards = feature_deck.START_CARDS
+	start_cards.append_array(bug_deck.START_CARDS)
+	for start_card in start_cards:
+		move_card_to_cardslot(start_card)
+	
 func prepare_iteration():
+	allow_refactoring = true
 	event_card_drawn_once = false
+	event_deck.get_node("SelectionBorder").visible = true
 	current_phase = Phase.DRAW_EVENT
 	label.text = ("The current interation is: " + str(iteration) + ". Please draw 1 Event Card.")
-	
+	if reward_after_goal_is_reached and iteration == 3 and discard_pile.get_all_features() >= 4:
+		await supply.add_storypoints_effect([2, 10000])
+		
 func plan_iteration():
+	highlight_elements_for_plan_phase(true)
 	current_phase = Phase.PLAN
 	label.text = ("Now plan your iteration. You can draw more cards or place select Cards for this iteration.")
 	
@@ -46,6 +62,8 @@ func _on_read_event_button_down(drawn_card) -> void:
 	await execute_card_effect(drawn_card)
 	await get_tree().create_timer(2.0).timeout
 	drawn_card.z_index = -2
+	event_deck.get_node("SelectionBorder").visible = false
+	feature_deck.get_node("SelectionBorder").visible = true
 	current_phase = Phase.DRAW_FEATURE
 	label.text = ("Please draw at least 1 Feature Card.")
 	
@@ -56,20 +74,15 @@ func _on_start_iteration_button_down() -> void:
 	lighten_background()
 	var chosen_cards = backlog.get_chosen_cards()
 	for card in chosen_cards:
-		var card_slot = card.get_parent()
+		var card_slot = card.get_parent().get_parent()
 		card_slot.is_card_in_slot = false
-		card_slot.card_in_slot = null
 		card.choose_card() # we execute this to make the card unusable in that state
 		move_card_to_discard_pile(card, discard_pile)
 	techical_debt_account.remove_refactored_debt()
 		
 	await get_tree().create_timer(2.0).timeout
-	for sp in supply.storypoints_reference.get_children():
-		sp.self_destroy -= 1
-		if sp.self_destroy <= 0:
-			sp.queue_free()
-		else:
-			supply.STORYPOINTS -= 1
+	supply.calculate_storypoints_for_iteration()
+	
 	await get_tree().create_timer(1.0).timeout
 	for card in chosen_cards:
 		if card.cannot_be_unchosen == false:
@@ -82,6 +95,7 @@ func _on_start_iteration_button_down() -> void:
 		
 	
 func _on_end_interation_button_down() -> void:
+	highlight_elements_for_plan_phase(false)
 	current_phase = Phase.END
 	var chosen_cards = backlog.get_chosen_cards()
 	var chosen_debt = techical_debt_account.get_all_debt_selected_for_refactoring()
@@ -98,6 +112,7 @@ func _on_end_interation_button_down() -> void:
 	start_iteration_button.connect("button_down", func(): _on_start_iteration_button_down())
 	
 func _process(delta):
+	update_game_stats()
 	if backlog.no_cards_chosen() and techical_debt_account.no_debt_selected():
 		$"../EndInterationButton".disabled = true
 	else:
@@ -210,8 +225,7 @@ func debt_can_be_refactored(event, debt):
 	var selected_cards_from_area = backlog.get_chosen_cards_from_area(debt.area)
 	if selected_cards_from_area.size() > 0:
 		label.text = ("You can only refactor in "+ debt.area + " if you have no cards selected from "+ debt.area)
-	print(debt.area, selected_cards_from_area, debt.to_be_refectored)
-	return event.pressed and 1 <= supply.available_storypoints() and not debt.to_be_refectored and selected_cards_from_area.size() == 0
+	return event.pressed and 1 <= supply.available_storypoints() and not debt.to_be_refectored and selected_cards_from_area.size() == 0 and allow_refactoring
 	
 func debt_can_be_unchoosen(event, debt):
 	return event.pressed and debt.to_be_refectored
@@ -225,11 +239,22 @@ func execute_card_effect(card):
 		var effect_value = effect[1]
 		match effect_name:
 			"add_storypoints":
-				await supply.change_storypoints(effect_value)
+				await supply.add_storypoints_effect(effect_value)
+			"remove_storypoints":
+				await supply.remove_storypoints_effect(effect_value)
+			"half_storypoints":
+				await supply.half_storypoints_effect(effect_value)
 			"add_technical_debt":
 				techical_debt_account.add_debt_effect(effect_value)
 			"remove_technical_debt":
 				techical_debt_account.remove_debt_effect(effect_value)
+			"remove_cheapest_feature":
+				var cards = backlog.get_cheapest_feature_effect(effect_value)
+				for cheapest_card in cards:
+					cheapest_card.get_parent().get_parent().is_card_in_slot = false
+					await move_card_to_discard_pile(cheapest_card, discard_pile)
+			"goal":
+				reward_after_goal_is_reached = true
 			"bugs":
 				await spawn_bug(effect_value)
 			"features":
@@ -240,6 +265,8 @@ func execute_card_effect(card):
 				await must_choose_card(card)
 			"new_texture":
 				await card.use_new_texture(effect_value)
+			"prohibit_refactoring":
+				allow_refactoring = false
 			_:
 				push_warning("Unknown Effect: %s" % effect_name)
 	
@@ -281,7 +308,7 @@ func move_card_to_cardslot(card):
 
 		card.z_index = 3
 		card.get_parent().remove_child(card)
-		next_free_card_slot.add_child(card)
+		next_free_card_slot.card_reference.add_child(card)
 		card.scale = Vector2.ONE
 		card.global_position = start_pos
 
@@ -289,7 +316,7 @@ func move_card_to_cardslot(card):
 		tween.tween_property(card, "global_position", end_pos, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 		next_free_card_slot.is_card_in_slot = true
-		next_free_card_slot.card_in_slot = card
+		next_free_card_slot.card_reference.add_child(card)
 		card.on_card_grid = true
 		return card
 	else:
@@ -299,7 +326,7 @@ func move_card_to_cardslot(card):
 func move_card_to_discard_pile(card, pile):
 	var start_pos = card.global_position
 	card.get_parent().remove_child(card)
-	pile.add_child(card)
+	pile.card_reference.add_child(card)
 	card.scale = Vector2.ONE
 	card.z_index = 1
 	card.global_position = start_pos
@@ -380,3 +407,51 @@ func create_button(text: String, position: Vector2, z_index) -> Button:
 	button.position = position  # Only works with Node2D; use `rect_position` for Control-based UIs
 	canvas_layer.add_child(button)
 	return button
+	
+func highlight_elements_for_plan_phase(state):
+	var cards_in_backlog = backlog.get_all_cards_in_backlog()
+	for card in cards_in_backlog:
+		card.get_node("SelectionBorder").visible = state
+	feature_deck.get_node("SelectionBorder").visible = state
+	
+	if allow_refactoring:
+		var current_debt = techical_debt_account.get_all_debt()
+		for debt in current_debt:
+			debt.get_node("SelectionBorder").visible = state
+	
+func update_game_stats():
+	var finished_features = 0
+	var frontend_features = 0
+	var backend_features = 0
+	var finished_bugs = 0
+	var frontend_bugs = 0
+	var backend_bugs = 0
+	for card in discard_pile.card_reference.get_children():
+		if card.type == card.CardType.FEATURE:
+			finished_features +=1
+			if card.area == "frontend":
+				frontend_features += 1
+			if card.area == "backend":
+				backend_features += 1
+		if card.type == card.CardType.BUG:
+			finished_bugs +=1
+			if card.area == "frontend":
+				frontend_bugs += 1
+			if card.area == "backend":
+				backend_bugs += 1
+			
+	game_stats.text = ("
+	Game Stats
+	Current Iteration: %d
+	Finished Features: %d
+	Backend: %d
+	Frontend: %d
+	Finished Bugs: %d
+	Backend: %d
+	Frontend: %d
+	" % [iteration, finished_features,backend_features, frontend_features, finished_bugs, backend_bugs, frontend_bugs])
+	
+	
+	
+	
+	

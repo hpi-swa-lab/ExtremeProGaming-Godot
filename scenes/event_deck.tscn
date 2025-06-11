@@ -5,3 +5,12 @@
 
 [node name="EventDeck" instance=ExtResource("1_472jf")]
 script = ExtResource("2_8towi")
+
+[node name="SelectionBorder" type="ColorRect" parent="." index="3"]
+visible = false
+z_index = -2
+offset_left = -92.0
+offset_top = -127.0
+offset_right = 87.0
+offset_bottom = 131.0
+color = Color(0.890196, 0.0117647, 0.145098, 1)

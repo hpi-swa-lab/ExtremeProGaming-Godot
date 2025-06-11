@@ -7,9 +7,10 @@ class_name Card
 @export var storypoints = null
 @export var cannot_be_unchosen = false
 @export var type = null
+@export var is_start_card = false
 @export var area = null
 @export var effects = []
-@export var count_for_debt_calculatiom = null
+@export var count_for_debt_calculation = null
 @onready var storypoints_reference = $Storypoints
 
 
@@ -28,7 +29,6 @@ func is_card():
 func flip_card():
 	get_node("CardFlip").play("card_flip")
 	uncovered = true
-	$SelectionBorder.visible = false
 		
 func back_flip_card():
 	get_node("CardFlip").play_backwards("card_flip")
@@ -38,7 +38,6 @@ func back_flip_card():
 func choose_card():
 	chosen = !chosen
 	$ChooseCard.play()
-	$SelectionBorder.visible = chosen
 	
 func use_new_texture(effect_value):
 	var new_texture_path = effect_value[0]
