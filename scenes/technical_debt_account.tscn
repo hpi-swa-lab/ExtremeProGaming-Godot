@@ -3,13 +3,13 @@
 [ext_resource type="Texture2D" uid="uid://bxbqloykxhflc" path="res://assets/supply_area.png" id="1_pi4tw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lbhrr"]
-size = Vector2(585, 70)
+size = Vector2(644, 70)
 
 [node name="TechnicalDebtAccount" type="Node2D"]
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(16.5001, -1.06883)
-scale = Vector2(0.17, 0.174)
+position = Vector2(44.5, -1.06883)
+scale = Vector2(0.18469, 0.174)
 texture = ExtResource("1_pi4tw")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -17,8 +17,8 @@ modulate = Color(0.0431373, 0.54902, 1, 1)
 position = Vector2(0.999969, 5.53131e-05)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(14.5, -1.00006)
+position = Vector2(44, -1.00006)
 shape = SubResource("RectangleShape2D_lbhrr")
 
 [node name="TechnicalDebt" type="Node2D" parent="."]
-position = Vector2(-273, 3)
+position = Vector2(-333, -1)

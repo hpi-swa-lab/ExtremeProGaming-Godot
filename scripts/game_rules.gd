@@ -71,7 +71,7 @@ func _on_read_event_button_down(drawn_card) -> void:
 	
 func _on_start_iteration_button_down() -> void:
 	if iteration >= 9:
-		get_tree().change_scene_to_file("res://scenes/game_over_screen.tscn")
+		get_tree().change_scene_to_file("res://scenes/game_won_screen.tscn")
 		return
 	for child in canvas_layer.get_children():
 		child.queue_free()
@@ -254,19 +254,14 @@ func execute_card_effect(card):
 		var effect_value = effect[1]
 		match effect_name:
 			"add_storypoints":
-				label.text = ("Card Effects are being applied: Storypoints are added.")
 				await supply.add_storypoints_effect(effect_value)
 			"remove_storypoints":
-				label.text = ("Card Effects are being applied: Storypoints are removed.")
 				await supply.remove_storypoints_effect(effect_value)
 			"half_storypoints":
-				label.text = ("Card Effects are being applied: Storypoints are halfed.")
 				await supply.half_storypoints_effect(effect_value)
 			"add_technical_debt":
-				label.text = ("Card Effects are being applied: Techical Debt is added.")
 				techical_debt_account.add_debt_effect(effect_value)
 			"remove_technical_debt":
-				label.text = ("Card Effects are being applied: Techical Debt is removed.")
 				techical_debt_account.remove_debt_effect(effect_value)
 			"remove_cheapest_feature":
 				var cards = backlog.get_cheapest_feature_effect(effect_value)

@@ -1,6 +1,6 @@
 extends "res://scripts/deck.gd"
 
-const CARD_COUNT = 9
+const CARD_COUNT = 27
 const CARD_SCENE_PATH = "res://scenes/card.tscn"
 var CARDS_IN_DECK = []
 @export var START_CARDS = []
