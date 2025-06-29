@@ -1,0 +1,287 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhtpnejns62r5"]
+
+[ext_resource type="Texture2D" uid="uid://bams7et1vrs5" path="res://assets/ExplainationScreen.png" id="1_psc5y"]
+[ext_resource type="Script" uid="uid://6yds8b6b3l22" path="res://scenes/explaination_screen.gd" id="1_s6nn1"]
+[ext_resource type="FontFile" uid="uid://bvl257efbrrn5" path="res://assets/Hey Comic.ttf" id="2_s6nn1"]
+[ext_resource type="FontFile" uid="uid://dx3frt8gg61kj" path="res://assets/SFCartoonistHand.ttf" id="3_f2yy7"]
+[ext_resource type="PackedScene" uid="uid://cqp7getqbvwea" path="res://scenes/button.tscn" id="5_f2yy7"]
+
+[node name="ExplainationScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s6nn1")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(960, 544)
+texture = ExtResource("1_psc5y")
+
+[node name="Header" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 27.0
+offset_right = 1032.0
+offset_bottom = 291.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_s6nn1")
+theme_override_font_sizes/normal_font_size = 100
+text = "Game Elements"
+
+[node name="CardHeader" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 264.0
+offset_top = 424.0
+offset_right = 544.0
+offset_bottom = 520.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_s6nn1")
+theme_override_font_sizes/normal_font_size = 70
+text = "Feature"
+
+[node name="CardHeader2" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 424.0
+offset_right = 1280.0
+offset_bottom = 520.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_s6nn1")
+theme_override_font_sizes/normal_font_size = 70
+text = "Feature"
+
+[node name="SPDescription" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_top = 464.0
+offset_right = 176.0
+offset_bottom = 744.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_f2yy7")
+theme_override_font_sizes/normal_font_size = 40
+text = "the number of storypoints needed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HeaderDescription2" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 696.0
+offset_top = 464.0
+offset_right = 872.0
+offset_bottom = 576.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_f2yy7")
+theme_override_font_sizes/normal_font_size = 40
+text = "type of ticket"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CardDescription" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 840.0
+offset_right = 560.0
+offset_bottom = 1000.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_f2yy7")
+theme_override_font_sizes/normal_font_size = 40
+text = "Fuzzy search über alle Berichte erlauben"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CardEffectDescription2" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 936.0
+offset_top = 768.0
+offset_right = 1296.0
+offset_bottom = 1000.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_f2yy7")
+theme_override_font_sizes/normal_font_size = 40
+text = "Dieses Ticket zählt nicht in die Berechnung des Technical Debts"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CardBackDescription3" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 928.0
+offset_top = 528.0
+offset_right = 1320.0
+offset_bottom = 744.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_f2yy7")
+theme_override_font_sizes/normal_font_size = 40
+text = "Das Feature hat ein veraltetes Feature ersetzt. Der Code ist dadurch deutlich schlanker geworden."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FrontendDescription" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 288.0
+offset_right = 400.0
+offset_bottom = 400.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_f2yy7")
+theme_override_font_sizes/normal_font_size = 40
+text = "frontend"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackendDescription2" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 608.0
+offset_top = 216.0
+offset_right = 784.0
+offset_bottom = 328.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_f2yy7")
+theme_override_font_sizes/normal_font_size = 40
+text = "backend"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BugDescription" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 896.0
+offset_top = 152.0
+offset_right = 1072.0
+offset_bottom = 264.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_f2yy7")
+theme_override_font_sizes/normal_font_size = 40
+text = "bug"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FeatureDescription" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 1016.0
+offset_top = 232.0
+offset_right = 1192.0
+offset_bottom = 344.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_f2yy7")
+theme_override_font_sizes/normal_font_size = 40
+text = "feature"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PermanentDescription" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 1368.0
+offset_top = 424.0
+offset_right = 1544.0
+offset_bottom = 536.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_f2yy7")
+theme_override_font_sizes/normal_font_size = 40
+text = "permanent storypoint"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FrontendDebtDZescription" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 1360.0
+offset_top = 704.0
+offset_right = 1568.0
+offset_bottom = 816.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_f2yy7")
+theme_override_font_sizes/normal_font_size = 40
+text = "technical debt frontend"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackendDebtDZescription2" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 1608.0
+offset_top = 704.0
+offset_right = 1816.0
+offset_bottom = 816.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_f2yy7")
+theme_override_font_sizes/normal_font_size = 40
+text = "technical debt backend"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TemporalDescription" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 1616.0
+offset_top = 424.0
+offset_right = 1792.0
+offset_bottom = 536.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_f2yy7")
+theme_override_font_sizes/normal_font_size = 40
+text = "temporal storypoint"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TicketDescription" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 624.0
+offset_top = 968.0
+offset_right = 800.0
+offset_bottom = 1080.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_f2yy7")
+theme_override_font_sizes/normal_font_size = 40
+text = "ticket description"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HintDescription" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 616.0
+offset_top = 568.0
+offset_right = 856.0
+offset_bottom = 728.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_f2yy7")
+theme_override_font_sizes/normal_font_size = 40
+text = "implies if effect is positive, negative or unknown"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackDescription" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 664.0
+offset_top = 784.0
+offset_right = 904.0
+offset_bottom = 944.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_f2yy7")
+theme_override_font_sizes/normal_font_size = 40
+text = "consequences if the ticket on the storyline"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EffectDescription2" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 1312.0
+offset_top = 944.0
+offset_right = 1552.0
+offset_bottom = 1104.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_f2yy7")
+theme_override_font_sizes/normal_font_size = 40
+text = "effect of the ticket"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" parent="." instance=ExtResource("5_f2yy7")]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 1536.0
+offset_top = 872.0
+offset_right = 1865.0
+offset_bottom = 1029.0
+grow_horizontal = 1
+grow_vertical = 1
+theme_override_font_sizes/font_size = 68
+text = "Start Playing"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

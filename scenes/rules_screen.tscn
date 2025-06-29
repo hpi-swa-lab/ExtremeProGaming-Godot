@@ -1,0 +1,155 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnjraj2hplcej"]
+
+[ext_resource type="Script" uid="uid://3nf1onm1qwov" path="res://rules_screen.gd" id="1_nrx6e"]
+[ext_resource type="Texture2D" uid="uid://dla36lrd75q2j" path="res://assets/RulesScreen.png" id="2_b0y3d"]
+[ext_resource type="FontFile" uid="uid://bvl257efbrrn5" path="res://assets/Hey Comic.ttf" id="3_choyo"]
+[ext_resource type="FontFile" uid="uid://dx3frt8gg61kj" path="res://assets/SFCartoonistHand.ttf" id="4_jxdf0"]
+[ext_resource type="PackedScene" uid="uid://cqp7getqbvwea" path="res://scenes/button.tscn" id="5_b0y3d"]
+
+[node name="RulesScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nrx6e")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(960, 542)
+texture = ExtResource("2_b0y3d")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 36.0
+offset_right = 627.0
+offset_bottom = 168.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_choyo")
+theme_override_font_sizes/normal_font_size = 100
+text = "Game Rules"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 205.0
+offset_top = 178.0
+offset_right = 622.0
+offset_bottom = 249.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_choyo")
+theme_override_font_sizes/normal_font_size = 50
+text = "Event / Iteration"
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 439.0
+offset_top = 973.0
+offset_right = 1913.0
+offset_bottom = 1067.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_jxdf0")
+theme_override_font_sizes/normal_font_size = 40
+text = "Tickets auswählen: Wählt ein oder mehrere Tickets aus dem Backlog durch anklicken. Die Anzahl berechnet sich aus dem Wert auf der Karte plus der Anzahl Technical Debt im jeweiligen Systemteil."
+fit_content = true
+scroll_active = false
+
+[node name="RichTextLabel9" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 251.0
+offset_right = 615.0
+offset_bottom = 302.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_jxdf0")
+theme_override_font_sizes/normal_font_size = 40
+text = " Zieht die oberste Event-Karte."
+fit_content = true
+scroll_active = false
+
+[node name="RichTextLabel10" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 198.0
+offset_top = 386.0
+offset_right = 892.0
+offset_bottom = 437.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_jxdf0")
+theme_override_font_sizes/normal_font_size = 40
+text = "Nehmt das oberste Feature vom Feature-Stapel."
+fit_content = true
+scroll_active = false
+
+[node name="RichTextLabel11" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 201.0
+offset_top = 547.0
+offset_right = 1717.0
+offset_bottom = 598.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_jxdf0")
+theme_override_font_sizes/normal_font_size = 40
+text = "Wählt eine oder mehrere Aktionen für die Iteration aus. Ihr habt folgende Möglichkeiten:"
+fit_content = true
+scroll_active = false
+
+[node name="RichTextLabel7" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 787.0
+offset_right = 1913.0
+offset_bottom = 922.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_jxdf0")
+theme_override_font_sizes/normal_font_size = 40
+text = " Refactoring: Für jeden abgebauten Technical Debt muss 1 Storypoint durch anklicken des Debts  eingesetzt werden. Achtung: Wird im Frontend/Backend refactort, dürfen in dieser Iteration keine Frontend/Backend-Tickets bearbeitet werden. Refactoring in beiden Bereichen gleichzeitig erlaubt keine Ticketbearbeitung."
+fit_content = true
+scroll_active = false
+
+[node name="RichTextLabel8" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 450.0
+offset_top = 645.0
+offset_right = 1915.0
+offset_bottom = 825.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_jxdf0")
+theme_override_font_sizes/normal_font_size = 40
+text = "Feature(s) nachziehen: Nehmt ein oder mehrere Features vom Feature-Stapel und legt sie mit der Formel zur Kostenberechnung nach oben in den Backlog. Das kostet euch einen Storypoint pro nachgezogenem Feature."
+fit_content = true
+scroll_active = false
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 203.0
+offset_top = 484.0
+offset_right = 761.0
+offset_bottom = 555.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_choyo")
+theme_override_font_sizes/normal_font_size = 50
+text = "Planung der Iteration"
+
+[node name="RichTextLabel6" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 202.0
+offset_top = 325.0
+offset_right = 878.0
+offset_bottom = 396.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_choyo")
+theme_override_font_sizes/normal_font_size = 50
+text = "Feature nachziehen"
+
+[node name="Button" parent="." instance=ExtResource("5_b0y3d")]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 1638.0
+offset_top = 51.0
+offset_right = 1862.0
+offset_bottom = 166.0
+grow_horizontal = 1
+grow_vertical = 1
+text = "Next"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

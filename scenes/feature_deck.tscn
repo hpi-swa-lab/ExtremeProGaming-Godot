@@ -1,17 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://belm8ywu7txr6"]
+[gd_scene load_steps=4 format=3 uid="uid://belm8ywu7txr6"]
 
 [ext_resource type="PackedScene" uid="uid://bwpvo7bj4rxbu" path="res://scenes/deck.tscn" id="1_mxwt7"]
 [ext_resource type="Script" uid="uid://cc6rthqp3v5e1" path="res://scripts/feature_deck.gd" id="2_hvc3o"]
+[ext_resource type="Texture2D" uid="uid://bnju2klgcgcxm" path="res://assets/selected.png" id="3_5bxcx"]
 
 [node name="FeatureDeck" instance=ExtResource("1_mxwt7")]
 script = ExtResource("2_hvc3o")
 START_CARDS = []
 
-[node name="SelectionBorder" type="ColorRect" parent="." index="3"]
+[node name="SelectionBorder" type="Sprite2D" parent="." index="3"]
 visible = false
-z_index = -2
-offset_left = -92.0
-offset_top = -127.0
-offset_right = 87.0
-offset_bottom = 131.0
-color = Color(0.890196, 0.0117647, 0.145098, 1)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_5bxcx")

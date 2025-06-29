@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bwpvo7bj4rxbu"]
 
 [ext_resource type="Script" uid="uid://cg1wnowg21yqi" path="res://scripts/deck.gd" id="1_gdbsr"]
-[ext_resource type="Texture2D" uid="uid://ppvl2uhlvfrr" path="res://assets/Rectangle 1.png" id="2_er72m"]
+[ext_resource type="Texture2D" uid="uid://nslfm0dg8at5" path="res://assets/card_slot.png" id="2_gdbsr"]
 [ext_resource type="AudioStream" uid="uid://f1lbrj68nw0y" path="res://assets/flipcard-91468.mp3" id="3_d715x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vtaks"]
@@ -11,9 +11,9 @@ size = Vector2(141, 192)
 script = ExtResource("1_gdbsr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1.5, 2.49998)
-scale = Vector2(1.00714, 1.00526)
-texture = ExtResource("2_er72m")
+position = Vector2(0.500001, 0.500015)
+scale = Vector2(0.193151, 0.186782)
+texture = ExtResource("2_gdbsr")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4

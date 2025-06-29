@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://bj5ocfmdb6gtm"]
+
+[ext_resource type="Texture2D" uid="uid://c58yaktdd84f8" path="res://assets/GameWonScreen.png" id="1_kccco"]
+[ext_resource type="Script" uid="uid://crwue1h2jx7v2" path="res://scenes/game_won_screen.gd" id="1_wupp1"]
+[ext_resource type="FontFile" uid="uid://bvl257efbrrn5" path="res://assets/Hey Comic.ttf" id="2_wupp1"]
+[ext_resource type="PackedScene" uid="uid://cqp7getqbvwea" path="res://scenes/button.tscn" id="4_wupp1"]
+
+[node name="GameWonScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wupp1")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(961.5, 539.5)
+scale = Vector2(1.00469, 0.997222)
+texture = ExtResource("1_kccco")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 553.0
+offset_top = 229.0
+offset_right = 1470.0
+offset_bottom = 507.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_wupp1")
+theme_override_font_sizes/normal_font_size = 200
+text = "You Won!"
+
+[node name="Button" parent="." instance=ExtResource("4_wupp1")]
+layout_mode = 0
+anchors_preset = 0
+offset_left = 622.0
+offset_top = 489.0
+offset_right = 1262.0
+offset_bottom = 670.0
+grow_horizontal = 1
+grow_vertical = 1
+text = "Play Again"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

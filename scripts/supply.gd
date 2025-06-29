@@ -4,15 +4,15 @@ var STORYPOINTS = 6
 const STORYPOINTS_SCENE_PATH = "res://scenes/storypoint.tscn"
 const MIN_DISTANCE = 50
 const STORYPOINT_TEXTURES = {
-	"turquoise":"res://assets/gummy_blue.png",
-	"red":"res://assets/gummy_red.png"
+	"unlimited":"res://assets/storypoint_unlimited.png",
+	"temporary": "res://assets/storypoint_temporary.png"
 }
 var storypoints_to_revive = 0
 
 @onready var storypoints_reference = $Storypoints
 
 func _ready() -> void:
-	spawn_storypoints_in_line(STORYPOINTS, "turquoise", 10000)
+	spawn_storypoints_in_line(STORYPOINTS, "unlimited", 10000)
 
 func half_storypoints_effect(effect_value):
 	var halfed_storypoints = round(available_storypoints() / 2.0)
@@ -36,9 +36,9 @@ func add_storypoints_effect(effect_value):
 	var self_destroy = effect_value[1]
 	STORYPOINTS += amount
 	if self_destroy > 1:
-		spawn_storypoints_in_line(amount, "turquoise", self_destroy)
+		spawn_storypoints_in_line(amount, "unlimited", self_destroy)
 	else:
-		spawn_storypoints_in_line(amount, "red", self_destroy)
+		spawn_storypoints_in_line(amount, "temporary", self_destroy)
 		
 func remove_storypoints_effect(effect_value):
 	var amount = effect_value[0]
@@ -73,7 +73,6 @@ func spawn_storypoints_in_line(amount, color, self_destroy):
 		var new_storypoint = storypoint_scene.instantiate()
 		storypoints_reference.add_child(new_storypoint)
 		new_storypoint.get_node("StorypointImage").texture = load(STORYPOINT_TEXTURES[color]) 
-		new_storypoint.get_node("StorypointImage").scale = Vector2(0.01, 0.009)
 		new_storypoint.global_position = Vector2(current_x, fixed_y)
 		new_storypoint.original_position = new_storypoint.global_position
 		new_storypoint.z_index = 2
@@ -110,5 +109,5 @@ func calculate_storypoints_for_iteration():
 			else:
 				STORYPOINTS -= 1
 	if storypoints_to_revive >= 1:
-		spawn_storypoints_in_line(storypoints_to_revive, "turquoise", 10000)
+		spawn_storypoints_in_line(storypoints_to_revive, "unlimited", 10000)
 		storypoints_to_revive = 0

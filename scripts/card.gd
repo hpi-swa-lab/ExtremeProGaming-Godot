@@ -44,7 +44,6 @@ func use_new_texture(effect_value):
 	var new_storypoints = effect_value[1]
 	
 	get_node("CardImage").texture = load(new_texture_path)
-	get_node("CardImage").scale = Vector2(0.3, 0.3)
 	storypoints = new_storypoints
 	
 	

@@ -1,0 +1,112 @@
+[gd_scene load_steps=13 format=3 uid="uid://2amkrnek74r5"]
+
+[ext_resource type="PackedScene" uid="uid://belm8ywu7txr6" path="res://scenes/feature_deck.tscn" id="1_gee14"]
+[ext_resource type="Texture2D" uid="uid://dbj3jei31wn3o" path="res://assets/Background.png" id="1_kvpfn"]
+[ext_resource type="PackedScene" uid="uid://cp6orqhxx6agb" path="res://scenes/supply.tscn" id="2_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://cmuqn4ok46f8s" path="res://scenes/backlog.tscn" id="4_0tnpc"]
+[ext_resource type="Script" uid="uid://b4qx22upmkcuy" path="res://scripts/game_rules.gd" id="5_gee14"]
+[ext_resource type="PackedScene" uid="uid://biahy8phfe8m" path="res://scenes/bug_deck.tscn" id="7_gee14"]
+[ext_resource type="PackedScene" uid="uid://bynp826y5pibk" path="res://scenes/event_deck.tscn" id="7_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://dswqyygw0txpy" path="res://scenes/technical_debt_account.tscn" id="8_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://c3hskgf5pyv7w" path="res://scenes/card_slot.tscn" id="8_gee14"]
+[ext_resource type="Script" uid="uid://d1wlm0qb32qmj" path="res://scenes/technical_debt_account.gd" id="9_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://odv8s6iqtsvk" path="res://scenes/game_stats.tscn" id="10_vtaks"]
+[ext_resource type="FontFile" uid="uid://bvl257efbrrn5" path="res://assets/Hey Comic.ttf" id="11_dinhu"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -20
+position = Vector2(960, 544)
+texture = ExtResource("1_kvpfn")
+
+[node name="Supply" parent="." instance=ExtResource("2_u5sy4")]
+position = Vector2(336, 144)
+
+[node name="GameRules" type="Node2D" parent="."]
+script = ExtResource("5_gee14")
+
+[node name="DiscardPile" parent="." instance=ExtResource("8_gee14")]
+position = Vector2(1720, 848)
+
+[node name="Backlog" parent="." instance=ExtResource("4_0tnpc")]
+position = Vector2(832, 320)
+
+[node name="GameNotifications" type="RichTextLabel" parent="."]
+offset_left = 1619.0
+offset_top = 480.0
+offset_right = 1879.0
+offset_bottom = 598.0
+bbcode_enabled = true
+text = "Here you can see the effects"
+
+[node name="FeatureDeck" parent="." instance=ExtResource("1_gee14")]
+position = Vector2(128, 843)
+
+[node name="BugDeck" parent="." instance=ExtResource("7_gee14")]
+position = Vector2(571, 840)
+
+[node name="EventDeck" parent="." instance=ExtResource("7_u5sy4")]
+position = Vector2(128, 555)
+
+[node name="EventDiscardPile" parent="." instance=ExtResource("8_gee14")]
+position = Vector2(571, 552)
+
+[node name="TechnicalDebtAccount" parent="." instance=ExtResource("8_0tnpc")]
+position = Vector2(1168, 136)
+script = ExtResource("9_0tnpc")
+
+[node name="GameNotifications4" type="RichTextLabel" parent="."]
+offset_left = 80.0
+offset_top = 707.0
+offset_right = 176.0
+offset_bottom = 747.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("11_dinhu")
+theme_override_font_sizes/normal_font_size = 21
+bbcode_enabled = true
+text = "Features"
+
+[node name="GameNotifications5" type="RichTextLabel" parent="."]
+offset_left = 552.0
+offset_top = 705.0
+offset_right = 648.0
+offset_bottom = 745.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("11_dinhu")
+theme_override_font_sizes/normal_font_size = 21
+bbcode_enabled = true
+text = "Bugs"
+
+[node name="GameNotifications3" type="RichTextLabel" parent="."]
+offset_left = 95.0
+offset_top = 423.0
+offset_right = 191.0
+offset_bottom = 463.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("11_dinhu")
+theme_override_font_sizes/normal_font_size = 21
+bbcode_enabled = true
+text = "Events"
+
+[node name="EndInterationButton" type="Button" parent="."]
+offset_left = 1064.0
+offset_top = 1000.0
+offset_right = 1245.0
+offset_bottom = 1062.0
+button_mask = 7
+text = "Press to end iteration."
+
+[node name="DarkenedBackground" type="ColorRect" parent="."]
+visible = false
+z_index = 3
+offset_right = 1914.0
+offset_bottom = 1085.0
+color = Color(0, 0, 0, 0.74902)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameStats" parent="." instance=ExtResource("10_vtaks")]
+position = Vector2(1728, 272)
+
+[connection signal="button_down" from="EndInterationButton" to="GameRules" method="_on_end_interation_button_down"]

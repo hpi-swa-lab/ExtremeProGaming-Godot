@@ -1,8 +1,8 @@
 extends Node2D
 
 @onready var DEBT_TEXTURES = {
-	"backend":"res://assets/technicaldebt_backend.png",
-	"frontend":"res://assets/technicaldebt_frontend.png",
+	"backend":"res://assets/td_backend.png",
+	"frontend":"res://assets/td_frontend.png",
 }
 
 @onready var debt_reference = $TechnicalDebt
@@ -16,8 +16,9 @@ func spawn_debt(area):
 	debt_reference.add_child(new_debt)
 	new_debt.area = area
 	new_debt.get_node("Sprite2D").texture = load(DEBT_TEXTURES[area]) 
-	new_debt.get_node("Sprite2D").scale = Vector2(0.095, 0.095)
+	#new_debt.get_node("Sprite2D").scale = Vector2(0.095, 0.095)
 	new_debt.global_position = get_valid_in_line_position()
+	
 
 func get_valid_in_line_position() -> Vector2:
 	var existing_debt = debt_reference.get_children()
@@ -44,6 +45,7 @@ func get_valid_in_line_position() -> Vector2:
 	# No gaps found
 	var last_position = existing_debt[-1].global_position
 	return Vector2(last_position.x + 100, last_position.y)
+
 	
 func add_debt_effect(effect_value):
 	var amount = effect_value[0]
@@ -70,17 +72,26 @@ func get_current_debt_from_area(area):
 	return current_debt
 
 func add_debt_after_iteration():
-	for debt in frontend_debt_for_this_round:
-		if frontend_debt_for_this_round > 0:
-			spawn_debt("frontend")
-		if frontend_debt_for_this_round < 0:
-			remove_debt("frontend")
-			
-	for debt in backend_debt_for_this_round:
-		if backend_debt_for_this_round > 0:
-			spawn_debt("backend")
-		if backend_debt_for_this_round < 0:
-			remove_debt("backend")
+	var delay = 0.1
+
+	if frontend_debt_for_this_round > 0:
+		for i in range(frontend_debt_for_this_round):
+			await spawn_debt("frontend")
+			await get_tree().create_timer(delay).timeout
+	elif frontend_debt_for_this_round < 0:
+		for i in range(abs(frontend_debt_for_this_round)):
+			await remove_debt("frontend")
+			await get_tree().create_timer(delay).timeout
+
+	if backend_debt_for_this_round > 0:
+		for i in range(backend_debt_for_this_round):
+			await spawn_debt("backend")
+			await get_tree().create_timer(delay).timeout
+	elif backend_debt_for_this_round < 0:
+		for i in range(abs(backend_debt_for_this_round)):
+			await remove_debt("backend")
+			await get_tree().create_timer(delay).timeout
+
 	
 	# reset for next iteration
 	frontend_debt_for_this_round = 0

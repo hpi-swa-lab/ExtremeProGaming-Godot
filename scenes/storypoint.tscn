@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ba3do8n5apbbi"]
 
 [ext_resource type="Script" uid="uid://bubeear07vfw1" path="res://scripts/storypoint.gd" id="1_csclj"]
-[ext_resource type="Texture2D" uid="uid://ede1gure3n3e" path="res://assets/gummy.png" id="2_x7qsu"]
+[ext_resource type="Texture2D" uid="uid://bhtcx00ebpxx2" path="res://assets/storypoint_unlimited.png" id="2_x7qsu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_csclj"]
 radius = 25.02
@@ -10,8 +10,9 @@ radius = 25.02
 script = ExtResource("1_csclj")
 
 [node name="StorypointImage" type="Sprite2D" parent="."]
+texture_filter = 2
 position = Vector2(9.53674e-07, -1.19209e-06)
-scale = Vector2(34, 36)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_x7qsu")
 
 [node name="Area2D" type="Area2D" parent="."]

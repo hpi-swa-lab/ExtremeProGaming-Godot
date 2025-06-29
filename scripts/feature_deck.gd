@@ -11,7 +11,7 @@ signal cards_ready
 
 
 func _ready() -> void:
-	var card_names = card_database_reference.ALL_FEATURE_CARDS.keys()
+	var card_names = card_database_reference.ALL_FEATURE_CARDS_META.keys()
 	card_names.shuffle()
 	var selected_names = card_names.slice(0, CARD_COUNT)
 	var reversed_names = selected_names.duplicate()
@@ -28,14 +28,23 @@ func _ready() -> void:
 		new_card.is_start_card = card_database_reference.ALL_FEATURE_CARDS_META[name][3]
 		new_card.type = new_card.CardType.FEATURE
 		new_card.effects = card_database_reference.ALL_FEATURE_CARDS_BACK_META[name]
+		var effect_type = card_database_reference.ALL_FEATURE_CARDS_META[name][4]
 
-		var new_card_front_image_path = card_database_reference.ALL_FEATURE_CARDS[name][0]
-		var new_card_back_image_path = card_database_reference.ALL_FEATURE_CARDS[name][1]
+		var new_card_front_image_path = card_database_reference.ALL_FEATURE_CARDS[new_card.area][0]
+		var new_card_back_image_path = card_database_reference.ALL_FEATURE_CARDS[new_card.area][1]
+		var new_card_effect_image_path = card_database_reference.ALL_FEATURE_CARDS[effect_type][0]
+		
 		new_card.get_node("CardImage").texture = load(new_card_front_image_path)
-		new_card.get_node("CardImage").scale = Vector2(0.3, 0.3)
+		new_card.get_node("CardImage").get_node("EffectImage").texture = load(new_card_effect_image_path)
+		new_card.get_node("CardImage").get_node("FrontText").text = card_database_reference.ALL_FEATURE_CARDS_TEXT[name][0]
+		new_card.get_node("CardImage").get_node("TypeText").text = "Feature"
+		new_card.get_node("CardImage").get_node("IterationText").visible = false
+		new_card.get_node("CardImage").get_node("StorypointText").text = str(new_card.storypoints)
 		
 		new_card.get_node("CardBackImage").texture = load(new_card_back_image_path)
-		new_card.get_node("CardBackImage").scale = Vector2(0.3, 0.3)
+		new_card.get_node("CardBackImage").get_node("TypeText").text = "Feature"
+		new_card.get_node("CardBackImage").get_node("BackText").text = card_database_reference.ALL_FEATURE_CARDS_TEXT[name][1]
+		new_card.get_node("CardBackImage").get_node("EffectText").text = card_database_reference.ALL_FEATURE_CARDS_TEXT[name][2]
 		new_card.get_node("CardBackImage").z_index = -1
 		new_card.position = get_node("Area2D").position
 		self.add_child(new_card)

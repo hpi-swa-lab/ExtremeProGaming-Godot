@@ -1,0 +1,166 @@
+[gd_scene load_steps=5 format=3 uid="uid://odv8s6iqtsvk"]
+
+[ext_resource type="Script" uid="uid://bjqq35i0q5laa" path="res://scenes/game_stats.gd" id="1_8j22x"]
+[ext_resource type="Texture2D" uid="uid://cyw737g1ga2w4" path="res://assets/Game Stats.png" id="1_ul0qu"]
+[ext_resource type="FontFile" uid="uid://dx3frt8gg61kj" path="res://assets/SFCartoonistHand.ttf" id="2_kqpaf"]
+[ext_resource type="FontFile" uid="uid://bvl257efbrrn5" path="res://assets/Hey Comic.ttf" id="3_8j22x"]
+
+[node name="GameStats" type="Node2D"]
+script = ExtResource("1_8j22x")
+
+[node name="Grafics" type="Sprite2D" parent="."]
+scale = Vector2(0.207826, 0.207826)
+texture = ExtResource("1_ul0qu")
+
+[node name="TeamText" type="RichTextLabel" parent="."]
+offset_left = 2.0
+offset_top = -72.0
+offset_right = 90.0
+offset_bottom = -40.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_kqpaf")
+theme_override_font_sizes/normal_font_size = 23
+text = "Storypoints"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FeaturesFrontendText" type="RichTextLabel" parent="."]
+offset_left = -102.0
+offset_top = 18.0
+offset_right = 2.0
+offset_bottom = 74.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_kqpaf")
+theme_override_font_sizes/normal_font_size = 23
+text = "Features Frontend"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FeaturesBackendText" type="RichTextLabel" parent="."]
+offset_left = -3.0
+offset_top = 19.0
+offset_right = 101.0
+offset_bottom = 75.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_kqpaf")
+theme_override_font_sizes/normal_font_size = 23
+text = "Features Backend"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BugsBackendText" type="RichTextLabel" parent="."]
+offset_top = 128.0
+offset_right = 104.0
+offset_bottom = 184.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_kqpaf")
+theme_override_font_sizes/normal_font_size = 23
+text = "Bugs Backend"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BugsFrontendText" type="RichTextLabel" parent="."]
+offset_left = -103.0
+offset_top = 128.0
+offset_right = 1.0
+offset_bottom = 184.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_kqpaf")
+theme_override_font_sizes/normal_font_size = 23
+text = "Bugs Frontend"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Header" type="RichTextLabel" parent="."]
+offset_left = -104.0
+offset_top = -176.0
+offset_right = 120.0
+offset_bottom = -136.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_8j22x")
+theme_override_font_sizes/normal_font_size = 29
+text = "Game Statistics"
+
+[node name="Iteration" type="RichTextLabel" parent="."]
+offset_left = -71.0
+offset_top = -110.0
+offset_right = -39.0
+offset_bottom = -78.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_kqpaf")
+theme_override_font_sizes/normal_font_size = 29
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Team" type="RichTextLabel" parent="."]
+offset_left = 32.0
+offset_top = -112.0
+offset_right = 64.0
+offset_bottom = -80.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_kqpaf")
+theme_override_font_sizes/normal_font_size = 29
+text = "6"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FeaturesFrontend" type="RichTextLabel" parent="."]
+offset_left = -70.0
+offset_top = -29.0
+offset_right = -38.0
+offset_bottom = 3.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_kqpaf")
+theme_override_font_sizes/normal_font_size = 29
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FeaturesBackend" type="RichTextLabel" parent="."]
+offset_left = 30.0
+offset_top = -26.0
+offset_right = 62.0
+offset_bottom = 6.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_kqpaf")
+theme_override_font_sizes/normal_font_size = 29
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BugsFrontend" type="RichTextLabel" parent="."]
+offset_left = -68.0
+offset_top = 80.0
+offset_right = -36.0
+offset_bottom = 112.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_kqpaf")
+theme_override_font_sizes/normal_font_size = 29
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BugsBackend" type="RichTextLabel" parent="."]
+offset_left = 30.0
+offset_top = 85.0
+offset_right = 62.0
+offset_bottom = 117.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_kqpaf")
+theme_override_font_sizes/normal_font_size = 29
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IterationText" type="RichTextLabel" parent="."]
+offset_left = -94.0
+offset_top = -72.0
+offset_right = -14.0
+offset_bottom = -40.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_kqpaf")
+theme_override_font_sizes/normal_font_size = 23
+text = "Iteration"
+horizontal_alignment = 1
+vertical_alignment = 1

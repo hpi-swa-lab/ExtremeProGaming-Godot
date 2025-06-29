@@ -1,0 +1,123 @@
+[gd_scene load_steps=6 format=3 uid="uid://c31hqmmlnwmwp"]
+
+[ext_resource type="Texture2D" uid="uid://ii34jlgufps2" path="res://assets/StorylineScreen.png" id="1_md1pp"]
+[ext_resource type="Script" uid="uid://cl0l8cg4k0jef" path="res://scenes/story.gd" id="1_wq8l7"]
+[ext_resource type="FontFile" uid="uid://dx3frt8gg61kj" path="res://assets/SFCartoonistHand.ttf" id="2_wq8l7"]
+[ext_resource type="FontFile" uid="uid://bvl257efbrrn5" path="res://assets/Hey Comic.ttf" id="3_of347"]
+[ext_resource type="PackedScene" uid="uid://cqp7getqbvwea" path="res://scenes/button.tscn" id="5_of347"]
+
+[node name="Story" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wq8l7")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(944, 528)
+texture = ExtResource("1_md1pp")
+
+[node name="CompanySign" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 1320.0
+offset_top = 152.0
+offset_right = 1831.0
+offset_bottom = 264.0
+rotation = 0.244346
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_wq8l7")
+theme_override_font_sizes/normal_font_size = 69
+text = "SoftwareAndStuff Inc"
+
+[node name="Description" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 168.0
+offset_right = 1640.0
+offset_bottom = 690.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_wq8l7")
+theme_override_font_sizes/normal_font_size = 38
+text = "Herzlich willkommen,
+heute ist euer erster Tag bei SoftwareAndStuff inc. Wie ihr sicher wisst, sind wir ein 
+Traditionsunternehmen im Bereich des Projektmanagement. Das heißt jedoch nicht, dass 
+wir langweilig oder altbacken sind. Letztes Jahr haben wir im Unternehmen \"agile\" eingeführt 
+und es funktioniert ganz wunderbar. Euer Projekt ist die Software zur internen Berichtserstattung. 
+Dabei werdet ihr in einem interdisziplinären Team arbeiten. Da wäre zum einen Harald. Harald ist euer Teamleiter. Er 
+ist zwar etwas von alter Schule, aber gibt sein bestes euch zu unterstützen. Mathilde kommt aus der Quality Assurance und wird euch dahingehend beraten. Sabine ist die Kundenmanagerin. Aufgrund von Personalmangel muss sie aber noch an anderen Stellen mit aushelfen. Habt bitte etwas Nachsicht mit ihr. Dann wäre da noch Mark. Er repräsentiert unseren wichtigsten Kunden. Ihr solltet nie direkt mit ihm Kontakt haben, das übernimmt Sabine. Es schadet aber ja nicht, zu wissen für wen man arbeitet."
+fit_content = true
+
+[node name="Harald" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 920.0
+offset_right = 448.0
+offset_bottom = 968.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_wq8l7")
+theme_override_font_sizes/normal_font_size = 42
+text = "Harald"
+fit_content = true
+
+[node name="Mark" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 1048.0
+offset_top = 952.0
+offset_right = 1192.0
+offset_bottom = 1000.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_wq8l7")
+theme_override_font_sizes/normal_font_size = 42
+text = "Mark"
+fit_content = true
+
+[node name="Mathilde" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 1440.0
+offset_top = 744.0
+offset_right = 1584.0
+offset_bottom = 792.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_wq8l7")
+theme_override_font_sizes/normal_font_size = 42
+text = "Mathilde"
+fit_content = true
+
+[node name="Sabine" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 784.0
+offset_top = 634.0
+offset_right = 928.0
+offset_bottom = 682.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_wq8l7")
+theme_override_font_sizes/normal_font_size = 42
+text = "Sabine"
+fit_content = true
+
+[node name="Header" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 35.0
+offset_right = 898.0
+offset_bottom = 171.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_of347")
+theme_override_font_sizes/normal_font_size = 100
+text = "Storyline"
+
+[node name="Button2" parent="." instance=ExtResource("5_of347")]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 1616.0
+offset_top = 536.0
+offset_right = 1864.0
+offset_bottom = 663.0
+grow_horizontal = 1
+grow_vertical = 1
+theme_override_font_sizes/font_size = 69
+text = "Next"
+
+[connection signal="pressed" from="Button2" to="." method="_on_button_pressed"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmuqn4ok46f8s"]
+
+[ext_resource type="Script" uid="uid://cypdak4uq2wku" path="res://scripts/backlog.gd" id="1_s0h7n"]
+
+[node name="Backlog" type="Node2D"]
+script = ExtResource("1_s0h7n")
+
+[node name="Slots" type="Node2D" parent="."]

@@ -1,0 +1,132 @@
+[gd_scene load_steps=16 format=3 uid="uid://2amkrnek74r5"]
+
+[ext_resource type="PackedScene" uid="uid://belm8ywu7txr6" path="res://scenes/feature_deck.tscn" id="1_gee14"]
+[ext_resource type="Texture2D" uid="uid://dbj3jei31wn3o" path="res://assets/Background.png" id="1_kvpfn"]
+[ext_resource type="PackedScene" uid="uid://dllvfnx0sn4ji" path="res://scenes/effect_display.tscn" id="1_kvuet"]
+[ext_resource type="PackedScene" uid="uid://cp6orqhxx6agb" path="res://scenes/supply.tscn" id="2_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://cmuqn4ok46f8s" path="res://scenes/backlog.tscn" id="4_0tnpc"]
+[ext_resource type="Script" uid="uid://b4qx22upmkcuy" path="res://scripts/game_rules.gd" id="5_gee14"]
+[ext_resource type="PackedScene" uid="uid://biahy8phfe8m" path="res://scenes/bug_deck.tscn" id="7_gee14"]
+[ext_resource type="PackedScene" uid="uid://bynp826y5pibk" path="res://scenes/event_deck.tscn" id="7_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://dswqyygw0txpy" path="res://scenes/technical_debt_account.tscn" id="8_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://c3hskgf5pyv7w" path="res://scenes/card_slot.tscn" id="8_gee14"]
+[ext_resource type="Script" uid="uid://d1wlm0qb32qmj" path="res://scenes/technical_debt_account.gd" id="9_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://odv8s6iqtsvk" path="res://scenes/game_stats.tscn" id="10_vtaks"]
+[ext_resource type="FontFile" uid="uid://bvl257efbrrn5" path="res://assets/Hey Comic.ttf" id="11_dinhu"]
+[ext_resource type="PackedScene" uid="uid://cqp7getqbvwea" path="res://scenes/button.tscn" id="14_ir15t"]
+[ext_resource type="Texture2D" uid="uid://b2tsl4dwgr3g4" path="res://assets/End.png" id="15_ir15t"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -20
+position = Vector2(960, 542)
+texture = ExtResource("1_kvpfn")
+
+[node name="GameEnd" type="Sprite2D" parent="."]
+position = Vector2(1251.75, 824.448)
+scale = Vector2(0.228799, 0.239425)
+texture = ExtResource("15_ir15t")
+
+[node name="Header" type="RichTextLabel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 464.0
+offset_top = 40.0
+offset_right = 1384.0
+offset_bottom = 168.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("11_dinhu")
+theme_override_font_sizes/normal_font_size = 100
+text = "ExtremeProGaming"
+
+[node name="Supply" parent="." instance=ExtResource("2_u5sy4")]
+position = Vector2(336, 240)
+
+[node name="GameRules" type="Node2D" parent="."]
+script = ExtResource("5_gee14")
+
+[node name="DiscardPile" parent="." instance=ExtResource("8_gee14")]
+position = Vector2(1704, 888)
+
+[node name="Backlog" parent="." instance=ExtResource("4_0tnpc")]
+position = Vector2(830, 302)
+
+[node name="FeatureDeck" parent="." instance=ExtResource("1_gee14")]
+position = Vector2(128, 843)
+
+[node name="BugDeck" parent="." instance=ExtResource("7_gee14")]
+position = Vector2(320, 840)
+
+[node name="EventDeck" parent="." instance=ExtResource("7_u5sy4")]
+position = Vector2(128, 555)
+
+[node name="EventDiscardPile" parent="." instance=ExtResource("8_gee14")]
+position = Vector2(320, 560)
+
+[node name="TechnicalDebtAccount" parent="." instance=ExtResource("8_0tnpc")]
+position = Vector2(339, 360)
+script = ExtResource("9_0tnpc")
+
+[node name="EffectDisplay" parent="." instance=ExtResource("1_kvuet")]
+position = Vector2(1704, 624)
+
+[node name="GameNotifications4" type="RichTextLabel" parent="."]
+offset_left = 80.0
+offset_top = 707.0
+offset_right = 176.0
+offset_bottom = 747.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("11_dinhu")
+theme_override_font_sizes/normal_font_size = 21
+bbcode_enabled = true
+text = "Features"
+
+[node name="GameNotifications5" type="RichTextLabel" parent="."]
+offset_left = 296.0
+offset_top = 704.0
+offset_right = 392.0
+offset_bottom = 744.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("11_dinhu")
+theme_override_font_sizes/normal_font_size = 21
+bbcode_enabled = true
+text = "Bugs"
+
+[node name="GameNotifications3" type="RichTextLabel" parent="."]
+offset_left = 95.0
+offset_top = 423.0
+offset_right = 191.0
+offset_bottom = 463.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("11_dinhu")
+theme_override_font_sizes/normal_font_size = 21
+bbcode_enabled = true
+text = "Events"
+
+[node name="EndIterationButton" parent="." instance=ExtResource("14_ir15t")]
+offset_left = 918.0
+offset_top = 952.0
+offset_right = 1174.0
+offset_bottom = 1032.0
+theme_override_font_sizes/font_size = 49
+text = "End Iteration"
+
+[node name="DarkenedBackground" type="ColorRect" parent="."]
+visible = false
+z_index = 7
+offset_right = 1914.0
+offset_bottom = 1085.0
+color = Color(0, 0, 0, 0.74902)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameStats" parent="." instance=ExtResource("10_vtaks")]
+position = Vector2(1704, 280)
+
+[connection signal="button_down" from="EndIterationButton" to="GameRules" method="_on_end_iteration_button_down"]
