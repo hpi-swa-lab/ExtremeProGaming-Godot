@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://odv8s6iqtsvk"]
 
-[ext_resource type="Script" uid="uid://bjqq35i0q5laa" path="res://scenes/game_stats.gd" id="1_8j22x"]
-[ext_resource type="Texture2D" uid="uid://cyw737g1ga2w4" path="res://assets/Game Stats.png" id="1_ul0qu"]
-[ext_resource type="FontFile" uid="uid://dx3frt8gg61kj" path="res://assets/SFCartoonistHand.ttf" id="2_kqpaf"]
-[ext_resource type="FontFile" uid="uid://bvl257efbrrn5" path="res://assets/Hey Comic.ttf" id="3_8j22x"]
+[ext_resource type="Script" uid="uid://bjqq35i0q5laa" path="res://scripts/game_stats.gd" id="1_8j22x"]
+[ext_resource type="Texture2D" uid="uid://cyw737g1ga2w4" path="res://assets/game_elements/Game Stats.png" id="1_ul0qu"]
+[ext_resource type="FontFile" uid="uid://dx3frt8gg61kj" path="res://assets/fonts/SFCartoonistHand.ttf" id="2_kqpaf"]
+[ext_resource type="FontFile" uid="uid://bvl257efbrrn5" path="res://assets/fonts/Hey Comic.ttf" id="3_8j22x"]
 
 [node name="GameStats" type="Node2D"]
 script = ExtResource("1_8j22x")
@@ -79,7 +79,7 @@ offset_bottom = -136.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_8j22x")
 theme_override_font_sizes/normal_font_size = 29
-text = "Game Statistics"
+text = "GAME_STATISTICS"
 
 [node name="Iteration" type="RichTextLabel" parent="."]
 offset_left = -83.0

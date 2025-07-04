@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bwpvo7bj4rxbu" path="res://scenes/deck.tscn" id="1_mxwt7"]
 [ext_resource type="Script" uid="uid://cc6rthqp3v5e1" path="res://scripts/feature_deck.gd" id="2_hvc3o"]
-[ext_resource type="Texture2D" uid="uid://bnju2klgcgcxm" path="res://assets/selected.png" id="3_5bxcx"]
+[ext_resource type="Texture2D" uid="uid://bnju2klgcgcxm" path="res://assets/cards/selected.png" id="3_5bxcx"]
 
 [node name="FeatureDeck" instance=ExtResource("1_mxwt7")]
 script = ExtResource("2_hvc3o")

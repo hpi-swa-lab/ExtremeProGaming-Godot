@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://dhtpnejns62r5"]
 
-[ext_resource type="Texture2D" uid="uid://bams7et1vrs5" path="res://assets/ExplainationScreen.png" id="1_psc5y"]
-[ext_resource type="Script" uid="uid://6yds8b6b3l22" path="res://scenes/explaination_screen.gd" id="1_s6nn1"]
-[ext_resource type="FontFile" uid="uid://bvl257efbrrn5" path="res://assets/Hey Comic.ttf" id="2_s6nn1"]
-[ext_resource type="FontFile" uid="uid://dx3frt8gg61kj" path="res://assets/SFCartoonistHand.ttf" id="3_f2yy7"]
+[ext_resource type="Texture2D" uid="uid://bams7et1vrs5" path="res://assets/screens/ExplainationScreen.png" id="1_psc5y"]
+[ext_resource type="Script" uid="uid://6yds8b6b3l22" path="res://scripts/explaination_screen.gd" id="1_s6nn1"]
+[ext_resource type="FontFile" uid="uid://bvl257efbrrn5" path="res://assets/fonts/Hey Comic.ttf" id="2_s6nn1"]
+[ext_resource type="FontFile" uid="uid://dx3frt8gg61kj" path="res://assets/fonts/SFCartoonistHand.ttf" id="3_f2yy7"]
 [ext_resource type="PackedScene" uid="uid://cqp7getqbvwea" path="res://scenes/button.tscn" id="5_f2yy7"]
 
 [node name="ExplainationScreen" type="Control"]
@@ -28,7 +28,7 @@ offset_bottom = 291.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("2_s6nn1")
 theme_override_font_sizes/normal_font_size = 100
-text = "Game Elements"
+text = "GAME_ELEMENTS"
 
 [node name="CardHeader" type="RichTextLabel" parent="."]
 layout_mode = 0
@@ -54,13 +54,13 @@ text = "Feature"
 
 [node name="SPDescription" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_top = 464.0
+offset_top = 432.0
 offset_right = 176.0
 offset_bottom = 744.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_f2yy7")
 theme_override_font_sizes/normal_font_size = 40
-text = "the number of storypoints needed"
+text = "NEEDED_STORYPOINTS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -73,7 +73,7 @@ offset_bottom = 576.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_f2yy7")
 theme_override_font_sizes/normal_font_size = 40
-text = "type of ticket"
+text = "TYPE_OF_TICKET"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -86,7 +86,7 @@ offset_bottom = 1000.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_f2yy7")
 theme_override_font_sizes/normal_font_size = 40
-text = "Fuzzy search über alle Berichte erlauben"
+text = "SAMPLE_FRONT_TEXT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -99,7 +99,7 @@ offset_bottom = 1000.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_f2yy7")
 theme_override_font_sizes/normal_font_size = 40
-text = "Dieses Ticket zählt nicht in die Berechnung des Technical Debts"
+text = "SAMPLE_EFFECT_TEXT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -112,7 +112,7 @@ offset_bottom = 744.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_f2yy7")
 theme_override_font_sizes/normal_font_size = 40
-text = "Das Feature hat ein veraltetes Feature ersetzt. Der Code ist dadurch deutlich schlanker geworden."
+text = "SAMPLE_BACK_TEXT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -177,7 +177,7 @@ offset_bottom = 536.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_f2yy7")
 theme_override_font_sizes/normal_font_size = 40
-text = "permanent storypoint"
+text = "PERMANENT_STORYPOINT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -216,33 +216,33 @@ offset_bottom = 536.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_f2yy7")
 theme_override_font_sizes/normal_font_size = 40
-text = "temporal storypoint"
+text = "TEMPORAL_STORYPOINT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TicketDescription" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 624.0
+offset_left = 568.0
 offset_top = 968.0
-offset_right = 800.0
+offset_right = 912.0
 offset_bottom = 1080.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_f2yy7")
 theme_override_font_sizes/normal_font_size = 40
-text = "ticket description"
+text = "TICKET_DESCRIPTION"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HintDescription" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 616.0
-offset_top = 568.0
-offset_right = 856.0
-offset_bottom = 728.0
+offset_left = 624.0
+offset_top = 560.0
+offset_right = 904.0
+offset_bottom = 792.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_f2yy7")
 theme_override_font_sizes/normal_font_size = 40
-text = "implies if effect is positive, negative or unknown"
+text = "EFFECT_IMPLICATION"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -255,7 +255,7 @@ offset_bottom = 944.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_f2yy7")
 theme_override_font_sizes/normal_font_size = 40
-text = "consequences if the ticket on the storyline"
+text = "TICKET_CONSEQUENZ"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -268,13 +268,12 @@ offset_bottom = 1104.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_f2yy7")
 theme_override_font_sizes/normal_font_size = 40
-text = "effect of the ticket"
+text = "TICKET_EFFECT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button" parent="." instance=ExtResource("5_f2yy7")]
 layout_mode = 1
-anchors_preset = 0
 offset_left = 1536.0
 offset_top = 872.0
 offset_right = 1865.0
@@ -282,6 +281,6 @@ offset_bottom = 1029.0
 grow_horizontal = 1
 grow_vertical = 1
 theme_override_font_sizes/font_size = 68
-text = "Start Playing"
+text = "START_PLAYING"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

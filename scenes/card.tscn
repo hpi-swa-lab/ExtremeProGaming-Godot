@@ -1,13 +1,17 @@
 [gd_scene load_steps=13 format=3 uid="uid://cca71wt6yarn6"]
 
 [ext_resource type="Script" uid="uid://6tn2x8hyeb63" path="res://scripts/card.gd" id="1_ktuci"]
-[ext_resource type="Texture2D" uid="uid://drvn7wqgtatgr" path="res://assets/cards/features/back_back.png" id="2_6ligt"]
-[ext_resource type="FontFile" uid="uid://dx3frt8gg61kj" path="res://assets/SFCartoonistHand.ttf" id="3_kg30u"]
-[ext_resource type="AudioStream" uid="uid://dvbks8dg6aouh" path="res://assets/select_card.mp3" id="3_ktuci"]
-[ext_resource type="Texture2D" uid="uid://cd4cnwoqrmx8v" path="res://assets/cards/features/feat_frontend_front.png" id="3_sy11y"]
-[ext_resource type="FontFile" uid="uid://bvl257efbrrn5" path="res://assets/Hey Comic.ttf" id="4_sy11y"]
-[ext_resource type="Texture2D" uid="uid://35nh5akbsc3" path="res://assets/positive_effect.png" id="6_8w5pg"]
-[ext_resource type="Texture2D" uid="uid://bnju2klgcgcxm" path="res://assets/selected.png" id="8_nvopj"]
+[ext_resource type="FontFile" uid="uid://dx3frt8gg61kj" path="res://assets/fonts/SFCartoonistHand.ttf" id="3_kg30u"]
+[ext_resource type="AudioStream" uid="uid://dvbks8dg6aouh" path="res://assets/sounds/select_card.mp3" id="3_ktuci"]
+[ext_resource type="FontFile" uid="uid://bvl257efbrrn5" path="res://assets/fonts/Hey Comic.ttf" id="4_sy11y"]
+[ext_resource type="Texture2D" uid="uid://35nh5akbsc3" path="res://assets/cards/positive_effect.png" id="6_8w5pg"]
+[ext_resource type="Texture2D" uid="uid://bnju2klgcgcxm" path="res://assets/cards/selected.png" id="8_nvopj"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6ligt"]
+load_path = "res://.godot/imported/back_back.png-9d2f518569cc06bf851767925ecb2eff.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8w5pg"]
+load_path = "res://.godot/imported/feat_frontend_front.png-3d53d716c71b56443b1af8c08bf3eb8a.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rjlel"]
 size = Vector2(142.5, 206)
@@ -109,7 +113,7 @@ visible = false
 z_index = -1
 texture_filter = 1
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_6ligt")
+texture = SubResource("CompressedTexture2D_6ligt")
 
 [node name="TypeText" type="RichTextLabel" parent="CardBackImage"]
 texture_filter = 2
@@ -132,7 +136,7 @@ texture_filter = 1
 offset_left = -355.0
 offset_top = -323.0
 offset_right = 355.0
-offset_bottom = 80.0
+offset_bottom = 40.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_kg30u")
 theme_override_font_sizes/normal_font_size = 70
@@ -162,7 +166,7 @@ z_index = 1
 texture_filter = 2
 rotation = 0.00098535
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("3_sy11y")
+texture = SubResource("CompressedTexture2D_8w5pg")
 
 [node name="EffectImage" type="Sprite2D" parent="CardImage"]
 texture_filter = 2

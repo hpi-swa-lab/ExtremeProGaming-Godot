@@ -6,6 +6,7 @@ class_name Card
 @export var chosen = false
 @export var storypoints = null
 @export var cannot_be_unchosen = false
+@export var cannot_be_choosen = false
 @export var type = null
 @export var is_start_card = false
 @export var area = null
@@ -40,10 +41,8 @@ func choose_card():
 	$ChooseCard.play()
 	
 func use_new_texture(effect_value):
-	var new_texture_path = effect_value[0]
-	var new_storypoints = effect_value[1]
-	
-	get_node("CardImage").texture = load(new_texture_path)
+	var new_storypoints = effect_value
+	$CardImage/StorypointText.text = str(new_storypoints)
 	storypoints = new_storypoints
 	
 	

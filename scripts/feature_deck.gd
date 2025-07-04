@@ -7,7 +7,7 @@ var CARDS_IN_DECK = []
 signal cards_ready
 
 @onready var card_grid_reference = $"../Backlog"
-@onready var card_database_reference = preload("res://scripts/card_database.gd")
+@onready var card_database_reference = preload("res://scripts/feature_database.gd")
 
 
 func _ready() -> void:
@@ -36,15 +36,18 @@ func _ready() -> void:
 		
 		new_card.get_node("CardImage").texture = load(new_card_front_image_path)
 		new_card.get_node("CardImage").get_node("EffectImage").texture = load(new_card_effect_image_path)
-		new_card.get_node("CardImage").get_node("FrontText").text = card_database_reference.ALL_FEATURE_CARDS_TEXT[name][0]
+		set_auto_sized_text(new_card.get_node("CardImage").get_node("FrontText"), card_database_reference.ALL_FEATURE_CARDS_TEXT[name][0])
+		
 		new_card.get_node("CardImage").get_node("TypeText").text = "Feature"
 		new_card.get_node("CardImage").get_node("IterationText").visible = false
+		
 		new_card.get_node("CardImage").get_node("StorypointText").text = str(new_card.storypoints)
 		
 		new_card.get_node("CardBackImage").texture = load(new_card_back_image_path)
 		new_card.get_node("CardBackImage").get_node("TypeText").text = "Feature"
-		new_card.get_node("CardBackImage").get_node("BackText").text = card_database_reference.ALL_FEATURE_CARDS_TEXT[name][1]
-		new_card.get_node("CardBackImage").get_node("EffectText").text = card_database_reference.ALL_FEATURE_CARDS_TEXT[name][2]
+		set_auto_sized_text(new_card.get_node("CardBackImage").get_node("BackText"), card_database_reference.ALL_FEATURE_CARDS_TEXT[name][1])
+		set_auto_sized_text(new_card.get_node("CardBackImage").get_node("EffectText"), card_database_reference.ALL_FEATURE_CARDS_TEXT[name][2])
+
 		new_card.get_node("CardBackImage").z_index = -1
 		new_card.position = get_node("Area2D").position
 		self.add_child(new_card)

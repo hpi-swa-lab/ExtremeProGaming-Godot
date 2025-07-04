@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bwpvo7bj4rxbu"]
 
 [ext_resource type="Script" uid="uid://cg1wnowg21yqi" path="res://scripts/deck.gd" id="1_gdbsr"]
-[ext_resource type="Texture2D" uid="uid://nslfm0dg8at5" path="res://assets/card_slot.png" id="2_gdbsr"]
-[ext_resource type="AudioStream" uid="uid://f1lbrj68nw0y" path="res://assets/flipcard-91468.mp3" id="3_d715x"]
+[ext_resource type="Texture2D" uid="uid://nslfm0dg8at5" path="res://assets/game_elements/card_slot.png" id="2_gdbsr"]
+[ext_resource type="AudioStream" uid="uid://f1lbrj68nw0y" path="res://assets/sounds/flipcard-91468.mp3" id="3_d715x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vtaks"]
 size = Vector2(141, 192)

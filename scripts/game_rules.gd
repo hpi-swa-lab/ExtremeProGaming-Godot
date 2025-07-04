@@ -44,14 +44,14 @@ func prepare_iteration():
 	event_card_drawn_once = false
 	event_deck.get_node("SelectionBorder").visible = true
 	current_phase = Phase.DRAW_EVENT
-	label.text = ("Please draw 1 Event Card.")
+	label.text = ("DRAW_EVENT_DESC")
 	if reward_after_goal_is_reached and iteration == 3 and discard_pile.get_all_features() >= 4:
 		await supply.add_storypoints_effect([2, 10000])
 		
 func plan_iteration():
 	highlight_elements_for_plan_phase(true)
 	current_phase = Phase.PLAN
-	label.text = ("Now plan your iteration. You can draw more cards, select Cards for this iteration or refactor technical debt.")
+	label.text = ("GAME_HINT")
 	
 func _on_read_event_button_down(drawn_card) -> void:
 	lighten_background()
@@ -67,7 +67,7 @@ func _on_read_event_button_down(drawn_card) -> void:
 	event_deck.get_node("SelectionBorder").visible = false
 	feature_deck.get_node("SelectionBorder").visible = true
 	current_phase = Phase.DRAW_FEATURE
-	label.text = ("Please draw at least 1 Feature.")
+	label.text = ("DRAW_FEATURE_RULE")
 	
 func _on_start_iteration_button_down() -> void:
 	if iteration >= 9:
@@ -109,6 +109,8 @@ func _on_end_iteration_button_down() -> void:
 	current_phase = Phase.END
 	var chosen_cards = backlog.get_chosen_cards()
 	var chosen_debt = techical_debt_account.get_all_debt_selected_for_refactoring()
+	for card in backlog.get_all_cards_in_backlog():
+		card.cannot_be_choosen = false
 	for card in chosen_cards:
 		card.flip_card()
 		move_storypoints_to_supply(card)
@@ -118,12 +120,12 @@ func _on_end_iteration_button_down() -> void:
 	darken_background()
 	move_cards_to_front(chosen_cards, chosen_debt)
 	
-	var start_iteration_button = create_button("Start new iteration", Vector2(800.0, 800.0), 5)
+	var start_iteration_button = create_button("START_NEW_ITERATION", Vector2(800.0, 800.0), 5)
 	start_iteration_button.connect("button_down", func(): _on_start_iteration_button_down())
 	
 func _process(delta):
 	update_game_stats()
-	if backlog.no_cards_chosen() and techical_debt_account.no_debt_selected():
+	if backlog.no_cards_chosen() and techical_debt_account.no_debt_selected() == 0:
 		$"../EndIterationButton".disabled = true
 	else:
 		$"../EndIterationButton".disabled = false
@@ -136,12 +138,12 @@ func _process(delta):
 func darken_background():
 	$"../DarkenedBackground".visible = true
 	var tween = create_tween()
-	tween.tween_property($"../ColorRect", "modulate:a", 0.5, 0.5) # fade in
+	tween.tween_property($"../ColorRect", "modulate:a", 0.5, 0.5)
 	
 func lighten_background():
 	$"../DarkenedBackground".visible = false
 	var tween = create_tween()
-	tween.tween_property($"../ColorRect", "modulate:a", 0.5, 0.5) # fade in
+	tween.tween_property($"../ColorRect", "modulate:a", 0.5, 0.5)
 	
 func move_cards_to_front(chosen_cards, chosen_debt):
 	var screen_size = get_viewport_rect().size
@@ -195,7 +197,7 @@ func _input(event):
 					await get_tree().create_timer(2.0).timeout
 					drawn_card.flip_card()
 					
-					var event_button = create_button("I read and understood the event", Vector2(800.0, 800.0), 5)
+					var event_button = create_button("UNDERSTOOD_EVENT", Vector2(800.0, 800.0), 5)
 					event_button.connect("button_down", func(): _on_read_event_button_down(drawn_card))
 			Phase.DRAW_FEATURE:
 				if card and feature_card_can_be_drawn(event, card):
@@ -204,6 +206,7 @@ func _input(event):
 					plan_iteration()
 
 			Phase.PLAN:
+				highlight_elements_for_plan_phase(true)
 				if card and (card.type == card.CardType.FEATURE or card.type == card.CardType.BUG):
 					var needed_storypoints = card.storypoints + techical_debt_account.calculate_needed_storypoints(card.area)
 					if card and feature_card_can_be_drawn(event, card):
@@ -225,8 +228,8 @@ func _input(event):
 	
 func card_can_be_choosen(event, card, needed_storypoints):
 	if techical_debt_account.get_currently_refactored_debt_for_area(card.area) != 0:
-		label.text = ("You can select cards in "+ card.area + " if you have no debt to be refactored from "+ card.area)
-	return event.pressed and not card.uncovered and card.on_card_grid and card.chosen == false and needed_storypoints <= supply.available_storypoints() and techical_debt_account.get_currently_refactored_debt_for_area(card.area) == 0 
+		label.text = ("REFACTOR_HINT_CARD")
+	return event.pressed and not card.uncovered and card.on_card_grid and card.chosen == false and needed_storypoints <= supply.available_storypoints() and techical_debt_account.get_currently_refactored_debt_for_area(card.area) == 0 and card.cannot_be_choosen == false 
 	
 func card_can_be_unchoosen(event, card):
 	return event.pressed and not card.uncovered and card.on_card_grid and card.chosen and card.cannot_be_unchosen == false
@@ -240,7 +243,7 @@ func event_card_can_be_drawn(event, card):
 func debt_can_be_refactored(event, debt):
 	var selected_cards_from_area = backlog.get_chosen_cards_from_area(debt.area)
 	if selected_cards_from_area.size() > 0:
-		label.text = ("You can only refactor in "+ debt.area + " if you have no cards selected from "+ debt.area)
+		label.text = ("REFACTOR_HINT_DEBT")
 	return event.pressed and 1 <= supply.available_storypoints() and not debt.to_be_refectored and selected_cards_from_area.size() == 0 and allow_refactoring
 	
 func debt_can_be_unchoosen(event, debt):
@@ -268,6 +271,9 @@ func execute_card_effect(card):
 				for cheapest_card in cards:
 					cheapest_card.get_parent().get_parent().is_card_in_slot = false
 					await move_card_to_discard_pile(cheapest_card, discard_pile)
+			"if_frontend_debt_too_big":
+				if techical_debt_account.get_current_debt_from_area("frontend") >= effect_value:
+					await move_card_to_backlog(card)
 			"goal":
 				reward_after_goal_is_reached = true
 			"bugs":
@@ -277,9 +283,17 @@ func execute_card_effect(card):
 					var drawn_card = feature_deck.draw_card()
 					drawn_card.z_index = 5
 					await move_card_to_cardslot(drawn_card)
+			"cheap_feature_is_implemented":
+				var possible_card = backlog.get_card_with_storypoints(effect_value)
+				if possible_card != null:
+					move_card_to_discard_pile(possible_card, discard_pile)
+			"back_to_backlog":
+				await move_card_to_backlog(card)
 			"must_choose":
 				await must_choose_card(card)
-			"new_texture":
+			"cannot_be_choosen":
+				card.cannot_be_choosen = true
+			"new_values":
 				await card.use_new_texture(effect_value)
 			"prohibit_refactoring":
 				allow_refactoring = false
@@ -287,47 +301,59 @@ func execute_card_effect(card):
 				push_warning("Unknown Effect: %s" % effect_name)
 				
 func generate_effect_display(effects):
-	var text = ("The following card Effect will be applied:")
+	var text = tr("EFFECT_DISPLAY_HEADER") + "\n"
 	for effect in effects:
 		await get_tree().create_timer(0.2).timeout
 		var effect_name = effect[0]
 		var effect_value = effect[1]
 		match effect_name:
+			"if_frontend_debt_too_big":
+				text += "• " + tr("FRONTEND_DEBT_BIG") + "\n"
+			"back_to_backlog":
+				text += "• " + tr("BACK_TO_BACKLOG") + "\n"
 			"add_storypoints":
-				text += ("\n• Storypoints are added.")
+				text += "• " + tr("ADD_STORYPOINTS") + "\n"
 			"remove_storypoints":
-				text += ("\n• Storypoints are removed.")
+				text += "• " + tr("REMOVE_STORYPOINTS") + "\n"
 			"half_storypoints":
-				text += ("\n• Storypoints are halfed.")
+				text += "• " + tr("HALF_STORYPOINTS") + "\n"
 			"add_technical_debt":
-				text += ("\n• Techical Debt is added.")
+				text += "• " + tr("ADD_TECHNICAL_DEBT") + "\n"
 			"remove_technical_debt":
-				text += ("\n• Techical Debt is removed.")
+				text += "• " + tr("REMOVE_TECHNICAL_DEBT") + "\n"
 			"remove_cheapest_feature":
-				text += ("\n• Cheapest Feature is removed.")
+				text += "• " + tr("REMOVE_CHEAPEST_FEATURE") + "\n"
+			"cheap_feature_is_implemented":
+				text += "• " + tr("IMPLEMENT_CHEAP_FEATURE") + "\n"
+			"cannot_be_choosen":
+				text += "• " + tr("CANNOT_BE_CHOSEN") + "\n"
 			"goal":
-				text += ("\n• Schafft ihr es bis zum Beginn von Iteration 5 insgesamt 8 Features bearbeitet zu haben, erhaltet ihr dauerhaft 2 Storypints mehr.")
+				text += "• " + tr("REACH_GOAL") + "\n"
 			"bugs":
-				text += ("\n• A Bug is drawn.")
+				text += "• " + tr("DRAW_BUG") + "\n"
 			"features":
-				text += ("\n• A Feature is added.")
+				text += "• " + tr("DRAW_FEATURE") + "\n"
 			"must_choose":
-				text += ("\n• One card must be choosen next iteration.")
+				text += "• " + tr("MUST_CHOOSE") + "\n"
+			"new_values":
+				text += "• " + tr("NEW_VALUES") + "\n"
 			"prohibit_refactoring":
-				text += ("\n• You arent allowed to refactor next iteration.")
+				text += "• " + tr("NO_REFACTOR") + "\n"
 			_:
 				push_warning("Unknown Effect: %s" % effect_name)
 	return text
 				
 	
-func must_choose_card(card):
-	card.cannot_be_unchosen = true
+func move_card_to_backlog(card):
 	move_card_to_cardslot(card)
 	card.z_index = 2
 	card.back_flip_card()
 	await get_tree().create_timer(1.0).timeout
-	card.choose_card()
 	
+	
+func must_choose_card(card):
+	card.cannot_be_unchosen = true
+	card.choose_card()
 	move_storypoints_to_card(card, card.storypoints + techical_debt_account.calculate_needed_storypoints(card.area))
 	
 func spawn_bug(effect_value):

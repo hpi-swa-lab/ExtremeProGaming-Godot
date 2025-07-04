@@ -55,6 +55,18 @@ func get_chosen_cards():
 				chosen_cards.append(child)
 
 	return chosen_cards
+	
+func get_card_with_storypoints(storypoints):
+	var chosen_cards = []
+
+	for slot in slots_reference.get_children():
+		for child in slot.card_reference.get_children():
+			if child.storypoint == storypoints:
+				chosen_cards.append(child)
+			
+	if chosen_cards.size() > 0:
+		return chosen_cards[0]
+	return null
 
 func get_cheapest_feature_effect(amount):
 	var cheapest_card

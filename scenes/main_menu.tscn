@@ -1,9 +1,37 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpa6qjrl4svmm"]
+[gd_scene load_steps=9 format=3 uid="uid://bpa6qjrl4svmm"]
 
 [ext_resource type="Script" uid="uid://dl33j7r33887u" path="res://scripts/main_menu.gd" id="1_l6cm7"]
-[ext_resource type="Texture2D" uid="uid://dt6pes4tf11b" path="res://assets/menu_background.png" id="2_wu84c"]
+[ext_resource type="Texture2D" uid="uid://dt6pes4tf11b" path="res://assets/screens/menu_background.png" id="2_wu84c"]
 [ext_resource type="PackedScene" uid="uid://cqp7getqbvwea" path="res://scenes/button.tscn" id="3_wu84c"]
-[ext_resource type="FontFile" uid="uid://bvl257efbrrn5" path="res://assets/Hey Comic.ttf" id="4_rtw2f"]
+[ext_resource type="FontFile" uid="uid://bvl257efbrrn5" path="res://assets/fonts/Hey Comic.ttf" id="4_rtw2f"]
+[ext_resource type="FontFile" uid="uid://dx3frt8gg61kj" path="res://assets/fonts/SFCartoonistHand.ttf" id="5_8ln24"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rtw2f"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_size = 10
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oa1go"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_size = 10
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbmy8"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_size = 10
+shadow_offset = Vector2(0, 4)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -21,13 +49,13 @@ texture = ExtResource("2_wu84c")
 
 [node name="Button" parent="." instance=ExtResource("3_wu84c")]
 layout_mode = 0
-anchors_preset = 0
 offset_left = 639.0
 offset_top = 430.0
 offset_right = 1279.0
 offset_bottom = 611.0
 grow_horizontal = 1
 grow_vertical = 1
+text = "START_GAME"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -42,5 +70,23 @@ grow_horizontal = 2
 theme_override_fonts/font = ExtResource("4_rtw2f")
 theme_override_font_sizes/font_size = 111
 text = "ExtremeProGaming"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LanguageSelector" type="OptionButton" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 168.0
+offset_bottom = 112.0
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_8ln24")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxFlat_rtw2f")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_oa1go")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tbmy8")
+alignment = 1
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

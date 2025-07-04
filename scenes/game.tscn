@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://2amkrnek74r5"]
 
 [ext_resource type="PackedScene" uid="uid://belm8ywu7txr6" path="res://scenes/feature_deck.tscn" id="1_gee14"]
-[ext_resource type="Texture2D" uid="uid://dbj3jei31wn3o" path="res://assets/Background.png" id="1_kvpfn"]
+[ext_resource type="Texture2D" uid="uid://dbj3jei31wn3o" path="res://assets/screens/Background.png" id="1_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://dllvfnx0sn4ji" path="res://scenes/effect_display.tscn" id="1_kvuet"]
 [ext_resource type="PackedScene" uid="uid://cp6orqhxx6agb" path="res://scenes/supply.tscn" id="2_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://cmuqn4ok46f8s" path="res://scenes/backlog.tscn" id="4_0tnpc"]
@@ -10,11 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://bynp826y5pibk" path="res://scenes/event_deck.tscn" id="7_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://dswqyygw0txpy" path="res://scenes/technical_debt_account.tscn" id="8_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://c3hskgf5pyv7w" path="res://scenes/card_slot.tscn" id="8_gee14"]
-[ext_resource type="Script" uid="uid://d1wlm0qb32qmj" path="res://scenes/technical_debt_account.gd" id="9_0tnpc"]
+[ext_resource type="Script" uid="uid://d1wlm0qb32qmj" path="res://scripts/technical_debt_account.gd" id="9_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://odv8s6iqtsvk" path="res://scenes/game_stats.tscn" id="10_vtaks"]
-[ext_resource type="FontFile" uid="uid://bvl257efbrrn5" path="res://assets/Hey Comic.ttf" id="11_dinhu"]
+[ext_resource type="FontFile" uid="uid://bvl257efbrrn5" path="res://assets/fonts/Hey Comic.ttf" id="11_dinhu"]
 [ext_resource type="PackedScene" uid="uid://cqp7getqbvwea" path="res://scenes/button.tscn" id="14_ir15t"]
-[ext_resource type="Texture2D" uid="uid://b2tsl4dwgr3g4" path="res://assets/End.png" id="15_ir15t"]
+[ext_resource type="Texture2D" uid="uid://b2tsl4dwgr3g4" path="res://assets/game_elements/End.png" id="15_ir15t"]
 
 [node name="Game" type="Node2D"]
 
@@ -110,18 +110,17 @@ bbcode_enabled = true
 text = "Events"
 
 [node name="EndIterationButton" parent="." instance=ExtResource("14_ir15t")]
-anchors_preset = 0
 offset_left = 918.0
 offset_top = 952.0
 offset_right = 1174.0
 offset_bottom = 1032.0
 theme_override_font_sizes/font_size = 49
-text = "End Iteration"
+text = "END_ITERATION"
 
 [node name="DarkenedBackground" type="ColorRect" parent="."]
 visible = false
 z_index = 7
-offset_right = 1914.0
+offset_right = 1928.0
 offset_bottom = 1085.0
 color = Color(0, 0, 0, 0.74902)
 

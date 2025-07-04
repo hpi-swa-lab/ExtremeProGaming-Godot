@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://diygwoov5edq6"]
 
-[ext_resource type="Script" uid="uid://cbldmsdywhfh" path="res://game_over_screen.gd" id="1_wa2qn"]
-[ext_resource type="Texture2D" uid="uid://cc8wcu0cljy3q" path="res://assets/GameOverScreen.png" id="2_cyfkl"]
-[ext_resource type="FontFile" uid="uid://bvl257efbrrn5" path="res://assets/Hey Comic.ttf" id="3_xx0b3"]
+[ext_resource type="Script" uid="uid://cbldmsdywhfh" path="res://scripts/game_over_screen.gd" id="1_wa2qn"]
+[ext_resource type="Texture2D" uid="uid://cc8wcu0cljy3q" path="res://assets/screens/GameOverScreen.png" id="2_cyfkl"]
+[ext_resource type="FontFile" uid="uid://bvl257efbrrn5" path="res://assets/fonts/Hey Comic.ttf" id="3_xx0b3"]
 [ext_resource type="PackedScene" uid="uid://cqp7getqbvwea" path="res://scenes/button.tscn" id="4_wa2qn"]
 
 [node name="GameOverScreen" type="Control"]
@@ -37,7 +37,6 @@ vertical_alignment = 1
 
 [node name="Button" parent="." instance=ExtResource("4_wa2qn")]
 layout_mode = 1
-anchors_preset = 0
 offset_left = 812.0
 offset_top = 948.0
 offset_right = 1145.0
@@ -45,6 +44,6 @@ offset_bottom = 1048.0
 grow_horizontal = 1
 grow_vertical = 1
 theme_override_font_sizes/font_size = 65
-text = "Start Again"
+text = "START_AGAIN"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

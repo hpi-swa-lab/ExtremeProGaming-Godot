@@ -4,8 +4,8 @@ var STORYPOINTS = 6
 const STORYPOINTS_SCENE_PATH = "res://scenes/storypoint.tscn"
 const MIN_DISTANCE = 50
 const STORYPOINT_TEXTURES = {
-	"unlimited":"res://assets/storypoint_unlimited.png",
-	"temporary": "res://assets/storypoint_temporary.png"
+	"unlimited":"res://assets/game_elements/storypoint_unlimited.png",
+	"temporary": "res://assets/game_elements/storypoint_temporary.png"
 }
 var storypoints_to_revive = 0
 
@@ -44,7 +44,6 @@ func remove_storypoints_effect(effect_value):
 	var amount = effect_value[0]
 	storypoints_to_revive += amount
 	STORYPOINTS -= amount
-	print(amount)
 	for i in range(amount):
 		var children_to_be_removed = []
 		for child in storypoints_reference.get_children():

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cqp7getqbvwea"]
 
-[ext_resource type="FontFile" uid="uid://dx3frt8gg61kj" path="res://assets/SFCartoonistHand.ttf" id="1_mi6dp"]
+[ext_resource type="FontFile" uid="uid://dx3frt8gg61kj" path="res://assets/fonts/SFCartoonistHand.ttf" id="1_mi6dp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ln24"]
 bg_color = Color(0.791999, 0.791999, 0.791999, 1)
@@ -31,7 +31,6 @@ shadow_offset = Vector2(0, 4)
 
 [node name="Button" type="Button"]
 custom_minimum_size = Vector2(200, 80)
-anchors_preset = -1
 offset_right = 640.0
 offset_bottom = 181.0
 grow_horizontal = 2

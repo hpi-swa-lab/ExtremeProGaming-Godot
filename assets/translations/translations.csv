@@ -1,0 +1,195 @@
+﻿keys;de;en
+START_GAME;Starte das Spiel;Start Game
+NEXT;Weiter;Next
+STORYLINETEXT;"Herzlich willkommen,\nheute ist euer erster Tag bei SoftwareAndStuff inc. Wie ihr sicher wisst, sind wir ein \n Traditionsunternehmen im Bereich des Projektmanagement. Das heißt jedoch nicht, dass\nwir langweilig oder altbacken sind. Letztes Jahr haben wir im Unternehmen ""agile"" eingeführt\nund es funktioniert ganz wunderbar. Euer Projekt ist die Software zur internen Berichtserstattung.\nDabei werdet ihr in einem interdisziplinären Team arbeiten. Da wäre zum einen Harald. Harald ist euer Teamleiter. Er\nist zwar etwas von alter Schule, aber gibt sein bestes euch zu unterstützen. Mathilde kommt aus der Quality Assurance und wird euch dahingehend beraten. Sabine ist die Kundenmanagerin. Aufgrund von Personalmangel muss sie aber noch an anderen Stellen mit aushelfen. Habt bitte etwas Nachsicht mit ihr. Dann wäre da noch Mark. Er repräsentiert unseren wichtigsten Kunden. Ihr solltet nie direkt mit ihm Kontakt haben, das übernimmt Sabine. Es schadet aber ja nicht, zu wissen für wen man arbeitet.";Welcome,\nToday is your first day at SoftwareAndStuff inc. As you probably know, we are a\ntraditional company in the field of project management. But that doesn't mean we're boring\nor old-fashioned. Last year we introduced “agile” in the company and it works wonderfully. Your\nproject is the software for internal reporting.You will be working in an interdisciplinary team. Firstly, there's\nHarald. Harald is your team leader. He\'s a bit old school, but will do his best to support you. Mathilde comes from Quality Assurance and will advise you on this. Sabine is the customer manager. However, due to staff shortages, she has to help out in other areas. Please bear with her. Then there's Mark. He represents our most important customer. You should never have direct contact with him, Sabine takes care of that. But it doesn't hurt to know who you're working for.
+TYPE_OF_TICKET;Art des Tickets;ticket type
+NEEDED_STORYPOINTS;benötigte Storypoints;number of storypoints needed
+TICKET_DESCRIPTION;Ticketbeschreibung;ticket description
+EFFECT_IMPLICATION;Effekt kann positiv, negativ oder unbekannt sein;implies if effect is positive, negative or unknown
+TICKET_CONSEQUENZ;Konsequenz des Tickets auf die Story;consequences of the ticket on the storyline
+TICKET_EFFECT;Ticketeffekt;effect of the ticket
+PERMANENT_STORYPOINT;permanenter Storypoint;permanent storypoint
+TEMPORAL_STORYPOINT;temporärer Storypoint;temporal storypoint
+START_PLAYING;Spielstart;Start Playing
+SAMPLE_FRONT_TEXT;Fuzzy search über alle Berichte erlauben;Allow fuzzy search across all reports
+SAMPLE_BACK_TEXT;Das Feature hat ein veraltetes Feature ersetzt. Der Code ist dadurch deutlich schlanker geworden.;The feature has replaced an obsolete feature. The code has become significantly leaner as a result.
+SAMPLE_EFFECT_TEXT;Dieses Ticket zählt nicht in die Berechnung des Technical Debts;This ticket is not included in the calculation of the technical debt
+GAME_ELEMENTS;Spielelemente;Game Elements
+START_AGAIN;Nochmal?;Start Again?
+GAME_WON;Gewonnen!;You Won!
+RULES;Spielregeln;Game Rules
+DRAW_EVENT_DESC;Ziehe die oberste Event-Karte.;Draw the top event card.
+DRAW_FEATURE_RULE;Feature ziehen;Draw a feature
+DRAW_FEATURE_DESC;Nehmt das oberste Feature vom Feature-Stapel.;Take the top feature from the feature deck.
+PLAN_ITERATION;Planung der Iteration;Planning the iteration
+PLAN_ITERATION_DESC;Wählt eine oder mehrere Aktionen für die Iteration aus. Ihr habt folgende Möglichkeiten:;Select one or more actions for the iteration. You have the following options:
+PLAN_FEATURES;Feature(s) nachziehen: Nehmt ein oder mehrere Features vom Feature-Stapel und legt sie mit der Formel zur Kostenberechnung nach oben in den Backlog. Das kostet euch einen Storypoint pro nachgezogenem Feature.;Draw Features: Draw one or more features from the feature deck.This costs you one story point per feature moved.
+PLAN_REFACTORING;Refactoring: Für jeden abgebauten Technical Debt muss 1 Storypoint durch anklicken des Debts  eingesetzt werden. Achtung: Wird im Frontend/Backend refactort, dürfen in dieser Iteration keine Frontend/Backend-Tickets bearbeitet werden. Refactoring in beiden Bereichen gleichzeitig erlaubt keine Ticketbearbeitung.;Refactoring: For each technical debt removed, 1 storypoint must be inserted by clicking on the debt. Attention: If refactoring is performed in the frontend/backend, no frontend/backend tickets may be processed in this iteration. Refactoring in both areas at the same time does not allow ticket processing.
+PLAN_TICKETS;Tickets auswählen: Wählt ein oder mehrere Tickets aus dem Backlog durch anklicken. Die Anzahl berechnet sich aus dem Wert auf der Karte plus der Anzahl Technical Debt im jeweiligen Systemteil.;Select tickets: Select one or more tickets from the backlog by clicking on them. The number of storypoints is calculated from the value on the ticket plus the number of Technical Debt in the respective system part.
+END_ITERATION;Beende Iteration;End Iteration
+GAME_STATISTICS;Spiel-Statistik;Game Statistics
+GAME_MONITOR;Spiel-Monitor;Game Monitor
+GAME_HINT;Plane deine Iteration. Du kannst:\n•  Features nachziehen\n•  Karten auswählen\n•  Technical Debt refactorn;Now plan your iteration. You can:\n•  Draw more cards\n•  select cards for this iteration\n•  Refactor technical debt
+BUG0_FRONT;Falscher Nutzername wird im Profil angezeigt;Incorrect username is shown in the profile
+BUG0_BACK;Dieses Problem ist behoben, dafür bricht es an einer neuen Stelle auseinander.;This issue is fixed, but now something else breaks.
+BUG0_EFFECT;Dem Backlog wird 1 Bug hinzugefügt;Add 1 bug to the backlog
+BUG1_FRONT;Export der Berichte zu Word funktioniert;Exporting reports to Word works
+BUG1_BACK;Ein Bug weniger. Herzlichen Glückwunsch.;One bug less. Congratulations.
+BUG1_EFFECT;Kein Effekt.;No effect.
+BUG2_FRONT;Klartext-Passwort im Login-Form;Plain-text password in the login form
+BUG2_BACK;Dir kommt es vor als hättest du diesen Bug schon einmal repariert.;Feels like you’ve fixed this bug before.
+BUG2_EFFECT;Ist der Technical Debt in Frontend Technical Debt größer oder gleich zwei, lege diese Karte umgedreht zurück ins Backlog.;If frontend technical debt is 2 or more, return this card face-down to the backlog.
+BUG3_FRONT;Passwortfehler bei erfolgreichem Login;Password error on successful login
+BUG3_BACK;Endlich ist dieser Bug zu. Also auf zum nächsten Ticket. Manchmal fragst du dich, ob du überhaupt noch ein Mensch bist...;Finally, this bug is fixed. On to the next ticket. Sometimes you wonder if you're still human or just a ticket-resolving machine.
+BUG3_EFFECT;Kein Effekt.;No effect.
+BUG4_FRONT;Löschen-Button löscht falschen Eintrag;Delete button deletes the wrong entry
+BUG4_BACK;Diesen Bug hast du wie auf Autopilot repariert...;You fixed this bug on autopilot. Was it just easy, or were you totally spaced out?
+BUG4_EFFECT;Kein Effekt.;No effect.
+BUG5_FRONT;Icons skalieren nicht richtig;Icons don’t scale properly
+BUG5_BACK;Und ein weiteres Ticket abgeschlossen. Wunderbar!;Another ticket done. Wonderful!
+BUG5_EFFECT;Kein Effekt.;No effect.
+BUG6_FRONT;Falsches Format in der Datenbank;Wrong format in the database
+BUG6_BACK;Irgendwie seid ihr gerade ganz schön fertig und braucht eine Pause;You’re exhausted and need a break
+BUG6_EFFECT;Ihr habt nur in der nächsten Iteration 1 Storypoint weniger zur Verfügung.;In the next iteration, you have 1 story point less available.
+BUG7_FRONT;Build schlägt wegen falschem Typen fehl;Build fails due to wrong type
+BUG7_BACK;Der Bug hat sich als schwerwiegender herausgestellt als erwartet.;This bug turned out worse than expected.
+BUG7_EFFECT;1 Techical Debt wird im Backend hinzugefügt und diese Karte kommt mit neuen Werten zurück ins Backlog.;Add 1 technical debt to the backend. This card returns to the backlog with new values.
+BUG8_FRONT;Alter Eintrag im 'new'-Formular;Old entry in the 'new' form
+BUG8_BACK;It's not a bug, it's a feature. Ihr habt die ganze Arbeit umsonst gemacht.;It's not a bug, it's a feature. All your work was for nothing.
+BUG8_EFFECT;1 Techical Debt wird im Frontend hinzugefügt.;Add 1 technical debt to the frontend.
+BUG9_FRONT;Verschwundene Daten wiederfinden;Recover missing data
+BUG9_BACK;Endlich ist dieser Bug gefixt. Das hat euch aber ganz schön geschlaucht, sodass ihr Urlaub braucht.;Finally fixed. But you’re so drained you need a vacation.
+BUG9_EFFECT;Ihr habt nur in der nächsten Iteration 2 Storypoints weniger zur Verfügung.;You have 2 story points less in the next iteration.
+BUG10_FRONT;Verwendung eines falschen Parsers;Wrong parser used
+;;
+CARD0_FRONT;Fuzzy search über alle Berichte erlauben;Allow fuzzy search across all reports
+CARD0_BACK;Das Feature hat ein veraltetes Feature ersetzt. Der Code ist dadurch deutlich schlanker geworden.;This feature replaced an outdated feature. The code has become much leaner as a result.
+CARD0_EFFECT;Ein Technical Debt wird aus dem Backent entfernt. Diese Karte zählt nicht in die Berechnung des Techical Debts.;One Technical Debt is removed from the backend. This card does not count towards the calculation of Technical Debt.
+CARD1_FRONT;Editieren eines Berichts soll den Autor anpassen;Editing a report should update the author
+CARD1_BACK;Beim Implementieren dieses Features kamen dir neue Ideen.;You got new ideas while implementing this feature.
+CARD1_EFFECT;Dem Backlog wird 1 Feature hinzugefügt.;One feature is added to the backlog.
+CARD2_FRONT;E-Mails nur in einer Sprache schicken;Send emails in only one language
+CARD2_BACK;Das war eine kleine Aufgabe für dich, die jemand anders aber viel bedeutet. Aus diesem Wissen schöpft ihr Kraft.;It was a small task for you, but it meant a lot to someone else. You draw strength from this knowledge.
+CARD2_EFFECT;Ihr habt nur in der nächsten Iteration 1 Storypoint mehr zur Verfügung.;You have 1 more storypoint available in the next iteration.
+CARD3_FRONT;Anpassbare Templates für Berichte hinzufügen;Add customizable templates for reports
+CARD3_BACK;Das Feature ist abgeschlossen, aber leider sind dir Fehler unterlaufen.;The feature is complete, but unfortunately, you made some mistakes.
+CARD3_EFFECT;Dem Backlog werden 2 Bugs hizugefügt.;Two bugs are added to the backlog.
+CARD4_FRONT;Automatisches Wechseln des Farbschemas;Automatic switching of the color scheme
+CARD4_BACK;Das Feature entpuppt sich als kompliziert, sodass ihr es mit in die nächste Iteration nehmt.;The feature turns out to be complicated, so you carry it over to the next iteration.
+CARD4_EFFECT;Diese Karte kommt mit neuen Werten zurück in den Backlog und muss für die nächste Iteration gewählt werden.;This card returns to the backlog with new values and must be selected for the next iteration.
+CARD5_FRONT;Statistiken in die Übersicht integrieren;Integrate statistics into the overview
+CARD5_BACK;Heute bist du etwas unkonzentriert.;Today, you're a bit unfocused.
+CARD5_EFFECT;1 Techinical Debt wird im Frontend hinzugefügt.;One Technical Debt is added in the frontend.
+CARD6_FRONT;Balkendiagramm für Ein- und Ausgaben je Kategorie;Bar chart for income and expenses per category
+CARD6_BACK;Harald freut sich über das neue Feature und möchte es direkt weiterentwickelt sehen.;Harald is happy about the new feature and wants to see it developed further immediately.
+CARD6_EFFECT;Dem Backlog wird ein Feature hinzugefügt. Das neue Feature muss in der nächsten Iteration gewählt werden.;One feature is added to the backlog. The new feature must be selected in the next iteration.
+CARD7_FRONT;Anpassungen an das Corporate Design;Adjustments to the corporate design
+CARD7_BACK;Gerade als du hiermit fertig wurdest, meldet sich Mathilde mit Feedback.;Just as you finished, Mathilde gives feedback.
+CARD7_EFFECT;Dem Backlog wird 1 Bug hinzugefügt.;One bug is added to the backlog.
+CARD8_FRONT;Automatische Erinnerungen per E-Mail;Automatic email reminders
+CARD8_BACK;Gute Arbeit.;Good job.
+CARD8_EFFECT;Diese Karte zählt nicht in die Berechnung des Technical Debts.;This card does not count towards the calculation of Technical Debt.
+CARD9_FRONT;Alle Texte freundlicher machen;Make all texts friendlier
+CARD9_BACK;Das war ein Feature was du schon lange bauen wolltest. Du freust dich sehr, es nun angegangen zu sein. Das ist echt gut für die Motivation.;This was a feature you wanted to build for a long time. You're very happy to have tackled it now. That's really good for motivation.
+CARD9_EFFECT;Ihr habt dauerhaft ein Storypoint mehr zur Verfügung.;You permanently have one more storypoint available.
+CARD10_FRONT;Anbindung an die Buchhaltungssoftware;Integration with accounting software
+CARD10_BACK;Sehr gut, ein weiteres Feature ist fertig. Da könnt ihr stolz drauf sein.;Very good, another feature is finished. You can be proud of that.
+CARD10_EFFECT;Kein Effekt.;No effect.
+CARD11_FRONT;Hinzufügen von Keyboard-Shortcuts;Adding keyboard shortcuts
+CARD11_BACK;Ihr hattet nach diesem Feature noch etwas Zeit und habt euch ans Refactoring gesetzt. Dabei wart ihr unkonzentriert, sodass Teile davon neu gemacht werden müssen.;After this feature, you still had some time and started refactoring. You were unfocused, so parts need to be redone.
+CARD11_EFFECT;Ihr habt nur in der nächsten Iteration 1 Storypoint weniger. 1 Technical Debt wird aus dem Frontend entfernt.;You have 1 less storypoint in the next iteration. One Technical Debt is removed from the frontend.
+CARD12_FRONT;Icons für die wichtigsten Buttons hinzufügen;Add icons for the most important buttons
+CARD12_BACK;Beim Abarbeiten dieses Features sind dir Fehler aufgefallen.;You noticed mistakes while working on this feature.
+CARD12_EFFECT;1 Bug wird dem Backlog hinzugefügt.;One bug is added to the backlog.
+CARD13_FRONT;Verbessern der Performance des Import-parsers;Improve performance of the import parser
+CARD13_BACK;Beim Implementieren dieses Features hast du im Legacy-Code ein Problem gefunden.;You found a problem in the legacy code while implementing this feature.
+CARD13_EFFECT;1 Bug wird dem Backlog hinzugefügt.;One bug is added to the backlog.
+CARD14_FRONT;Serverseitige Nutzungsstatistiken erfassen;Collect server-side usage statistics
+CARD14_BACK;Während ihr dieses Feature implementiert habt kam Harald auf euch zu und hat euch neue IT-Ausstattung übergeben. Das macht euch in Zukunft die Arbeit leichter.;While implementing this feature, Harald came to you and handed over new IT equipment. This will make your work easier in the future.
+CARD14_EFFECT;Ihr habt dauerhaft 2 Storypoints mehr zur Verfügung.;You permanently have two more storypoints available.
+CARD15_FRONT;Model für Annotationen zu Berichten hinzufügen;Add model for annotations to reports
+CARD15_BACK;Dieses Feature integriert sich sehr gut in die existierende Codebasis.;This feature integrates very well into the existing codebase.
+CARD15_EFFECT;Diese Karte zählt nicht in die Berechnung des Techical Debts.;This card does not count towards the calculation of Technical Debt.
+CARD16_FRONT;pdf-Export von Berichten;PDF export of reports
+CARD16_BACK;Dieses Feature war einfacher zu implementieren als erwartet. Die freie Zeit hast du genutzt, um ein wenig zu refactorn.;This feature was easier to implement than expected. You used the free time to do some refactoring.
+CARD16_EFFECT;1 Technical Debt wird aus dem Backend entfernt. Diese Karte zählt nicht in die Berechnung des Techical Debts.;One Technical Debt is removed from the backend. This card does not count towards the calculation of Technical Debt.
+CARD17_FRONT;Nahtloser Wechsel zwischen Visualisierungen;Seamless switching between visualizations
+CARD17_BACK;Beim Implementieren dieses Features ist euch Code aufgefallen, der nie genutzt wird. Nach Rücksprache mit dem Team hast du ihn entfernt.;While implementing this feature, you noticed unused code. After consulting the team, you removed it.
+CARD17_EFFECT;1 Technical Debt wird aus dem Frontend entfernt;One Technical Debt is removed from the frontend
+CARD18_FRONT;Übersicht im Side-panel hinzufügen;Add overview in the side panel
+CARD18_BACK;Dieses Feature zu bearbeiten ging schneller als erwartet. Entsprechend hast du die Zeit genutzt, weiterzuarbeiten.;Working on this feature went faster than expected. Accordingly, you used the time to continue working.
+CARD26_FRONT;LDAP-Integration;LDAP integration
+CARD26_BACK;Für dieses Feature musstet ihr Shotgun Surgery betreiben: viele kleine Änderungen an vielen Stellen. Vielleicht wird es Zeit zu refactorn.;For this feature, you had to do shotgun surgery: many small changes in many places. Maybe it's time to refactor.
+CARD26_EFFECT;1 Technical Debt im Frontend und Backend wird hinzugefügt.;One Technical Debt is added in the frontend and backend.
+CARD18_EFFECT;Ein Feature mit Kosten von 1 gilt als Implementiert. Es zählt aber in die Berechnung des Technical Debts.;A feature costing 1 counts as implemented but is included in the calculation of Technical Debt.
+CARD19_FRONT;Neues Design der Suchfilter implementieren;Implement new design of search filters
+CARD19_BACK;Während der Bearbeitung bemerkt ihr, dass ihr noch ein neues Design für eine Komponente braucht. Das UX-Team setzt sich dran.;During the process, you noticed that a new design for a component is needed. The UX team is working on it.
+CARD19_EFFECT;Diese Karte kommt zurück mit neuen Werten in den Backlog. Sie darf nächste Iteration nicht ausgewählt werden.;This card returns to the backlog with new values. It may not be selected in the next iteration.
+CARD20_FRONT;Login-Schlüssel hashen;Hash login keys
+CARD20_BACK;Alle Teammitglieder haben einzeln an diesem Feature gearbeitet, ohne es zu kommunizieren. Entsprechend ist das Gesamtsystem Kraut und Rüben.;All team members worked on this feature individually without communication. As a result, the overall system is a mess.
+CARD20_EFFECT;1 Technical Debt wird im Backend hinzugefügt.;One Technical Debt is added in the backend.
+CARD21_FRONT;Implementieren des Lebenszyklus von Berichten;Implement the lifecycle of reports
+CARD21_BACK;Als du gerade fertig warst, stürzt der Rechner ab und die Arbeit von heute ist vernichtet.;Just as you finished, the computer crashed and today's work was lost.
+CARD21_EFFECT;Diese Karte wird mit neuen Werten zurück ins Backend gelegt.;This card is placed back into the backend with new values.
+CARD22_FRONT;Migration der Datenbank auf das neue Schema;Migrate the database to the new schema
+CARD22_BACK;Das Ticket war groß. Aber immerhin ist jetzt die Basisarbeit geleistet und ihr könnt coole neue Features oben drauf setzen. Der Kreativität sind keine Grenzen gesetzt.;The ticket was large, but at least the groundwork is done and you can add cool new features on top. Creativity knows no bounds.
+CARD22_EFFECT;Dem Backlog wird 1 Feature hinzugefügt.;One feature is added to the backlog.
+EVENT0_FRONT;Startschwierigkeiten;Starting difficulties
+EVENT0_BACK;Die IT-Abteilung hat es noch nicht geschafft, den GitLab-Zugriff für euch alle freizuschalten. Das wird aber bald passieren.;The IT department hasn't managed to unlock GitLab access for you all yet. But it will happen soon.
+EVENT0_EFFECT;Ihr habt nur in dieser Iteration 2 Storypoints weniger zur Verfügung.;You have 2 fewer storypoints available only for this iteration.
+EVENT1_FRONT;Die Herausforderung;The challenge
+EVENT1_BACK;Harald möchte wissen aus welchem Holz ihr geschnitzt seid.;Harald wants to see what you're made of.
+EVENT1_EFFECT;Schafft ihr es bis zum Beginn von Iteration 5 insgesamt 8 Features bearbeitet zu haben, erhaltet ihr dauerhaft 2 Storypoints.;If you manage to complete 8 features by the start of iteration 5, you permanently gain 2 storypoints.
+EVENT2_FRONT;Das Kundengespräch;The client meeting
+EVENT2_BACK;Sabine hat wieder mit Mark gesprochen. Unter Zeitdruck konnte sie leider nicht nein sagen.;Sabine talked to Mark again. Under time pressure, she unfortunately couldn’t say no.
+EVENT2_EFFECT;Dem Backlog werden 2 Features hinzugefügt.;2 features are added to the backlog.
+EVENT3_FRONT;Ein frischer Wind;A fresh breeze
+EVENT3_BACK;Die Firma hat ein Sommerfest veranstaltet, was euch neue Energie gibt.;The company held a summer party, giving you new energy.
+EVENT3_EFFECT;Ihr habt dauerhaft 2 Storypoints mehr zur Verfügung.;You permanently have 2 more storypoints available.
+EVENT4_FRONT;Die Verschnaufspause;The breather
+EVENT4_BACK;Nach einer kurzen Pause am Kicker geht ihr mit vollem Elan zurück an die Arbeit.;After a short break at the foosball table, you return to work full of energy.
+EVENT4_EFFECT;Ihr habt nur in dieser Iteration 2 Storypoints mehr zur Verfügung.;You have 2 more storypoints available only this iteration.
+EVENT5_FRONT;Unerwartete Probleme;Unexpected problems
+EVENT5_BACK;Aufgrund von Budgetkürzungen müssen Mitarbeiter:innen entlassen werden.;Due to budget cuts, employees have to be laid off.
+EVENT5_EFFECT;Ihr habt dauerhaft nur noch die Hälfte (aufgerundet) der aktuellen Storypoints zur Verfügung.;You permanently have only half (rounded up) of the current storypoints available.
+EVENT6_FRONT;Unmut im Team;Discontent in the team
+EVENT6_BACK;Harald hat heute einen sehr schlechten Tag, sodass er in Sachen Planning nicht mit sich reden lässt.;Harald is having a very bad day and won’t negotiate on planning.
+EVENT6_EFFECT;Ihr dürft diese Iteration nicht refactorn.;You may not refactor this iteration.
+EVENT7_FRONT;Mark im Glück;Mark in luck
+EVENT7_BACK;Mark ist sehr zufrieden mit euch und hat seine Prioritäten überdacht.;Mark is very satisfied with you and has reconsidered his priorities.
+EVENT7_EFFECT;Das Feature mit den geringsten Kosten wird aus dem Backlog entfernt. Das weggelegte Feature zählt nicht für die Berechnung des Technical Debt.;The lowest cost feature is removed from the backlog. The removed feature does not count towards Technical Debt calculation.
+EVENT8_FRONT;Fast geschafft ...;Almost there ...
+EVENT8_BACK;Ihr seid kurz vor dem Release. Da wird wohl leider ein Crunch nötig.;You’re close to release. Unfortunately, crunch time is likely necessary.
+EVENT8_EFFECT;Dem Backlog werden 1 Bug und 2 Features hinzugefügt.;1 bug and 2 features are added to the backlog.
+UNDERSTOOD_EVENT;Gelesen und verstanden;Read and understood
+CARD23_FRONT;Statistikanfragen für das Controlling ermöglichen;Enable statistical queries for controlling
+CARD23_BACK;Die Sicherheitsabteilung hat in diesem Feature ein Problem gefunden.;The security department found a problem in this feature.
+CARD23_EFFECT;Dem Backlog wird 1 Bug hinzugefügt.;One bug is added to the backlog.
+CARD24_FRONT;Onboarding-Tour für neue Nutzer:innen;Onboarding tour for new users
+CARD24_BACK;Das Feature war ein ganz schöner Brocken. Die Fertigstellung hat euch aber als Team zusammengeschweißt, sodass ihr besser arbeitet.;The feature was quite a chunk. But completing it has welded you closer as a team, so you work better.
+CARD24_EFFECT;Ihr habt dauerhaft 1 Storypoint mehr zur Verfügung.;You permanently have one more storypoint available.
+CARD25_FRONT;Einpflegen von Basisdaten;Entering basic data
+CARD25_BACK;Die Implementierung dieses Features hatte viel schnelles Tippen bedeutet, sodass jemand von euch mit einer Sehnenscheidenentzündung erst einmal ausfällt.;Implementing this feature involved a lot of fast typing, causing someone on your team to be out with tendonitis.
+CARD25_EFFECT;Ihr habt dauerhaft 2 Storypoint weniger zur Verfügung.;You permanently have two fewer storypoints available.
+REFACTOR_HINT_CARD;In diesem Systemteil können nur Karten ausgewählt werden, wenn nicht gerade in diesem Systemteil refactored wird.;You can select cards in this system part if you have no debt to be refactored from the same part.
+REFACTOR_HINT_DEBT;In diesem Systemteil kann nur refactored werden, wenn keine Karte in diesem Teil ausgewählt wurde.;You can only refactor in this system part if you have no cards selected from the same part.
+EFFECT_DISPLAY_HEADER;Die folgenden Effekte werden angewendet:;The following card effects will be applied:
+FRONTEND_DEBT_BIG;\n• Wenn mehr als 2 Techical Debt im Frontend sind, wird die Karte in den Backlog zurückgelegt.;\n• If you have more than 2 technical debt in frontend, the card is returned to the backlog.
+BACK_TO_BACKLOG;\n•  Eine Karte geht zurück in den Backlog;\n• A Card goes back to backlog.
+ADD_STORYPOINTS;\n•  Storypoint(s) werden hinzugefügt;\n• Storypoint(s) are added.
+REMOVE_STORYPOINTS; Storypoint(s) werden entfernt;Storypoint(s) are removed.
+HALF_STORYPOINTS;\n•  Storypoints werden halbiert.;\n• Storypoints are halved.
+ADD_TECHNICAL_DEBT;\n•  Technical Debt wird hinzugefügt.;\n• Techical Debt is added.
+REMOVE_TECHNICAL_DEBT;\n•  Technical Debt wird entfernt.;\n• Techical Debt is removed.
+REMOVE_CHEAPEST_FEATURE;\n•  Das günstigste Feature wird entfernt.;\n• Cheapest Feature is removed.
+REACH_GOAL;\n• Schafft ihr es bis zum Beginn von Iteration 5 insgesamt 8 Features bearbeitet zu haben, erhaltet ihr dauerhaft 2 Storypints mehr.;\n• If you manage to work on a total of 8 features by the start of iteration 5, you will permanently receive 2 more storypoints.
+DRAW_BUG;\n•  Bug(s) werden gezogen.;\n• A Bug is drawn.
+DRAW_FEATURE;\n•  Feature(s) werden gezogen.;\n• A Feature is added.
+MUST_CHOOSE;\n•  Eine Karte muss nächste Iteration gewählt werden.;\n• One card must be choosen next iteration.
+NEW_VALUES;\n•  Eine Karte erhält eine neue Schätzung.;\n• One card gets a new estimation of storypoints.
+NO_REFACTOR;\n•  In der nächsten Iteration darf nicht refactored werden.;\n• You arent allowed to refactor next iteration.
+IMPLEMENT_CHEAP_FEATURE;\n•  Wenn eine Karte mit Kosten von 1 im Backlog ist, gilt sie als implementiert;\n• If a card with costs of 1 storypoint is in the backlog, it counts as implemented.
+CANNOT_BE_CHOSEN;\n•  Eine Karte kann nächste Iteration nicht gewählt werden.;\n• One card cannot be choosen next iteration.
+START_NEW_ITERATION;Starte eine neue Iteration;Start new Iteration
+WIN_CONDITION;Das Spiel ist gewonnen, wenn die 9. Iteration erreicht wurde!;You win by reaching the 9th iteration!
+LOOSE_CONDITION;Das Spiel ist verloren, wenn 9 Tickets im Backlog liegen.;You loose by having 9 tickets in the backlog!
