@@ -88,7 +88,12 @@ classDiagram
 		+Dict ALL_BUG_CARDS_TEXT
 		+Dict ALL_BUG_CARDS_META
 	}
-	class GameRules
+	class GameRules{
+		+Int iteration
+		+plan_iteration()
+		+input()
+		+move_card_to_cardslot()
+	}
 	GameRules "1" --> "1" GameStats : contains
 	GameRules "1" --> "1" GameMonitor : contains
 	GameRules "1" --> "1" Backlog : contains
