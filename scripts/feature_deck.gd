@@ -37,7 +37,7 @@ func _ready() -> void:
 		new_card.get_node("CardImage").texture = load(new_card_front_image_path)
 		new_card.get_node("CardImage").get_node("EffectImage").texture = load(new_card_effect_image_path)
 		set_auto_sized_text(new_card.get_node("CardImage").get_node("FrontText"), card_database_reference.ALL_FEATURE_CARDS_TEXT[name][0])
-		
+				
 		new_card.get_node("CardImage").get_node("TypeText").text = "Feature"
 		new_card.get_node("CardImage").get_node("IterationText").visible = false
 		

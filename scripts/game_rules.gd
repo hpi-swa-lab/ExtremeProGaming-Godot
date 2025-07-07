@@ -62,7 +62,7 @@ func _on_read_event_button_down(drawn_card) -> void:
 	await get_tree().create_timer(1.0).timeout
 	label.text = await generate_effect_display(drawn_card.effects)
 	await execute_card_effect(drawn_card)
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(4.0).timeout
 	drawn_card.z_index = -2
 	event_deck.get_node("SelectionBorder").visible = false
 	feature_deck.get_node("SelectionBorder").visible = true
@@ -97,7 +97,7 @@ func _on_start_iteration_button_down() -> void:
 	for card in chosen_cards:
 		if card.cannot_be_unchosen == false:
 			await execute_card_effect(card)
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(4.0).timeout
 	techical_debt_account.calculate_and_add_technical_debt_after_iteration(chosen_cards)
 	iteration += 1
 	prepare_iteration()

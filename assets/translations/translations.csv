@@ -60,7 +60,7 @@ BUG8_EFFECT;1 Techical Debt wird im Frontend hinzugefügt.;Add 1 technical debt 
 BUG9_FRONT;Verschwundene Daten wiederfinden;Recover missing data
 BUG9_BACK;Endlich ist dieser Bug gefixt. Das hat euch aber ganz schön geschlaucht, sodass ihr Urlaub braucht.;Finally fixed. But you’re so drained you need a vacation.
 BUG9_EFFECT;Ihr habt nur in der nächsten Iteration 2 Storypoints weniger zur Verfügung.;You have 2 story points less in the next iteration.
-BUG10_FRONT;Verwendung eines falschen Parsers;Wrong parser used
+;;
 ;;
 CARD0_FRONT;Fuzzy search über alle Berichte erlauben;Allow fuzzy search across all reports
 CARD0_BACK;Das Feature hat ein veraltetes Feature ersetzt. Der Code ist dadurch deutlich schlanker geworden.;This feature replaced an outdated feature. The code has become much leaner as a result.
@@ -174,22 +174,29 @@ CARD25_EFFECT;Ihr habt dauerhaft 2 Storypoint weniger zur Verfügung.;You perman
 REFACTOR_HINT_CARD;In diesem Systemteil können nur Karten ausgewählt werden, wenn nicht gerade in diesem Systemteil refactored wird.;You can select cards in this system part if you have no debt to be refactored from the same part.
 REFACTOR_HINT_DEBT;In diesem Systemteil kann nur refactored werden, wenn keine Karte in diesem Teil ausgewählt wurde.;You can only refactor in this system part if you have no cards selected from the same part.
 EFFECT_DISPLAY_HEADER;Die folgenden Effekte werden angewendet:;The following card effects will be applied:
-FRONTEND_DEBT_BIG;\n• Wenn mehr als 2 Techical Debt im Frontend sind, wird die Karte in den Backlog zurückgelegt.;\n• If you have more than 2 technical debt in frontend, the card is returned to the backlog.
-BACK_TO_BACKLOG;\n•  Eine Karte geht zurück in den Backlog;\n• A Card goes back to backlog.
-ADD_STORYPOINTS;\n•  Storypoint(s) werden hinzugefügt;\n• Storypoint(s) are added.
-REMOVE_STORYPOINTS; Storypoint(s) werden entfernt;Storypoint(s) are removed.
-HALF_STORYPOINTS;\n•  Storypoints werden halbiert.;\n• Storypoints are halved.
-ADD_TECHNICAL_DEBT;\n•  Technical Debt wird hinzugefügt.;\n• Techical Debt is added.
-REMOVE_TECHNICAL_DEBT;\n•  Technical Debt wird entfernt.;\n• Techical Debt is removed.
-REMOVE_CHEAPEST_FEATURE;\n•  Das günstigste Feature wird entfernt.;\n• Cheapest Feature is removed.
-REACH_GOAL;\n• Schafft ihr es bis zum Beginn von Iteration 5 insgesamt 8 Features bearbeitet zu haben, erhaltet ihr dauerhaft 2 Storypints mehr.;\n• If you manage to work on a total of 8 features by the start of iteration 5, you will permanently receive 2 more storypoints.
-DRAW_BUG;\n•  Bug(s) werden gezogen.;\n• A Bug is drawn.
-DRAW_FEATURE;\n•  Feature(s) werden gezogen.;\n• A Feature is added.
-MUST_CHOOSE;\n•  Eine Karte muss nächste Iteration gewählt werden.;\n• One card must be choosen next iteration.
-NEW_VALUES;\n•  Eine Karte erhält eine neue Schätzung.;\n• One card gets a new estimation of storypoints.
-NO_REFACTOR;\n•  In der nächsten Iteration darf nicht refactored werden.;\n• You arent allowed to refactor next iteration.
-IMPLEMENT_CHEAP_FEATURE;\n•  Wenn eine Karte mit Kosten von 1 im Backlog ist, gilt sie als implementiert;\n• If a card with costs of 1 storypoint is in the backlog, it counts as implemented.
-CANNOT_BE_CHOSEN;\n•  Eine Karte kann nächste Iteration nicht gewählt werden.;\n• One card cannot be choosen next iteration.
+FRONTEND_DEBT_BIG;Wenn mehr als 2 Techical Debt im Frontend sind, wird die Karte in den Backlog zurückgelegt.;If you have more than 2 technical debt in frontend, the card is returned to the backlog.
+BACK_TO_BACKLOG;Eine Karte geht zurück in den Backlog;A Card goes back to backlog.
+ADD_STORYPOINTS;Storypoint(s) werden hinzugefügt;Storypoint(s) are added.
+REMOVE_STORYPOINTS;Storypoint(s) werden entfernt;Storypoint(s) are removed.
+HALF_STORYPOINTS;Storypoints werden halbiert.;Storypoints are halved.
+ADD_TECHNICAL_DEBT;Technical Debt wird hinzugefügt.;Techical Debt is added.
+REMOVE_TECHNICAL_DEBT;Technical Debt wird entfernt.;Techical Debt is removed.
+REMOVE_CHEAPEST_FEATURE;Das günstigste Feature wird entfernt.;Cheapest Feature is removed.
+REACH_GOAL;Schafft ihr es bis zum Beginn von Iteration 5 insgesamt 8 Features bearbeitet zu haben, erhaltet ihr dauerhaft 2 Storypints mehr.;If you manage to work on a total of 8 features by the start of iteration 5, you will permanently receive 2 more storypoints.
+DRAW_BUG;Bug(s) werden gezogen.;A Bug is drawn.
+DRAW_FEATURE;Feature(s) werden gezogen.;A Feature is added.
+MUST_CHOOSE;Eine Karte muss nächste Iteration gewählt werden.;One card must be choosen next iteration.
+NEW_VALUES;Eine Karte erhält eine neue Schätzung.;One card gets a new estimation of storypoints.
+NO_REFACTOR; In der nächsten Iteration darf nicht refactored werden.;You arent allowed to refactor next iteration.
+IMPLEMENT_CHEAP_FEATURE;Wenn eine Karte mit Kosten von 1 im Backlog ist, gilt sie als implementiert;If a card with costs of 1 storypoint is in the backlog, it counts as implemented.
+CANNOT_BE_CHOSEN;Eine Karte kann nächste Iteration nicht gewählt werden.;One card cannot be choosen next iteration.
 START_NEW_ITERATION;Starte eine neue Iteration;Start new Iteration
 WIN_CONDITION;Das Spiel ist gewonnen, wenn die 9. Iteration erreicht wurde!;You win by reaching the 9th iteration!
 LOOSE_CONDITION;Das Spiel ist verloren, wenn 9 Tickets im Backlog liegen.;You loose by having 9 tickets in the backlog!
+BUG10_FRONT;Verwendung eines falschen Parsers;Using a wrong parser
+BUG10_BACK;Die Reparatur dieses Bugs hat zu neuer Motivation für schöne Architektur geführt.;Fixing this bug sparked new motivation for clean architecture.
+BUG10_EFFECT;1 Technical Debt wird aus dem Backend entfernt.;Remove 1 technical debt from the backend.
+;;
+BUG11_FRONT;Sensitive Informationen sind für alle sichtbar;Sensitive information is visible to everyone
+BUG11_BACK;Den Bug zu finden war einfacher als angenommen. Das gibt dir neue Zuversicht in deine Fähigkeiten.;Finding this bug was easier than expected. This restores your confidence in your skills.
+BUG11_EFFECT;Ihr habt nur in der nächsten Iteration 1 Storypoint mehr zur Verfügung.;You have 1 additional story point available in the next iteration.

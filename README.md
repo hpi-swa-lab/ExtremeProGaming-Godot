@@ -47,7 +47,7 @@ classDiagram
 	class Storypoint{
 	+Vector2 original_position
 	}
-	Supply "1" --> "n" Storypoint : contains
+	Supply "1" --> "n" Storypoint : creates
 	class TechnicalDebtAccount{
 	+List debt
 	+spawn_debt(area)
@@ -55,7 +55,7 @@ classDiagram
 	class TechnicalDebt{
 	+String area
 	}
-	TechnicalDebtAccount "1" --> "n" TechnicalDebt : contains
+	TechnicalDebtAccount "1" --> "n" TechnicalDebt : creates
 	class Slot{
 	+List cards
 	}
@@ -94,8 +94,8 @@ classDiagram
 		+input()
 		+move_card_to_cardslot()
 	}
-	GameRules "1" --> "1" GameStats : contains
-	GameRules "1" --> "1" GameMonitor : contains
+	GameRules "1" --> "1" GameStats : refreshes
+	GameRules "1" --> "1" GameMonitor : refreshes
 	GameRules "1" --> "1" Backlog : contains
 	GameRules "1" --> "1" Supply : contains
 	GameRules "1" --> "3" Deck : contains

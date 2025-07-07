@@ -64,7 +64,7 @@ const ALL_FEATURE_CARDS_BACK_META = {
 	"Card3": [["bugs",2]],
 	"Card4": [["new_values",3],["must_choose", 0], ["back_to_backlog", 0]],
 	"Card5": [["add_technical_debt",[1, "frontend"]]],
-	"Card6": [["features", 1], ["must_choose", 0]], # draw a feature which must be choosen
+	"Card6": [["features", 1], ["must_choose", 0]],
 	"Card7": [["bugs",1]],
 	"Card8": [],
 	"Card9": [["add_storypoints",[1, 10000]]],
