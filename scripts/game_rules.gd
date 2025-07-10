@@ -126,7 +126,12 @@ func _on_end_iteration_button_down() -> void:
 	start_iteration_button.connect("button_down", func(): _on_start_iteration_button_down())
 	
 func _process(delta):
-	update_game_stats()
+	game_stats.update_game_stats(iteration, 
+								supply.available_storypoints(), 
+								discard_pile.get_features_in_area("frontend"), 
+								discard_pile.get_features_in_area("backend"), 
+								discard_pile.get_bugs_in_area("frontend"), 
+								discard_pile.get_bugs_in_area("backend"))
 	if backlog.no_cards_chosen() and techical_debt_account.no_debt_selected() == 0:
 		$"../EndIterationButton".disabled = true
 	else:
@@ -458,33 +463,33 @@ func highlight_elements_for_plan_phase(state):
 		for debt in current_debt:
 			debt.get_node("SelectionBorder").visible = state
 
-func update_game_stats():
-	var finished_features = 0
-	var frontend_features = 0
-	var backend_features = 0
-	var finished_bugs = 0
-	var frontend_bugs = 0
-	var backend_bugs = 0
-	for card in discard_pile.card_reference.get_children():
-		if card.type == card.CardType.FEATURE:
-			finished_features +=1
-			if card.area == "frontend":
-				frontend_features += 1
-			if card.area == "backend":
-				backend_features += 1
-		if card.type == card.CardType.BUG:
-			finished_bugs +=1
-			if card.area == "frontend":
-				frontend_bugs += 1
-			if card.area == "backend":
-				backend_bugs += 1
-	
-	game_stats.iteration.text = "%d" % [iteration]
-	game_stats.team.text = "%d" % [supply.available_storypoints()]
-	game_stats.featuresfrontend.text = "%d" % [frontend_features]
-	game_stats.featuresbackend.text = "%d" % [backend_features]
-	game_stats.bugsbackend.text = "%d" % [backend_bugs]
-	game_stats.bugsfrontend.text = "%d" % [frontend_bugs]
+#func update_game_stats():
+	#var finished_features = 0
+	#var frontend_features = 0
+	#var backend_features = 0
+	#var finished_bugs = 0
+	#var frontend_bugs = 0
+	#var backend_bugs = 0
+	#for card in discard_pile.card_reference.get_children():
+		#if card.type == card.CardType.FEATURE:
+			#finished_features +=1
+			#if card.area == "frontend":
+				#frontend_features += 1
+			#if card.area == "backend":
+				#backend_features += 1
+		#if card.type == card.CardType.BUG:
+			#finished_bugs +=1
+			#if card.area == "frontend":
+				#frontend_bugs += 1
+			#if card.area == "backend":
+				#backend_bugs += 1
+	#
+	#game_stats.iteration.text = "%d" % [iteration]
+	#game_stats.team.text = "%d" % [supply.available_storypoints()]
+	#game_stats.featuresfrontend.text = "%d" % [frontend_features]
+	#game_stats.featuresbackend.text = "%d" % [backend_features]
+	#game_stats.bugsbackend.text = "%d" % [backend_bugs]
+	#game_stats.bugsfrontend.text = "%d" % [frontend_bugs]
 	
 	
 	

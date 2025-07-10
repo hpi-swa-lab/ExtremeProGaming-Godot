@@ -18,7 +18,9 @@
 
 [node name="Game" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="PlayerHand" type="Node2D" parent="."]
+
+[node name="Background" type="Sprite2D" parent="."]
 z_index = -20
 position = Vector2(960, 542)
 texture = ExtResource("1_kvpfn")
