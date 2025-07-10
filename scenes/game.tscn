@@ -1,5 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://2amkrnek74r5"]
+[gd_scene load_steps=17 format=3 uid="uid://2amkrnek74r5"]
 
+[ext_resource type="Script" uid="uid://ci1rmldhj67ph" path="res://scenes/player_hand.gd" id="1_ca42v"]
 [ext_resource type="PackedScene" uid="uid://belm8ywu7txr6" path="res://scenes/feature_deck.tscn" id="1_gee14"]
 [ext_resource type="Texture2D" uid="uid://dbj3jei31wn3o" path="res://assets/screens/Background.png" id="1_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://dllvfnx0sn4ji" path="res://scenes/effect_display.tscn" id="1_kvuet"]
@@ -19,6 +20,7 @@
 [node name="Game" type="Node2D"]
 
 [node name="PlayerHand" type="Node2D" parent="."]
+script = ExtResource("1_ca42v")
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -20
