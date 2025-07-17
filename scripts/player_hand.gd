@@ -8,7 +8,7 @@ func move_card_to_backlog(backlog, card):
 	await get_tree().create_timer(1.0).timeout
 	
 func move_card_to_cardslot(backlog, card):
-	var start_pos = card.global_position  # capture before reparenting
+	var start_pos = card.global_position
 	var next_free_card_slot = backlog.get_next_free_card_slot()
 	if next_free_card_slot:
 		var end_pos = next_free_card_slot.global_position
@@ -23,8 +23,8 @@ func move_card_to_cardslot(backlog, card):
 		tween.tween_property(card, "global_position", end_pos, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 		next_free_card_slot.is_card_in_slot = true
-		next_free_card_slot.card_reference.add_child(card)
 		card.on_card_grid = true
+		await tween.finished
 		return card
 	else:
 		return null
@@ -60,14 +60,6 @@ func move_storypoints_to_card(supply, card, needed_storypoints):
 	storypoints_in_supply.sort_custom(func(a, b): return a.position.x < b.position.x)
 	var selected_storypoints = storypoints_in_supply.slice(0, needed_storypoints)
 
-	# Get card width from either Sprite2D or CollisionShape2D
-	var card_width
-	if card.has_node("CollisionShape2D"):
-		var shape = card.get_node("CollisionShape2D").shape
-		if shape is RectangleShape2D:
-			card_width = shape.extents.x * 2 * card.get_node("CollisionShape2D").scale.x
-
-	# Transfer storypoints to the card
 	for sp in selected_storypoints:
 		var start_pos = sp.global_position
 		supply.storypoints_reference.remove_child(sp)
@@ -75,7 +67,7 @@ func move_storypoints_to_card(supply, card, needed_storypoints):
 		sp.scale = Vector2.ONE
 		sp.global_position = start_pos
 
-	# Get all storypoints currently on the card (old and new)
+	# get all storypoints currently on the card
 	var all_storypoints = card.storypoints_reference.get_children()
 	var count = all_storypoints.size()
 	var spacing = 40.0
@@ -83,7 +75,7 @@ func move_storypoints_to_card(supply, card, needed_storypoints):
 	var start_x = card.global_position.x - total_width / 2
 	var y_pos = card.global_position.y
 
-	# Reposition all storypoints centered on the card
+	# position them centered on the card
 	for i in range(count):
 		var sp = all_storypoints[i]
 		var target_x = start_x + i * spacing
@@ -128,7 +120,7 @@ func move_cards_to_front(chosen_cards, chosen_debt):
 		var debt_count = chosen_debt.size()
 		var debt_spacing = 150 
 		var total_debt_width = (debt_count - 1) * debt_spacing
-		var debt_y_position = screen_size.y * 0.2  # Position debt at 20% from top
+		var debt_y_position = screen_size.y * 0.2  # position debt at 20% from top
 		
 		for i in range(debt_count):
 			var debt = chosen_debt[i]
@@ -137,3 +129,28 @@ func move_cards_to_front(chosen_cards, chosen_debt):
 			var x_offset = -total_debt_width / 2 + i * debt_spacing
 			var target_pos = Vector2(screen_center.x + x_offset, debt_y_position)
 			tween.tween_property(debt, "global_position", target_pos, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+			
+func remove_cheapest_feature(backlog, discard_pile, effect_value):
+	var cards = backlog.get_cheapest_feature_effect(effect_value)
+	for cheapest_card in cards:
+		cheapest_card.get_parent().get_parent().is_card_in_slot = false
+		await move_card_to_discard_pile(cheapest_card, discard_pile)
+		
+func feature_with_storypoints_x_is_implemented(backlog, discard_pile, effect_value):
+	var possible_card = backlog.get_card_with_storypoints(effect_value)
+	if possible_card != null:
+		move_card_to_discard_pile(possible_card, discard_pile)
+		
+func draw_features(feature_deck, backlog, effect_value):
+	var drawn_cards = []
+	for i in range(0, effect_value):
+		var drawn_card = feature_deck.draw_card()
+		drawn_card.z_index = 5
+		drawn_cards.append(drawn_card)
+		await move_card_to_cardslot(backlog, drawn_card)
+	return drawn_cards
+		
+func draw_bug(bug_deck, backlog, effect_value):
+	for i in range(0, effect_value):
+		var card = bug_deck.draw_card()
+		move_card_to_cardslot(backlog, card)

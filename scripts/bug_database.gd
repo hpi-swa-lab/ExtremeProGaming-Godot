@@ -1,4 +1,4 @@
-const ALL_BUG_CARDS = { #front, back
+const ALL_BUG_CARDS_GRAPHICS = {
 	"frontend": ["res://assets/cards/bug_frontend_front.png", "res://assets/cards/back_front.png"],
 	"backend": ["res://assets/cards/bug_backend_front.png", "res://assets/cards/back_back.png"],
 	"positive":["res://assets/cards/positive_effect.png"],
@@ -21,7 +21,7 @@ const ALL_BUG_CARDS_TEXT = {
 	"Bug11": ["BUG11_FRONT", "BUG11_BACK", "BUG11_EFFECT"]
 }
 	
-const ALL_BUG_CARDS_BACK_META = {
+const ALL_BUG_CARDS_EFFECTS = {
 	"Bug0": [["bugs",1]],
 	"Bug1": [],
 	"Bug2": [["if_frontend_debt_too_big", 2]],

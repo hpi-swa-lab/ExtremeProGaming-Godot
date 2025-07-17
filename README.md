@@ -1,4 +1,15 @@
 # ExtremeProGaming-Godot
+## Table of Contents
+1. [Abstract](#abstract)
+2. [Original](#original)
+3. [Helpful Links and Tutorials](#helpful-links-and-tutorials)
+4. [Hosted Game](#hosted-game)
+5. [Godot Best Practises](#godot-best-practises)
+6. [Graphics](#graphics)
+7. [Learnings](#learnings)
+8. [Modular Cards](#modular-cards)
+9. [Architecture](#architecture)
+
 ## Abstract
 ExtremeProGaming is an educational game developed by [Luc Prestin](https://github.com/LucPrestin) that simulates an agile software development project. Players manage story points, technical debt, bugs, and features over nine iterations to achieve victory.
 
@@ -16,7 +27,7 @@ Game mechanics and game layout are based on the original [Extreme Pro-Gaming](ht
 - [Add Translations in Godot](https://www.youtube.com/watch?v=Lw-3Tnwv4Ds)
 
 ## Hosted Game
-The Game can be tested [here](https://hpi-swa-lab.github.io/ExtremeProGaming-Godot/).
+The Game can be tested [here](https://hpi-swa-lab.github.io/ExtremeProGaming-Godot/). The game is automatically deployed with every push using the `index.html` export file in the repository. If you want to publish a new version, make sure to both **push your code changes and include a new export of the game**. Instructions for exporting the game can be found in the second half of [this tutorial](https://www.linkedin.com/pulse/use-github-actions-pages-host-your-godot-engine-game-timothy-cope-exyuc/).
 
 ## Godot Best Practises
 During my development process, I noticed and researched some techniques for Godot development. Of course, they aren't the holy grail, but they helped me during development.
@@ -25,10 +36,10 @@ During my development process, I noticed and researched some techniques for Godo
 2. References to other classes should always be defined **at the top of the file as a variable**, which is then used throughout the code.
 3. There are [naming and formatting conventions](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html) for GDScript, but the Editor helps you comply with these. The most important ones for me were that files, functions, and variables use **snake_case** and Nodes use **PascalCase**.
 4. There are different opinions on folder organization. I used 4 folders:
-    - **assets:** contains graphics, sounds, translations, and fonts
-    - **scenes:** contains only the scene files
-    - **scripts:** contains the corresponding scripts
-    - **docs:** contains the export/index files of the game
+	- **assets:** contains graphics, sounds, translations, and fonts
+	- **scenes:** contains only the scene files
+	- **scripts:** contains the corresponding scripts
+	- **docs:** contains the export/index files of the game
 5. Here is also a general guide to [Best Practices](https://docs.godotengine.org/en/stable/tutorials/best_practices/what_are_godot_classes.html).
 
 ## Graphics

@@ -1,11 +1,11 @@
 extends Node
 
-const ALL_EVENT_CARDS = { #front, back
+const ALL_EVENT_CARDS_GRAPHICS = { #front, back
 	"front": ["res://assets/cards/event_front.png"],
 	"back": ["res://assets/cards/event_back.png"],
 	}
 	
-const ALL_EVENT_CARDS_BACK_META = {
+const ALL_EVENT_CARDS_EFFECTS = {
 	"Event0": [["remove_storypoints",[2, 1]]],
 	"Event1": [["goal",1]],
 	"Event2": [["features",2]],

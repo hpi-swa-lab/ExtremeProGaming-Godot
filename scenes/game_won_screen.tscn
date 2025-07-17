@@ -21,13 +21,13 @@ texture = ExtResource("1_kccco")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 553.0
+offset_left = 526.0
 offset_top = 229.0
-offset_right = 1470.0
+offset_right = 1523.0
 offset_bottom = 507.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("2_wupp1")
-theme_override_font_sizes/normal_font_size = 200
+theme_override_font_sizes/normal_font_size = 178
 text = "GAME_WON"
 
 [node name="Button" parent="." instance=ExtResource("4_wupp1")]

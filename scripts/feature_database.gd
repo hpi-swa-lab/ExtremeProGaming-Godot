@@ -57,14 +57,14 @@ const ALL_FEATURE_CARDS_TEXT = {
 	"Card26": ["CARD26_FRONT", "CARD26_BACK", "CARD26_EFFECT"],
 }
 
-const ALL_FEATURE_CARDS_BACK_META = { 
+const ALL_FEATURE_CARDS_EFFECTS = { 
 	"Card0": [["remove_technical_debt",[1, "backend"]]],
 	"Card1": [["features", 1]],
 	"Card2": [["add_storypoints",[1, 1]]],
 	"Card3": [["bugs",2]],
-	"Card4": [["new_values",3],["must_choose", 0], ["back_to_backlog", 0]],
+	"Card4": [["new_values",3], ["back_to_backlog", 0], ["must_choose", "this_card"]],
 	"Card5": [["add_technical_debt",[1, "frontend"]]],
-	"Card6": [["features", 1], ["must_choose", 0]],
+	"Card6": [["features", 1], ["must_choose", "new_card"]],
 	"Card7": [["bugs",1]],
 	"Card8": [],
 	"Card9": [["add_storypoints",[1, 10000]]],
@@ -87,7 +87,7 @@ const ALL_FEATURE_CARDS_BACK_META = {
 	"Card26": [["add_technical_debt",[1, "backend"]], ["add_technical_debt",[1, "frontend"]]],
 }
 
-const ALL_FEATURE_CARDS = { #front, back
+const ALL_FEATURE_CARDS_GRAPHICS = {
 	"frontend": ["res://assets/cards/feat_frontend_front.png","res://assets/cards/back_front.png"],
 	"backend": ["res://assets/cards/feat_backend_front.png","res://assets/cards/back_back.png"],
 	"positive":["res://assets/cards/positive_effect.png"],

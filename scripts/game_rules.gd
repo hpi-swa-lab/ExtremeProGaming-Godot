@@ -9,16 +9,14 @@ extends Node2D
 @onready var discard_pile = $"../DiscardPile"
 @onready var event_discard_pile = $"../EventDiscardPile"
 @onready var player_hand = $"../PlayerHand"
-@onready var canvas_layer = $"../CanvasLayer"
-@onready var effect_display = $"../EffectDisplay"
+@onready var ui_elements = $"../UIElements"
+@onready var game_monitor = $"../GameMonitor"
 @onready var game_stats =$"../GameStats"
 @onready var allow_refactoring = true
 @onready var reward_after_goal_is_reached = false
 @onready var iteration = 1
 @onready var current_phase
 var event_card_drawn_once = false
-
-const BUTTON_SCENE_PATH = "res://scenes/button.tscn"
 
 enum Phase {
 	DRAW_EVENT,
@@ -43,43 +41,39 @@ func draw_start_cards():
 func prepare_iteration():
 	allow_refactoring = true
 	event_card_drawn_once = false
-	event_deck.get_node("SelectionBorder").visible = true
+	event_deck.highlight(true)
 	current_phase = Phase.DRAW_EVENT
-	effect_display.generate_draw_event_rule()
+	game_monitor.generate_draw_event_rule()
 	if reward_after_goal_is_reached and iteration == 3 and discard_pile.get_all_features() >= 4:
 		await supply.add_storypoints_effect([2, 10000])
 		
 func plan_iteration():
 	highlight_elements_for_plan_phase(true)
 	current_phase = Phase.PLAN
-	effect_display.generate_iteration_rules()
-	
+	game_monitor.generate_iteration_rules()
 	
 func _on_read_event_button_down(drawn_card) -> void:
-	lighten_background()
+	ui_elements.lighten_background()
 	drawn_card.z_index = 4
 	player_hand.move_card_to_discard_pile(drawn_card, event_discard_pile)
-	for child in canvas_layer.get_children():
-		child.queue_free()
+	ui_elements.remove_understood_event_button()
 	await get_tree().create_timer(1.0).timeout
-	effect_display.generate_effects_list(drawn_card.effects)
+	game_monitor.generate_effects_list(drawn_card.effects)
 	await execute_card_effect(drawn_card)
 	await get_tree().create_timer(4.0).timeout
 	drawn_card.z_index = -2
-	event_deck.get_node("SelectionBorder").visible = false
-	feature_deck.get_node("SelectionBorder").visible = true
+	event_deck.highlight(false)
+	feature_deck.highlight(true)
 	current_phase = Phase.DRAW_FEATURE
-	effect_display.generate_draw_feature_rule()
+	game_monitor.generate_draw_feature_rule()
 	
 	
 func _on_start_iteration_button_down() -> void:
-	if iteration >= 9:
-		get_tree().change_scene_to_file("res://scenes/game_won_screen.tscn")
-		return
-	for child in canvas_layer.get_children():
-		child.queue_free()
-		
-	lighten_background()
+	is_game_won()
+	
+	# clean up
+	ui_elements.remove_start_new_iteration_button()
+	ui_elements.lighten_background()
 	var chosen_cards = backlog.get_chosen_cards()
 	for card in chosen_cards:
 		var card_slot = card.get_parent().get_parent()
@@ -87,71 +81,76 @@ func _on_start_iteration_button_down() -> void:
 		card.choose_card() # we execute this to make the card unusable in that state
 		player_hand.move_card_to_discard_pile(card, discard_pile)
 	techical_debt_account.remove_refactored_debt()
-		
 	await get_tree().create_timer(2.0).timeout
-	supply.calculate_storypoints_for_iteration()
 	
+	# calculate effects
+	supply.calculate_storypoints_for_iteration()
 	await get_tree().create_timer(1.0).timeout
 	var effects = []
 	for card in chosen_cards:
 		for effect in card.effects:
 			effects.append(effect)
-	effect_display.generate_effects_list(effects)
+	game_monitor.generate_effects_list(effects)
 	for card in chosen_cards:
 		if card.cannot_be_unchosen == false:
 			await execute_card_effect(card)
 	await get_tree().create_timer(4.0).timeout
 	techical_debt_account.calculate_and_add_technical_debt_after_iteration(chosen_cards)
+	
+	# setup new iteration
 	iteration += 1
 	prepare_iteration()
 	
-		
+func is_game_won():
+	if iteration >= 9:
+		get_tree().change_scene_to_file("res://scenes/game_won_screen.tscn")
+		return
+
 	
 func _on_end_iteration_button_down() -> void:
-	highlight_elements_for_plan_phase(false)
 	current_phase = Phase.END
+	highlight_elements_for_plan_phase(false)
+
+	# collect reults from this iteration
 	var chosen_cards = backlog.get_chosen_cards()
 	var chosen_debt = techical_debt_account.get_all_debt_selected_for_refactoring()
 	for card in backlog.get_all_cards_in_backlog():
 		card.cannot_be_choosen = false
+		
+	# clean up
 	for card in chosen_cards:
 		card.flip_card()
 		player_hand.move_storypoints_to_supply(supply, card)
 	for debt in chosen_debt:
 		player_hand.move_storypoints_to_supply(supply, debt)
 
-	darken_background()
+	# show iteration reults
+	ui_elements.darken_background()
 	player_hand.move_cards_to_front(chosen_cards, chosen_debt)
 	
-	var start_iteration_button = create_button("START_NEW_ITERATION", Vector2(800.0, 800.0), 5)
+	var start_iteration_button = ui_elements.create_button("START_NEW_ITERATION", Vector2(800.0, 800.0), 8, "StartNewIterationButton")
 	start_iteration_button.connect("button_down", func(): _on_start_iteration_button_down())
 	
-func _process(delta):
+func _process(_delta):
 	game_stats.update_game_stats(iteration, 
-								supply.available_storypoints(), 
-								discard_pile.get_features_in_area("frontend"), 
-								discard_pile.get_features_in_area("backend"), 
-								discard_pile.get_bugs_in_area("frontend"), 
-								discard_pile.get_bugs_in_area("backend"))
+		supply.available_storypoints(), 
+		discard_pile.get_features_in_area("frontend"), 
+		discard_pile.get_features_in_area("backend"), 
+		discard_pile.get_bugs_in_area("frontend"), 
+		discard_pile.get_bugs_in_area("backend"))
+	
+	 # disable button, if no action was performed
 	if backlog.no_cards_chosen() and techical_debt_account.no_debt_selected() == 0:
-		$"../EndIterationButton".disabled = true
+		ui_elements.end_iteration_button.disabled = true
 	else:
-		$"../EndIterationButton".disabled = false
+		ui_elements.end_iteration_button.disabled = false
 		
+	is_game_is_lost()
+	
+func is_game_is_lost():
 	if backlog.get_all_cards_in_backlog().size() >= 9:
-		await get_tree().create_timer(1.0).timeout
-		get_tree().change_scene_to_file("res://scenes/game_over_screen.tscn")
-		
-	
-func darken_background():
-	$"../DarkenedBackground".visible = true
-	var tween = create_tween()
-	tween.tween_property($"../ColorRect", "modulate:a", 0.5, 0.5)
-	
-func lighten_background():
-	$"../DarkenedBackground".visible = false
-	var tween = create_tween()
-	tween.tween_property($"../ColorRect", "modulate:a", 0.5, 0.5)
+			await get_tree().create_timer(1.0).timeout
+			get_tree().change_scene_to_file("res://scenes/game_over_screen.tscn")
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -168,12 +167,12 @@ func _input(event):
 				if card and not event_card_drawn_once and event_card_can_be_drawn(event, card):
 					event_card_drawn_once = true
 					var drawn_card = event_deck.draw_card()
-					darken_background()
+					ui_elements.darken_background()
 					player_hand.move_cards_to_front([drawn_card], null)
 					await get_tree().create_timer(2.0).timeout
 					drawn_card.flip_card()
 					
-					var event_button = create_button("UNDERSTOOD_EVENT", Vector2(800.0, 800.0), 5)
+					var event_button = ui_elements.create_button("UNDERSTOOD_EVENT", Vector2(800.0, 800.0), 8, "UnderstoodEventButton")
 					event_button.connect("button_down", func(): _on_read_event_button_down(drawn_card))
 			Phase.DRAW_FEATURE:
 				if card and feature_card_can_be_drawn(event, card):
@@ -204,7 +203,7 @@ func _input(event):
 	
 func card_can_be_choosen(event, card, needed_storypoints):
 	if techical_debt_account.get_currently_refactored_debt_for_area(card.area) != 0:
-		effect_display.generate_refactor_rule()
+		game_monitor.generate_refactor_rule()
 	return event.pressed and not card.uncovered and card.on_card_grid and card.chosen == false and needed_storypoints <= supply.available_storypoints() and techical_debt_account.get_currently_refactored_debt_for_area(card.area) == 0 and card.cannot_be_choosen == false 
 	
 func card_can_be_unchoosen(event, card):
@@ -219,7 +218,7 @@ func event_card_can_be_drawn(event, card):
 func debt_can_be_refactored(event, debt):
 	var selected_cards_from_area = backlog.get_chosen_cards_from_area(debt.area)
 	if selected_cards_from_area.size() > 0:
-		effect_display.generate_refactor_rule()
+		game_monitor.generate_refactor_rule()
 	return event.pressed and 1 <= supply.available_storypoints() and not debt.to_be_refectored and selected_cards_from_area.size() == 0 and allow_refactoring
 	
 func debt_can_be_unchoosen(event, debt):
@@ -227,6 +226,7 @@ func debt_can_be_unchoosen(event, debt):
 	
 func execute_card_effect(card):
 	var effects = card.effects
+	var drawn_cards
 	for effect in effects:
 		await get_tree().create_timer(0.2).timeout
 		var effect_name = effect[0]
@@ -237,36 +237,28 @@ func execute_card_effect(card):
 			"remove_storypoints":
 				await supply.remove_storypoints_effect(effect_value)
 			"half_storypoints":
-				await supply.half_storypoints_effect(effect_value)
+				await supply.half_storypoints_effect()
 			"add_technical_debt":
 				techical_debt_account.add_debt_effect(effect_value)
 			"remove_technical_debt":
 				techical_debt_account.remove_debt_effect(effect_value)
 			"remove_cheapest_feature":
-				var cards = backlog.get_cheapest_feature_effect(effect_value)
-				for cheapest_card in cards:
-					cheapest_card.get_parent().get_parent().is_card_in_slot = false
-					await player_hand.move_card_to_discard_pile(cheapest_card, discard_pile)
+				player_hand.remove_cheapest_feature(backlog, discard_pile, effect_value)
 			"if_frontend_debt_too_big":
 				if techical_debt_account.get_current_debt_from_area("frontend") >= effect_value:
 					await player_hand.move_card_to_backlog(backlog, card)
 			"goal":
 				reward_after_goal_is_reached = true
 			"bugs":
-				await spawn_bug(effect_value)
+				await player_hand.draw_bug(bug_deck, backlog, effect_value)
 			"features":
-				for i in range(0, effect_value):
-					var drawn_card = feature_deck.draw_card()
-					drawn_card.z_index = 5
-					await player_hand.move_card_to_cardslot(backlog, drawn_card)
+				drawn_cards = await player_hand.draw_features(feature_deck, backlog, effect_value)
 			"cheap_feature_is_implemented":
-				var possible_card = backlog.get_card_with_storypoints(effect_value)
-				if possible_card != null:
-					player_hand.move_card_to_discard_pile(possible_card, discard_pile)
+				await player_hand.feature_with_storypoints_x_is_implemented(backlog, discard_pile, effect_value)
 			"back_to_backlog":
 				await player_hand.move_card_to_backlog(backlog, card)
 			"must_choose":
-				await must_choose_card(card)
+				await must_choose_card(effect_value, card, drawn_cards)
 			"cannot_be_choosen":
 				card.cannot_be_choosen = true
 			"new_values":
@@ -276,16 +268,17 @@ func execute_card_effect(card):
 			_:
 				push_warning("Unknown Effect: %s" % effect_name)
 
-func must_choose_card(card):
-	card.cannot_be_unchosen = true
-	card.choose_card()
-	player_hand.move_storypoints_to_card(supply, card, card.storypoints + techical_debt_account.calculate_needed_storypoints(card.area))
-	
-func spawn_bug(effect_value):
-	for i in range(0, effect_value):
-		var card = bug_deck.draw_card()
-		player_hand.move_card_to_cardslot(backlog, card)
-		await get_tree().create_timer(2.0).timeout
+func must_choose_card(effect_value, card, drawn_cards):
+	var affected_card
+	if effect_value == "this_card":
+		affected_card = card
+	if effect_value == "new_card":
+		affected_card = drawn_cards[-1]
+		
+	affected_card.cannot_be_unchosen = true
+	affected_card.choose_card()
+	player_hand.move_storypoints_to_card(supply, affected_card, affected_card.storypoints + techical_debt_account.calculate_needed_storypoints(affected_card.area))
+		
 
 func raycast_check_for_object():
 	var space_state = get_world_2d().direct_space_state
@@ -301,24 +294,12 @@ func raycast_check_for_object():
 	else:
 		return null
 
-func create_button(text: String, position: Vector2, z_index) -> Button:
-	var button_scene = preload(BUTTON_SCENE_PATH)
-	var button = button_scene.instantiate()
-	button.text = text
-	button.size.x = 320
-	button.size.y = 100
-	button.add_theme_font_size_override("font_size", 40)
-	button.z_index = z_index
-	button.position = position
-	canvas_layer.add_child(button)
-	return button
-	
 func highlight_elements_for_plan_phase(state):
 	var cards_in_backlog = backlog.get_all_cards_in_backlog()
 	for card in cards_in_backlog:
-		card.get_node("SelectionBorder").visible = state
-	feature_deck.get_node("SelectionBorder").visible = state
+		card.highlight(state)
+	feature_deck.highlight(state)
 	if allow_refactoring:
 		var current_debt = techical_debt_account.get_all_debt()
 		for debt in current_debt:
-			debt.get_node("SelectionBorder").visible = state
+			debt.highlight(state)

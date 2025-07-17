@@ -31,7 +31,7 @@ func get_valid_in_line_position() -> Vector2:
 		return a.position.x < b.position.x
 	)
 	
-	# Check for gaps between existing debt
+	# check for gaps between existing debt
 	for i in range(existing_debt.size() - 1):
 		var current_pos = existing_debt[i].global_position
 		var next_pos = existing_debt[i + 1].global_position
@@ -41,7 +41,7 @@ func get_valid_in_line_position() -> Vector2:
 		if next_pos.x > expected_next_x:
 			return Vector2(expected_next_x, current_pos.y)
 	
-	# No gaps found
+	# no gaps found
 	var last_position = existing_debt[-1].global_position
 	return Vector2(last_position.x + 100, last_position.y)
 
@@ -88,8 +88,7 @@ func add_debt_after_iteration():
 			await remove_debt("backend")
 			await get_tree().create_timer(delay).timeout
 
-	
-	# reset for next iteration
+	# reset
 	frontend_debt_for_this_round = 0
 	backend_debt_for_this_round = 0
 	

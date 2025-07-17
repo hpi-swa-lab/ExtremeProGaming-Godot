@@ -22,7 +22,6 @@ func generate_effects_list(effects):
 	for effect in effects:
 		await get_tree().create_timer(0.2).timeout
 		var effect_name = effect[0]
-		var effect_value = effect[1]
 		match effect_name:
 			"if_frontend_debt_too_big":
 				text += "• " + tr("FRONTEND_DEBT_BIG") + "\n"

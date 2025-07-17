@@ -7,7 +7,6 @@ func _ready() -> void:
 	var card_slot_scene = preload(CARD_SLOT_SCENE_PATH)
 
 	var columns = 3
-	var rows = 3
 	var slot_width = 200
 	var slot_height = 250
 	var spacing = 10 
@@ -34,10 +33,8 @@ func get_next_free_card_slot() -> Node2D:
 	
 	# Sort by row (y position) first, then by column (x position)
 	slots.sort_custom(func(a, b):
-		# If y positions are different (different rows)
 		if a.position.y != b.position.y:
 			return a.position.y < b.position.y
-		# Same row, sort by x position
 		return a.position.x < b.position.x
 	)
 	# Find first empty slot
@@ -69,8 +66,6 @@ func get_card_with_storypoints(storypoints):
 	return null
 
 func get_cheapest_feature_effect(amount):
-	var cheapest_card
-	var costs = 10000
 	var cards = get_all_cards_in_backlog()
 	
 	cards.sort_custom(

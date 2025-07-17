@@ -1,9 +1,9 @@
 [gd_scene load_steps=18 format=3 uid="uid://2amkrnek74r5"]
 
-[ext_resource type="Script" uid="uid://ci1rmldhj67ph" path="res://scripts/player_hand.gd" id="1_ca42v"]
+[ext_resource type="Script" uid="uid://ci1rmldhj67ph" path="res://scenes/player_hand.gd" id="1_ca42v"]
 [ext_resource type="PackedScene" uid="uid://belm8ywu7txr6" path="res://scenes/feature_deck.tscn" id="1_gee14"]
 [ext_resource type="Texture2D" uid="uid://dbj3jei31wn3o" path="res://assets/screens/Background.png" id="1_kvpfn"]
-[ext_resource type="PackedScene" uid="uid://dllvfnx0sn4ji" path="res://scenes/game_monitor.tscn" id="1_kvuet"]
+[ext_resource type="PackedScene" uid="uid://dllvfnx0sn4ji" path="res://scenes/effect_display.tscn" id="1_kvuet"]
 [ext_resource type="PackedScene" uid="uid://cp6orqhxx6agb" path="res://scenes/supply.tscn" id="2_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://cmuqn4ok46f8s" path="res://scenes/backlog.tscn" id="4_0tnpc"]
 [ext_resource type="Script" uid="uid://b4qx22upmkcuy" path="res://scripts/game_rules.gd" id="5_gee14"]
@@ -16,7 +16,7 @@
 [ext_resource type="FontFile" uid="uid://bvl257efbrrn5" path="res://assets/fonts/Hey Comic.ttf" id="11_dinhu"]
 [ext_resource type="PackedScene" uid="uid://cqp7getqbvwea" path="res://scenes/button.tscn" id="14_ir15t"]
 [ext_resource type="Texture2D" uid="uid://b2tsl4dwgr3g4" path="res://assets/game_elements/End.png" id="15_ir15t"]
-[ext_resource type="Script" uid="uid://y2yic653hnvr" path="res://scripts/ui_elements.gd" id="15_rysoc"]
+[ext_resource type="Script" uid="uid://y2yic653hnvr" path="res://scenes/ui_elements.gd" id="15_rysoc"]
 
 [node name="Game" type="Node2D"]
 
@@ -139,7 +139,7 @@ position = Vector2(320, 560)
 position = Vector2(339, 360)
 script = ExtResource("9_0tnpc")
 
-[node name="GameMonitor" parent="." instance=ExtResource("1_kvuet")]
+[node name="EffectDisplay" parent="." instance=ExtResource("1_kvuet")]
 position = Vector2(1704, 624)
 
 [node name="GameStats" parent="." instance=ExtResource("10_vtaks")]

@@ -35,7 +35,6 @@ func back_flip_card():
 	get_node("CardFlip").play_backwards("card_flip")
 	uncovered = false
 	
-		
 func choose_card():
 	chosen = !chosen
 	$ChooseCard.play()
@@ -45,4 +44,5 @@ func use_new_texture(effect_value):
 	$CardImage/StorypointText.text = str(new_storypoints)
 	storypoints = new_storypoints
 	
-	
+func highlight(state):
+	get_node("SelectionBorder").visible = state

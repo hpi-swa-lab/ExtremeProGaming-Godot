@@ -14,15 +14,14 @@ var storypoints_to_revive = 0
 func _ready() -> void:
 	spawn_storypoints_in_line(STORYPOINTS, "unlimited", 10000)
 
-func half_storypoints_effect(effect_value):
+func half_storypoints_effect():
 	var halfed_storypoints = round(available_storypoints() / 2.0)
-	for i in range(STORYPOINTS - halfed_storypoints):
+	if storypoints_reference.get_children().size() == 0:
+			return
+	for i in range(available_storypoints() - halfed_storypoints):
 		var children_to_be_removed = []
 		for child in storypoints_reference.get_children():
 			children_to_be_removed.append(child)
-
-		if children_to_be_removed.size() == 0:
-			break
 
 		var max_x_child = children_to_be_removed[0]
 		for child in children_to_be_removed:
@@ -61,12 +60,11 @@ func remove_storypoints_effect(effect_value):
 		max_x_child.free()
 		
 func spawn_storypoints_in_line(amount, color, self_destroy):
-	# get point where to start generation
-	var position = get_valid_in_line_position()
+	var sp_position = get_valid_in_line_position()
 	
 	# generate storypoints
-	var current_x = position.x + 55
-	var fixed_y = position.y
+	var current_x = sp_position.x + 55
+	var fixed_y = sp_position.y
 	for i in amount:
 		var storypoint_scene = preload(STORYPOINTS_SCENE_PATH)  
 		var new_storypoint = storypoint_scene.instantiate()
@@ -79,22 +77,22 @@ func spawn_storypoints_in_line(amount, color, self_destroy):
 		current_x += 55
 		
 func get_valid_in_line_position() -> Vector2:
-	var position : Vector2
+	var sp_position : Vector2
 	var existing_storypoints = storypoints_reference.get_children().filter(
 	func(sp): return !sp.is_queued_for_deletion()
 	)
 	
 	if existing_storypoints.size() == 0:
-		position = storypoints_reference.global_position
+		sp_position = storypoints_reference.global_position
 	else:
 		existing_storypoints.sort_custom(func(a, b):
 			if a.position.y != b.position.y:
 				return a.position.y < b.position.y
 			return a.position.x < b.position.x
 		)
-		position = existing_storypoints[-1].global_position
+		sp_position = existing_storypoints[-1].global_position
 	
-	return position
+	return sp_position
 
 func available_storypoints():
 	var storypoints_in_supply = storypoints_reference.get_children()
