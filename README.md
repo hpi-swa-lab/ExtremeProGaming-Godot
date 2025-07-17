@@ -168,7 +168,11 @@ classDiagram
 		+move_card_to_cardslot()
 		+move_card_to_discard_pile()
 	}
+	class UIElements{
+		+darken_background()
+	}
 	GameRules "1" --> "1" PlayerHand : instructs
+	GameRules "1" --> "1" UIElements : instructs
 	GameRules "1" --> "1" GameStats : refreshes
 	GameRules "1" --> "1" GameMonitor : refreshes
 	GameRules "1" --> "1" Backlog : contains
