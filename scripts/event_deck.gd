@@ -31,7 +31,7 @@ func _ready() -> void:
 		new_card.get_node("CardImage").get_node("StorypointText").visible = false
 		new_card.get_node("CardBackImage").texture = load(ALL_CARDS_GRAPHICS["back"][0])
 		new_card.get_node("CardBackImage").get_node("BackText").text = ALL_CARDS_TEXT[card_name][1]
-		new_card.get_node("CardBackImage").get_node("EffectText").text = ALL_CARDS_TEXT[card_name][2]
+		set_auto_sized_text(new_card.get_node("CardBackImage").get_node("EffectText"),ALL_CARDS_TEXT[card_name][2])
 		new_card.get_node("CardBackImage").get_node("TypeText").text = "Event"
 		new_card.get_node("CardBackImage").z_index = -1
 		new_card.position = get_node("Area2D").position

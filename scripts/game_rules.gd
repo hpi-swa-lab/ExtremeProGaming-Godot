@@ -69,7 +69,8 @@ func _on_read_event_button_down(drawn_card) -> void:
 	
 	
 func _on_start_iteration_button_down() -> void:
-	is_game_won()
+	if is_game_won():
+		return
 	
 	# clean up
 	ui_elements.remove_start_new_iteration_button()
@@ -101,10 +102,13 @@ func _on_start_iteration_button_down() -> void:
 	iteration += 1
 	prepare_iteration()
 	
+
 func is_game_won():
 	if iteration >= 9:
 		get_tree().change_scene_to_file("res://scenes/game_won_screen.tscn")
-		return
+		return true
+	else:
+		return false
 
 	
 func _on_end_iteration_button_down() -> void:

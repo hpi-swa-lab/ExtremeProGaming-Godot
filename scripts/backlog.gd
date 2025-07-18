@@ -58,7 +58,7 @@ func get_card_with_storypoints(storypoints):
 
 	for slot in slots_reference.get_children():
 		for child in slot.card_reference.get_children():
-			if child.storypoint == storypoints:
+			if child.storypoints == storypoints:
 				chosen_cards.append(child)
 			
 	if chosen_cards.size() > 0:
