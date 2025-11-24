@@ -12,6 +12,9 @@ var storypoints_to_revive = 0
 @onready var storypoints_reference = $Storypoints
 
 func _ready() -> void:
+	if InputRecorder.is_restoring:
+		return
+		
 	spawn_storypoints_in_line(STORYPOINTS, "unlimited", 10000)
 
 func half_storypoints_effect():

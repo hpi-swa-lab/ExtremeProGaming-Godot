@@ -8,10 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://bnju2klgcgcxm" path="res://assets/cards/selected.png" id="8_nvopj"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6ligt"]
-load_path = "res://.godot/imported/back_back.png-9d2f518569cc06bf851767925ecb2eff.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8w5pg"]
-load_path = "res://.godot/imported/feat_frontend_front.png-3d53d716c71b56443b1af8c08bf3eb8a.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rjlel"]
 size = Vector2(142.5, 206)

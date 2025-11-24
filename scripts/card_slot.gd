@@ -1,7 +1,25 @@
 extends Node2D
 
-@onready var is_card_in_slot = false
-@onready var card_reference = $Cards
+var is_card_in_slot: bool
+var card_reference
+func _ready() -> void:
+	if InputRecorder.is_restoring:
+		card_reference = get_node_or_null("Cards")
+		return
+		
+	initialize_new_game()
+
+#
+# All "New Game" logic is moved here
+#
+func initialize_new_game():
+	# Manually set the reference @onready used to handle
+	card_reference = $Cards
+	
+	# Manually set the "New Game" default value
+	is_card_in_slot = false
+	
+	is_card_in_slot = false
 
 func get_all_features():
 	var features = 0

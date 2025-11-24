@@ -1,21 +1,23 @@
 extends Node2D
 
-@onready var feature_deck = $"../FeatureDeck"
-@onready var event_deck = $"../EventDeck"
-@onready var bug_deck = $"../BugDeck"
-@onready var backlog = $"../Backlog"
-@onready var techical_debt_account = $"../TechnicalDebtAccount"
-@onready var supply = $"../Supply"
-@onready var discard_pile = $"../DiscardPile"
-@onready var event_discard_pile = $"../EventDiscardPile"
-@onready var player_hand = $"../PlayerHand"
-@onready var ui_elements = $"../UIElements"
-@onready var game_monitor = $"../GameMonitor"
-@onready var game_stats =$"../GameStats"
-@onready var allow_refactoring = true
-@onready var reward_after_goal_is_reached = false
-@onready var iteration = 1
-@onready var current_phase
+var feature_deck
+var event_deck
+var bug_deck
+var backlog
+var techical_debt_account
+var supply
+var discard_pile
+var event_discard_pile
+var player_hand
+var ui_elements
+var game_monitor
+var game_stats
+var allow_refactoring: bool
+var reward_after_goal_is_reached: bool
+var iteration: int
+var current_phase
+
+# This variable is fine, as it's not part of the saved state
 var event_card_drawn_once = false
 
 enum Phase {
@@ -25,7 +27,39 @@ enum Phase {
 	END
 }
 
+# --- 2. THE _ready() "ROUTER" ---
+# This is now the ONLY thing _ready() does.
+# It checks if we are restoring, and if not,
+# it calls the "New Game" setup function.
 func _ready():
+	if InputRecorder.is_restoring:
+		return
+	else:
+		await initialize_new_game()
+		
+func initialize_new_game():
+	# --- Part A: Manually populate node references ---
+	feature_deck = $"../FeatureDeck"
+	event_deck = $"../EventDeck"
+	bug_deck = $"../BugDeck"
+	backlog = $"../Backlog"
+	techical_debt_account = $"../TechnicalDebtAccount"
+	supply = $"../Supply"
+	discard_pile = $"../DiscardPile"
+	event_discard_pile = $"../EventDiscardPile"
+	player_hand = $"../PlayerHand"
+	ui_elements = $"../UIElements"
+	game_monitor = $"../GameMonitor"
+	game_stats =$"../GameStats"
+
+	# --- Part B: Set "New Game" default state ---
+	allow_refactoring = true
+	reward_after_goal_is_reached = false
+	iteration = 1
+	current_phase = Phase.DRAW_EVENT
+	event_card_drawn_once = false
+
+	# --- Part C: Run "New Game" setup logic ---
 	await feature_deck.cards_ready
 	await bug_deck.cards_ready
 	draw_start_cards()
@@ -136,6 +170,8 @@ func _on_end_iteration_button_down() -> void:
 	start_iteration_button.connect("button_down", func(): _on_start_iteration_button_down())
 	
 func _process(_delta):
+	if InputRecorder.is_restoring:
+		return
 	game_stats.update_game_stats(iteration, 
 		supply.available_storypoints(), 
 		discard_pile.get_features_in_area("frontend"), 

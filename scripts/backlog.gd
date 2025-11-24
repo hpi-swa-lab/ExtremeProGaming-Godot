@@ -4,6 +4,8 @@ const CARD_SLOT_COUNT = 9
 @onready var slots_reference = $Slots
 
 func _ready() -> void:
+	if InputRecorder.is_restoring:
+		return
 	var card_slot_scene = preload(CARD_SLOT_SCENE_PATH)
 
 	var columns = 3

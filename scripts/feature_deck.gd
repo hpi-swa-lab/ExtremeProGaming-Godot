@@ -2,10 +2,20 @@ extends "res://scripts/deck.gd"
 
 signal cards_ready
 @export var START_CARDS = []
-@onready var card_grid_reference = $"../Backlog"
+
 @onready var card_database_reference = preload("res://scripts/feature_database.gd")
 
+var card_grid_reference
+
 func _ready() -> void:
+	if InputRecorder.is_restoring:
+		return
+	else:
+		initialize_new_game()
+
+func initialize_new_game():
+	card_grid_reference = $"../Backlog"
+
 	CARD_COUNT = 27
 	ALL_CARDS_GRAPHICS = card_database_reference.ALL_FEATURE_CARDS_GRAPHICS
 	ALL_CARDS_META = card_database_reference.ALL_FEATURE_CARDS_META
@@ -24,4 +34,5 @@ func _ready() -> void:
 			START_CARDS.append(new_card)
 		else:
 			CARDS_IN_DECK.append(new_card)
+			
 	emit_signal("cards_ready")

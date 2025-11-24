@@ -5,6 +5,8 @@ extends "res://scripts/deck.gd"
 
 
 func _ready() -> void:
+	if InputRecorder.is_restoring:
+		return
 	CARD_COUNT = 9
 	ALL_CARDS_GRAPHICS = card_database_reference.ALL_EVENT_CARDS_GRAPHICS
 	ALL_CARDS_EFFECTS = card_database_reference.ALL_EVENT_CARDS_EFFECTS

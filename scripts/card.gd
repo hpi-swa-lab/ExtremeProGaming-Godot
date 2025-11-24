@@ -12,8 +12,8 @@ class_name Card
 @export var area = null
 @export var effects = []
 @export var count_for_debt_calculation = null
-@onready var storypoints_reference = $Storypoints
 
+var storypoints_reference
 
 enum CardType {
 	FEATURE,
@@ -22,6 +22,15 @@ enum CardType {
 }
 
 func _ready():
+	if InputRecorder.is_restoring:
+		storypoints_reference = get_node_or_null("Storypoints")
+		return
+		
+	initialize_new_game()
+
+func initialize_new_game():
+	storypoints_reference = $Storypoints
+	
 	$SelectionBorder.visible = false
 	
 func is_card():

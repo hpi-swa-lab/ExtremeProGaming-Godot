@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://2amkrnek74r5"]
+[gd_scene load_steps=19 format=3 uid="uid://2amkrnek74r5"]
 
 [ext_resource type="Script" uid="uid://ci1rmldhj67ph" path="res://scripts/player_hand.gd" id="1_ca42v"]
 [ext_resource type="PackedScene" uid="uid://belm8ywu7txr6" path="res://scenes/feature_deck.tscn" id="1_gee14"]
 [ext_resource type="Texture2D" uid="uid://dbj3jei31wn3o" path="res://assets/screens/Background.png" id="1_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://dllvfnx0sn4ji" path="res://scenes/game_monitor.tscn" id="1_kvuet"]
+[ext_resource type="Script" uid="uid://dipph7oetaosj" path="res://scripts/input_recorder.gd" id="1_ssvqc"]
 [ext_resource type="PackedScene" uid="uid://cp6orqhxx6agb" path="res://scenes/supply.tscn" id="2_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://cmuqn4ok46f8s" path="res://scenes/backlog.tscn" id="4_0tnpc"]
 [ext_resource type="Script" uid="uid://b4qx22upmkcuy" path="res://scripts/game_rules.gd" id="5_gee14"]
@@ -19,6 +20,9 @@
 [ext_resource type="Script" uid="uid://y2yic653hnvr" path="res://scripts/ui_elements.gd" id="15_rysoc"]
 
 [node name="Game" type="Node2D"]
+
+[node name="InputRecorder" type="Node" parent="."]
+script = ExtResource("1_ssvqc")
 
 [node name="UIElements" type="Control" parent="."]
 layout_mode = 3

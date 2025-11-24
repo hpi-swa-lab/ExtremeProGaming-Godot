@@ -8,6 +8,8 @@ signal cards_ready
 
 
 func _ready() -> void:
+	if InputRecorder.is_restoring:
+		return
 	CARD_COUNT = 12
 	ALL_CARDS_GRAPHICS = card_database_reference.ALL_BUG_CARDS_GRAPHICS
 	ALL_CARDS_META = card_database_reference.ALL_BUG_CARDS_META

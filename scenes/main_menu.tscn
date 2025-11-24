@@ -6,7 +6,7 @@
 [ext_resource type="FontFile" uid="uid://bvl257efbrrn5" path="res://assets/fonts/Hey Comic.ttf" id="4_rtw2f"]
 [ext_resource type="FontFile" uid="uid://dx3frt8gg61kj" path="res://assets/fonts/SFCartoonistHand.ttf" id="5_8ln24"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rtw2f"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbmy8"]
 bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 30
 corner_radius_top_right = 30
@@ -24,7 +24,7 @@ corner_radius_bottom_left = 30
 shadow_size = 10
 shadow_offset = Vector2(0, 4)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbmy8"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rtw2f"]
 bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 30
 corner_radius_top_right = 30
@@ -79,14 +79,14 @@ offset_left = 24.0
 offset_top = 24.0
 offset_right = 168.0
 offset_bottom = 112.0
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_8ln24")
 theme_override_font_sizes/font_size = 40
-theme_override_styles/hover = SubResource("StyleBoxFlat_rtw2f")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_oa1go")
 theme_override_styles/normal = SubResource("StyleBoxFlat_tbmy8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_oa1go")
+theme_override_styles/hover = SubResource("StyleBoxFlat_rtw2f")
 alignment = 1
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

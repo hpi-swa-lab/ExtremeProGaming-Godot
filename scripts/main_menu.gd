@@ -10,6 +10,9 @@ var languages = {
 }
 
 func _ready():
+	if InputRecorder.is_restoring:
+		return
+		
 	for lang_name in languages.keys():
 		language_selector.add_item(lang_name)
 	
