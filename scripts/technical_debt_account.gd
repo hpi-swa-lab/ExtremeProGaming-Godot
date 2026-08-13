@@ -105,7 +105,7 @@ func get_all_debt_selected_for_refactoring():
 	var refactored_debt = []
 
 	for child in debt_reference.get_children():
-		if child.to_be_refectored:
+		if child.to_be_refactored:
 			refactored_debt.append(child)
 
 	return refactored_debt
@@ -114,7 +114,8 @@ func get_currently_refactored_debt_for_area(area):
 	var refactored_debt = []
 
 	for child in debt_reference.get_children():
-		if child.to_be_refectored and child.area == area:
+		# TTTTTYYYYPPPOOOOO
+		if child.to_be_refactored and child.area == area:
 			refactored_debt.append(child)
 
 	return refactored_debt.size()

@@ -198,10 +198,10 @@ func _input(event):
 						card.choose_card()
 						player_hand.move_storypoints_to_supply(supply, card)
 				elif debt and await debt_can_be_refactored(event, debt):
-					debt.to_be_refectored = true
+					debt.to_be_refactored = true
 					player_hand.move_storypoints_to_debt(supply, debt)
 				elif debt and debt_can_be_unchoosen(event, debt):
-					debt.to_be_refectored = false
+					debt.to_be_refactored = false
 					player_hand.move_storypoints_to_supply(supply, debt)
 					
 	
@@ -223,10 +223,10 @@ func debt_can_be_refactored(event, debt):
 	var selected_cards_from_area = backlog.get_chosen_cards_from_area(debt.area)
 	if selected_cards_from_area.size() > 0:
 		game_monitor.generate_refactor_rule()
-	return event.pressed and 1 <= supply.available_storypoints() and not debt.to_be_refectored and selected_cards_from_area.size() == 0 and allow_refactoring
+	return event.pressed and 1 <= supply.available_storypoints() and not debt.to_be_refactored and selected_cards_from_area.size() == 0 and allow_refactoring
 	
 func debt_can_be_unchoosen(event, debt):
-	return event.pressed and debt.to_be_refectored
+	return event.pressed and debt.to_be_refactored
 	
 func execute_card_effect(card):
 	var effects = card.effects
