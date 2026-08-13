@@ -14,7 +14,7 @@ func _ready():
 		language_selector.add_item(lang_name)
 	
 	# set current language as selected
-	var current_locale = TranslationServer.get_locale()
+	var current_locale = TranslationServer.get_locale().get_slice("_", 0)
 	var index = languages.values().find(current_locale)
 	if index != -1:
 		language_selector.select(index)
