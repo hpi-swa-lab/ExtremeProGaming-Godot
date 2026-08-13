@@ -54,6 +54,7 @@ func plan_iteration():
 	
 func _on_read_event_button_down(drawn_card) -> void:
 	ui_elements.lighten_background()
+	event_deck.highlight(false)
 	drawn_card.z_index = 4
 	player_hand.move_card_to_discard_pile(drawn_card, event_discard_pile)
 	ui_elements.remove_understood_event_button()
@@ -62,7 +63,6 @@ func _on_read_event_button_down(drawn_card) -> void:
 	await execute_card_effect(drawn_card)
 	await get_tree().create_timer(4.0).timeout
 	drawn_card.z_index = -2
-	event_deck.highlight(false)
 	feature_deck.highlight(true)
 	current_phase = Phase.DRAW_FEATURE
 	game_monitor.generate_draw_feature_rule()
