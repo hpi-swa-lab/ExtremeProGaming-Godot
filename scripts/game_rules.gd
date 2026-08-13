@@ -115,7 +115,7 @@ func _on_end_iteration_button_down() -> void:
 	current_phase = Phase.END
 	highlight_elements_for_plan_phase(false)
 
-	# collect reults from this iteration
+	# collect results from this iteration
 	var chosen_cards = backlog.get_chosen_cards()
 	var chosen_debt = techical_debt_account.get_all_debt_selected_for_refactoring()
 	for card in backlog.get_all_cards_in_backlog():
@@ -128,7 +128,7 @@ func _on_end_iteration_button_down() -> void:
 	for debt in chosen_debt:
 		player_hand.move_storypoints_to_supply(supply, debt)
 
-	# show iteration reults
+	# show iteration results
 	ui_elements.darken_background()
 	player_hand.move_cards_to_front(chosen_cards, chosen_debt)
 	

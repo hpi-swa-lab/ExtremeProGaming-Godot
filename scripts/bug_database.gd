@@ -37,16 +37,16 @@ const ALL_BUG_CARDS_EFFECTS = {
 	}
 
 const ALL_BUG_CARDS_META = { 	# storypoints, area, counts_for_debt, is_start_card, effect_tip
-	"Bug0": [2, "frontend", true, true, "unknown"],
-	"Bug1": [1, "backend", true, false, "unknown"],
-	"Bug2": [1, "frontend", true, false, "unknown"],
-	"Bug3": [1, "frontend", true, false, "unknown"],
-	"Bug4": [1, "frontend", true, false, "unknown"],
-	"Bug5": [2, "frontend", true, false, "unknown"],
-	"Bug6": [3, "backend", true, false, "unknown"],
-	"Bug7": [1, "backend", true, false, "negative"],
-	"Bug8": [3, "frontend", true, false, "negative"],
-	"Bug9": [3, "backend", true, false, "negative"],
+	"Bug0": [2, "frontend", false, true, "unknown"],
+	"Bug1": [1, "backend", false, false, "unknown"],
+	"Bug2": [1, "frontend", false, false, "unknown"],
+	"Bug3": [1, "frontend", false, false, "unknown"],
+	"Bug4": [1, "frontend", false, false, "unknown"],
+	"Bug5": [2, "frontend", false, false, "unknown"],
+	"Bug6": [3, "backend", false, false, "unknown"],
+	"Bug7": [1, "backend", false, false, "negative"],
+	"Bug8": [3, "frontend", false, false, "negative"],
+	"Bug9": [3, "backend", false, false, "negative"],
 	"Bug10": [1, "backend", false, false, "positive"],
-	"Bug11": [3, "frontend", true, false, "positive"]
+	"Bug11": [3, "frontend", false, false, "positive"]
 }
