@@ -17,6 +17,7 @@ extends Node2D
 @onready var iteration = 1
 @onready var current_phase
 var event_card_drawn_once = false
+const ZOOMED_CARD_BUTTON_POSITION = Vector2(800, 900)
 
 enum Phase {
 	DRAW_EVENT,
@@ -132,7 +133,7 @@ func _on_end_iteration_button_down() -> void:
 	ui_elements.darken_background()
 	player_hand.move_cards_to_front(chosen_cards, chosen_debt)
 	
-	var start_iteration_button = ui_elements.create_button("START_NEW_ITERATION", Vector2(800.0, 800.0), 8, "StartNewIterationButton")
+	var start_iteration_button = ui_elements.create_button("START_NEW_ITERATION", ZOOMED_CARD_BUTTON_POSITION, 8, "StartNewIterationButton")
 	start_iteration_button.connect("button_down", func(): _on_start_iteration_button_down())
 	
 func _process(_delta):
@@ -176,7 +177,7 @@ func _input(event):
 					await get_tree().create_timer(2.0).timeout
 					drawn_card.flip_card()
 					
-					var event_button = ui_elements.create_button("UNDERSTOOD_EVENT", Vector2(800.0, 800.0), 8, "UnderstoodEventButton")
+					var event_button = ui_elements.create_button("UNDERSTOOD_EVENT", ZOOMED_CARD_BUTTON_POSITION, 8, "UnderstoodEventButton")
 					event_button.connect("button_down", func(): _on_read_event_button_down(drawn_card))
 			Phase.DRAW_FEATURE:
 				if card and feature_card_can_be_drawn(event, card):

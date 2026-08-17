@@ -7,8 +7,8 @@ func _ready() -> void:
 	var card_slot_scene = preload(CARD_SLOT_SCENE_PATH)
 
 	var columns = 3
-	var slot_width = 200
-	var slot_height = 250
+	var slot_width = 200 * 1.1
+	var slot_height = 250 * 1.1
 	var spacing = 10 
 	var start_pos = slots_reference.position
 
@@ -22,6 +22,7 @@ func _ready() -> void:
 		var new_card_slot = card_slot_scene.instantiate()
 		new_card_slot.name = "CardSlot_%d" % i
 		new_card_slot.position = Vector2(x, y)
+		new_card_slot.scale = Vector2(1.3, 1.3)
 
 		slots_reference.add_child(new_card_slot)
 		

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://2amkrnek74r5"]
+[gd_scene format=3 uid="uid://2amkrnek74r5"]
 
 [ext_resource type="Script" uid="uid://ci1rmldhj67ph" path="res://scripts/player_hand.gd" id="1_ca42v"]
 [ext_resource type="PackedScene" uid="uid://belm8ywu7txr6" path="res://scenes/feature_deck.tscn" id="1_gee14"]
@@ -18,89 +18,89 @@
 [ext_resource type="Texture2D" uid="uid://b2tsl4dwgr3g4" path="res://assets/game_elements/End.png" id="15_ir15t"]
 [ext_resource type="Script" uid="uid://y2yic653hnvr" path="res://scripts/ui_elements.gd" id="15_rysoc"]
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" unique_id=1954908091]
 
-[node name="UIElements" type="Control" parent="."]
+[node name="UIElements" type="Control" parent="." unique_id=303025760]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("15_rysoc")
 
-[node name="Background" type="Sprite2D" parent="UIElements"]
+[node name="Background" type="Sprite2D" parent="UIElements" unique_id=1215423877]
 z_index = -20
 position = Vector2(960, 542)
 texture = ExtResource("1_kvpfn")
 
-[node name="GameEnd" type="Sprite2D" parent="UIElements"]
-position = Vector2(1251.75, 824.448)
+[node name="GameEnd" type="Sprite2D" parent="UIElements" unique_id=586453807]
+position = Vector2(1292.75, 865.44806)
 scale = Vector2(0.228799, 0.239425)
 texture = ExtResource("15_ir15t")
 
-[node name="Header" type="RichTextLabel" parent="UIElements"]
+[node name="Header" type="RichTextLabel" parent="UIElements" unique_id=1029637797]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 464.0
-offset_top = 32.0
-offset_right = 1384.0
-offset_bottom = 184.0
+offset_left = 549.0
+offset_top = 20.0
+offset_right = 1540.0
+offset_bottom = 172.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("11_dinhu")
 theme_override_font_sizes/normal_font_size = 100
-text = "ExtremeProGaming"
+text = "Extreme ProGaming"
 
-[node name="FeaturesLabel" type="RichTextLabel" parent="UIElements"]
+[node name="FeaturesLabel" type="RichTextLabel" parent="UIElements" unique_id=942544436]
 layout_mode = 0
-offset_left = 80.0
-offset_top = 707.0
-offset_right = 176.0
-offset_bottom = 747.0
+offset_left = 75.0
+offset_top = 722.0
+offset_right = 296.0
+offset_bottom = 784.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("11_dinhu")
-theme_override_font_sizes/normal_font_size = 21
+theme_override_font_sizes/normal_font_size = 42
 bbcode_enabled = true
 text = "Features"
 
-[node name="BugsLabel" type="RichTextLabel" parent="UIElements"]
+[node name="BugsLabel" type="RichTextLabel" parent="UIElements" unique_id=900368899]
 layout_mode = 0
-offset_left = 296.0
-offset_top = 704.0
-offset_right = 392.0
-offset_bottom = 744.0
+offset_left = 324.0
+offset_top = 724.0
+offset_right = 477.0
+offset_bottom = 798.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("11_dinhu")
-theme_override_font_sizes/normal_font_size = 21
+theme_override_font_sizes/normal_font_size = 42
 bbcode_enabled = true
 text = "Bugs"
 
-[node name="EventsLabel" type="RichTextLabel" parent="UIElements"]
+[node name="EventsLabel" type="RichTextLabel" parent="UIElements" unique_id=603517135]
 layout_mode = 0
-offset_left = 95.0
-offset_top = 423.0
-offset_right = 191.0
-offset_bottom = 463.0
+offset_left = 194.0
+offset_top = 383.0
+offset_right = 365.0
+offset_bottom = 444.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("11_dinhu")
-theme_override_font_sizes/normal_font_size = 21
+theme_override_font_sizes/normal_font_size = 42
 bbcode_enabled = true
 text = "Events"
 
-[node name="EndIterationButton" parent="UIElements" instance=ExtResource("14_ir15t")]
+[node name="EndIterationButton" parent="UIElements" unique_id=1946534799 instance=ExtResource("14_ir15t")]
 layout_mode = 0
 offset_left = 903.0
-offset_top = 952.0
+offset_top = 988.0
 offset_right = 1189.0
-offset_bottom = 1032.0
+offset_bottom = 1068.0
 grow_horizontal = 1
 grow_vertical = 1
 theme_override_font_sizes/font_size = 49
 text = "END_ITERATION"
 
-[node name="DarkenedBackground" type="ColorRect" parent="UIElements"]
+[node name="DarkenedBackground" type="ColorRect" parent="UIElements" unique_id=1004195388]
 visible = false
 z_index = 7
 layout_mode = 0
@@ -108,41 +108,46 @@ offset_right = 1928.0
 offset_bottom = 1085.0
 color = Color(0, 0, 0, 0.74902)
 
-[node name="PlayerHand" type="Node2D" parent="."]
+[node name="PlayerHand" type="Node2D" parent="." unique_id=1117365658]
 script = ExtResource("1_ca42v")
 
-[node name="Supply" parent="." instance=ExtResource("2_u5sy4")]
-position = Vector2(336, 240)
+[node name="Supply" parent="." unique_id=1197432708 instance=ExtResource("2_u5sy4")]
+position = Vector2(336, 208)
 
-[node name="GameRules" type="Node2D" parent="."]
+[node name="GameRules" type="Node2D" parent="." unique_id=451438550]
 script = ExtResource("5_gee14")
 
-[node name="DiscardPile" parent="." instance=ExtResource("8_gee14")]
-position = Vector2(1704, 888)
+[node name="DiscardPile" parent="." unique_id=1315065011 instance=ExtResource("8_gee14")]
+position = Vector2(1701, 925)
+scale = Vector2(1.3, 1.3)
 
-[node name="Backlog" parent="." instance=ExtResource("4_0tnpc")]
-position = Vector2(830, 302)
+[node name="Backlog" parent="." unique_id=1443108674 instance=ExtResource("4_0tnpc")]
+position = Vector2(830, 289)
 
-[node name="FeatureDeck" parent="." instance=ExtResource("1_gee14")]
-position = Vector2(128, 843)
+[node name="FeatureDeck" parent="." unique_id=811813320 instance=ExtResource("1_gee14")]
+position = Vector2(160, 919.00006)
+scale = Vector2(1.3, 1.3)
 
-[node name="BugDeck" parent="." instance=ExtResource("7_gee14")]
-position = Vector2(320, 840)
+[node name="BugDeck" parent="." unique_id=440173256 instance=ExtResource("7_gee14")]
+position = Vector2(378, 922.00006)
+scale = Vector2(1.3, 1.3)
 
-[node name="EventDeck" parent="." instance=ExtResource("7_u5sy4")]
-position = Vector2(128, 555)
+[node name="EventDeck" parent="." unique_id=612777018 instance=ExtResource("7_u5sy4")]
+position = Vector2(156, 580)
+scale = Vector2(1.3, 1.3)
 
-[node name="EventDiscardPile" parent="." instance=ExtResource("8_gee14")]
-position = Vector2(320, 560)
+[node name="EventDiscardPile" parent="." unique_id=1010306526 instance=ExtResource("8_gee14")]
+position = Vector2(372, 581)
+scale = Vector2(1.3, 1.3)
 
-[node name="TechnicalDebtAccount" parent="." instance=ExtResource("8_0tnpc")]
-position = Vector2(339, 360)
+[node name="TechnicalDebtAccount" parent="." unique_id=2078133900 instance=ExtResource("8_0tnpc")]
+position = Vector2(339, 328)
 script = ExtResource("9_0tnpc")
 
-[node name="GameMonitor" parent="." instance=ExtResource("1_kvuet")]
+[node name="GameMonitor" parent="." unique_id=1297920574 instance=ExtResource("1_kvuet")]
 position = Vector2(1704, 624)
 
-[node name="GameStats" parent="." instance=ExtResource("10_vtaks")]
+[node name="GameStats" parent="." unique_id=974343727 instance=ExtResource("10_vtaks")]
 position = Vector2(1704, 280)
 
 [connection signal="button_down" from="UIElements/EndIterationButton" to="GameRules" method="_on_end_iteration_button_down"]

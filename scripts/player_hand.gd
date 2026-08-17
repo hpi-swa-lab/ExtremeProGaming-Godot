@@ -16,7 +16,7 @@ func move_card_to_cardslot(backlog, card):
 		card.z_index = 3
 		card.get_parent().remove_child(card)
 		next_free_card_slot.card_reference.add_child(card)
-		card.scale = Vector2.ONE
+		card.scale = Vector2.ONE # Vector2(1.3, 1.3)
 		card.global_position = start_pos
 
 		var tween := get_tree().create_tween()
@@ -114,7 +114,7 @@ func move_cards_to_front(chosen_cards, chosen_debt):
 		var x_offset = -total_card_width / 2 + i * card_spacing
 		var target_pos = screen_center + Vector2(x_offset, 50)
 		tween.tween_property(card, "global_position", target_pos, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-		tween.tween_property(card, "scale", Vector2(1.5, 1.5), 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		tween.tween_property(card, "scale", Vector2(2, 2), 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	
 	if chosen_debt != null and chosen_debt.size() > 0:
 		var debt_count = chosen_debt.size()
