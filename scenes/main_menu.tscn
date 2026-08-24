@@ -69,7 +69,7 @@ offset_bottom = 380.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("4_rtw2f")
 theme_override_font_sizes/font_size = 111
-text = "ExtremeProGaming"
+text = "Extreme ProGaming"
 horizontal_alignment = 1
 vertical_alignment = 1
 

@@ -28,6 +28,7 @@ PLAN_REFACTORING;Refactoring: Für jeden abgebauten Technical Debt muss 1 Storyp
 PLAN_TICKETS;Tickets auswählen: Wählt ein oder mehrere Tickets aus dem Backlog durch anklicken. Die Anzahl berechnet sich aus dem Wert auf der Karte plus der Anzahl Technical Debt im jeweiligen Systemteil.;Select tickets: Select one or more tickets from the backlog by clicking on them. The number of storypoints is calculated from the value on the ticket plus the number of Technical Debt in the respective system part.
 END_ITERATION;Beende Iteration;End Iteration
 GAME_STATISTICS;Spiel-Statistik;Game Statistics
+GAME_CHALLENGE;Herausforderung;Challenge
 GAME_MONITOR;Spiel-Monitor;Game Monitor
 GAME_HINT;Plane deine Iteration. Du kannst:\n•  Features nachziehen\n•  Karten auswählen\n•  Technical Debt refactoren;Now plan your iteration. You can:\n•  Draw more cards\n•  select cards for this iteration\n•  Refactor technical debt
 BUG0_FRONT;Falscher Nutzername wird im Profil angezeigt;Incorrect username is shown in the profile

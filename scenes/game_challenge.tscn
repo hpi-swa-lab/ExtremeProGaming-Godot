@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://fd1qs54ctnfs"]
+
+[ext_resource type="Script" uid="uid://titsehtan2ny" path="res://scripts/game_challenge.gd" id="1_yhdlq"]
+[ext_resource type="Texture2D" uid="uid://8exejyqnwgjg" path="res://assets/game_elements/GameMonitor.png" id="2_yhdlq"]
+[ext_resource type="FontFile" uid="uid://dx3frt8gg61kj" path="res://assets/fonts/SFCartoonistHand.ttf" id="3_vvo4f"]
+[ext_resource type="FontFile" uid="uid://bvl257efbrrn5" path="res://assets/fonts/Hey Comic.ttf" id="4_ls3rt"]
+
+[node name="Challenge" type="Node2D" unique_id=1574825284]
+script = ExtResource("1_yhdlq")
+
+[node name="Grafics" type="Sprite2D" parent="." unique_id=1328011418]
+position = Vector2(3.0000048, 0.4999962)
+scale = Vector2(0.16000001, 0.06325632)
+texture = ExtResource("2_yhdlq")
+
+[node name="FeaturesText" type="RichTextLabel" parent="." unique_id=1122010062]
+offset_left = -42.500046
+offset_top = 20.913818
+offset_right = 45.499954
+offset_bottom = 52.91382
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_vvo4f")
+theme_override_font_sizes/normal_font_size = 23
+text = "Features
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Header" type="RichTextLabel" parent="." unique_id=767691194]
+offset_left = -85.0
+offset_top = -48.0
+offset_right = 98.0
+offset_bottom = -19.913818
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_ls3rt")
+theme_override_font_sizes/normal_font_size = 21
+text = "GAME_CHALLENGE"
+horizontal_alignment = 1
+
+[node name="Features" type="RichTextLabel" parent="." unique_id=586438956]
+offset_left = -24.500046
+offset_top = -31.086182
+offset_right = 31.499954
+offset_bottom = 32.91382
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_vvo4f")
+theme_override_font_sizes/normal_font_size = 29
+text = "x / 8"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true

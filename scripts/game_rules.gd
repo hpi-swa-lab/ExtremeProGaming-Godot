@@ -13,7 +13,7 @@ extends Node2D
 @onready var game_monitor = $"../GameMonitor"
 @onready var game_stats =$"../GameStats"
 @onready var allow_refactoring = true
-@onready var reward_after_goal_is_reached = false
+@onready var challenge_activated = false
 @onready var iteration = 1
 @onready var current_phase
 var event_card_drawn_once = false
@@ -45,14 +45,24 @@ func prepare_iteration():
 	event_deck.highlight(true)
 	current_phase = Phase.DRAW_EVENT
 	game_monitor.generate_draw_event_rule()
-	if reward_after_goal_is_reached and iteration == 3 and discard_pile.get_all_features() >= 4:
-		await supply.add_storypoints_effect([2, 10000])
-		
+	if challenge_activated and iteration == 5:
+		if discard_pile.get_all_features() >= 8:
+			win_challenge()
+		else:
+			lose_challenge()
+
+func win_challenge():
+	print("challenge won")
+	await supply.add_storypoints_effect([2, 10000])
+
+func lose_challenge():
+	print("challenge lost")
+
 func plan_iteration():
 	highlight_elements_for_plan_phase(true)
 	current_phase = Phase.PLAN
 	game_monitor.generate_iteration_rules()
-	
+
 func _on_read_event_button_down(drawn_card) -> void:
 	ui_elements.lighten_background()
 	event_deck.highlight(false)
@@ -67,8 +77,7 @@ func _on_read_event_button_down(drawn_card) -> void:
 	feature_deck.highlight(true)
 	current_phase = Phase.DRAW_FEATURE
 	game_monitor.generate_draw_feature_rule()
-	
-	
+
 func _on_start_iteration_button_down() -> void:
 	if is_game_won():
 		return
@@ -253,7 +262,8 @@ func execute_card_effect(card):
 				if techical_debt_account.get_current_debt_from_area("frontend") >= effect_value:
 					await player_hand.move_card_to_backlog(backlog, card)
 			"goal":
-				reward_after_goal_is_reached = true
+				challenge_activated = true
+				game_stats.show_challenge()
 			"bugs":
 				await player_hand.draw_bug(bug_deck, backlog, effect_value)
 			"features":

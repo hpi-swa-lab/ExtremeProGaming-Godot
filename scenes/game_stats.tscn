@@ -1,18 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://odv8s6iqtsvk"]
+[gd_scene format=3 uid="uid://odv8s6iqtsvk"]
 
 [ext_resource type="Script" uid="uid://bjqq35i0q5laa" path="res://scripts/game_stats.gd" id="1_8j22x"]
 [ext_resource type="Texture2D" uid="uid://cyw737g1ga2w4" path="res://assets/game_elements/Game Stats.png" id="1_ul0qu"]
 [ext_resource type="FontFile" uid="uid://dx3frt8gg61kj" path="res://assets/fonts/SFCartoonistHand.ttf" id="2_kqpaf"]
 [ext_resource type="FontFile" uid="uid://bvl257efbrrn5" path="res://assets/fonts/Hey Comic.ttf" id="3_8j22x"]
+[ext_resource type="PackedScene" uid="uid://fd1qs54ctnfs" path="res://scenes/game_challenge.tscn" id="3_j8ctm"]
 
-[node name="GameStats" type="Node2D"]
+[node name="GameStats" type="Node2D" unique_id=225122355]
 script = ExtResource("1_8j22x")
 
-[node name="Grafics" type="Sprite2D" parent="."]
+[node name="Grafics" type="Sprite2D" parent="." unique_id=1958689675]
 scale = Vector2(0.207826, 0.207826)
 texture = ExtResource("1_ul0qu")
 
-[node name="StorypintsText" type="RichTextLabel" parent="."]
+[node name="Challenge" parent="." unique_id=1574825284 instance=ExtResource("3_j8ctm")]
+position = Vector2(-203, 19)
+
+[node name="StorypointsText" type="RichTextLabel" parent="." unique_id=1593436905]
 offset_left = 2.0
 offset_top = -72.0
 offset_right = 90.0
@@ -24,7 +28,7 @@ text = "Storypoints"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FeaturesFrontendText" type="RichTextLabel" parent="."]
+[node name="FeaturesFrontendText" type="RichTextLabel" parent="." unique_id=1039969503]
 offset_left = -102.0
 offset_top = 18.0
 offset_right = 2.0
@@ -36,7 +40,7 @@ text = "Features Frontend"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FeaturesBackendText" type="RichTextLabel" parent="."]
+[node name="FeaturesBackendText" type="RichTextLabel" parent="." unique_id=1829151473]
 offset_left = -3.0
 offset_top = 19.0
 offset_right = 101.0
@@ -48,7 +52,7 @@ text = "Features Backend"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BugsBackendText" type="RichTextLabel" parent="."]
+[node name="BugsBackendText" type="RichTextLabel" parent="." unique_id=1762528300]
 offset_top = 128.0
 offset_right = 104.0
 offset_bottom = 184.0
@@ -59,7 +63,7 @@ text = "Bugs Backend"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BugsFrontendText" type="RichTextLabel" parent="."]
+[node name="BugsFrontendText" type="RichTextLabel" parent="." unique_id=185390659]
 offset_left = -103.0
 offset_top = 128.0
 offset_right = 1.0
@@ -71,7 +75,7 @@ text = "Bugs Frontend"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Header" type="RichTextLabel" parent="."]
+[node name="Header" type="RichTextLabel" parent="." unique_id=649429776]
 offset_left = -104.0
 offset_top = -176.0
 offset_right = 120.0
@@ -81,7 +85,7 @@ theme_override_fonts/normal_font = ExtResource("3_8j22x")
 theme_override_font_sizes/normal_font_size = 29
 text = "GAME_STATISTICS"
 
-[node name="Iteration" type="RichTextLabel" parent="."]
+[node name="Iteration" type="RichTextLabel" parent="." unique_id=650672856]
 offset_left = -83.0
 offset_top = -122.0
 offset_right = -27.0
@@ -93,7 +97,7 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Storypoints" type="RichTextLabel" parent="."]
+[node name="Storypoints" type="RichTextLabel" parent="." unique_id=1938489451]
 offset_left = 20.0
 offset_top = -124.0
 offset_right = 76.0
@@ -105,7 +109,7 @@ text = "6"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FeaturesFrontend" type="RichTextLabel" parent="."]
+[node name="FeaturesFrontend" type="RichTextLabel" parent="." unique_id=760825449]
 offset_left = -86.0
 offset_top = -42.0
 offset_right = -22.0
@@ -117,7 +121,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FeaturesBackend" type="RichTextLabel" parent="."]
+[node name="FeaturesBackend" type="RichTextLabel" parent="." unique_id=351564731]
 offset_left = 20.0
 offset_top = -37.0
 offset_right = 74.0
@@ -129,7 +133,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BugsFrontend" type="RichTextLabel" parent="."]
+[node name="BugsFrontend" type="RichTextLabel" parent="." unique_id=34498076]
 offset_left = -80.0
 offset_top = 71.0
 offset_right = -28.0
@@ -141,7 +145,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BugsBackend" type="RichTextLabel" parent="."]
+[node name="BugsBackend" type="RichTextLabel" parent="." unique_id=1126102567]
 offset_left = 14.0
 offset_top = 70.0
 offset_right = 76.0
@@ -153,7 +157,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="IterationText" type="RichTextLabel" parent="."]
+[node name="IterationText" type="RichTextLabel" parent="." unique_id=1907334591]
 offset_left = -94.0
 offset_top = -72.0
 offset_right = -14.0
