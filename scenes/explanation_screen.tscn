@@ -1,25 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhtpnejns62r5"]
+[gd_scene format=3 uid="uid://dhtpnejns62r5"]
 
+[ext_resource type="Script" uid="uid://bofhl5eehfdqc" path="res://scripts/explanation_screen.gd" id="1_0txbs"]
 [ext_resource type="Texture2D" uid="uid://bams7et1vrs5" path="res://assets/screens/ExplainationScreen.png" id="1_psc5y"]
-[ext_resource type="Script" uid="uid://6yds8b6b3l22" path="res://scripts/explaination_screen.gd" id="1_s6nn1"]
 [ext_resource type="FontFile" uid="uid://bvl257efbrrn5" path="res://assets/fonts/Hey Comic.ttf" id="2_s6nn1"]
 [ext_resource type="FontFile" uid="uid://dx3frt8gg61kj" path="res://assets/fonts/SFCartoonistHand.ttf" id="3_f2yy7"]
 [ext_resource type="PackedScene" uid="uid://cqp7getqbvwea" path="res://scenes/button.tscn" id="5_f2yy7"]
 
-[node name="ExplainationScreen" type="Control"]
+[node name="ExplainationScreen" type="Control" unique_id=615197429]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_s6nn1")
+script = ExtResource("1_0txbs")
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="." unique_id=1663456439]
 position = Vector2(960, 544)
 texture = ExtResource("1_psc5y")
 
-[node name="Header" type="RichTextLabel" parent="."]
+[node name="Header" type="RichTextLabel" parent="." unique_id=1716085015]
 layout_mode = 0
 offset_left = 88.0
 offset_top = 27.0
@@ -30,7 +30,7 @@ theme_override_fonts/normal_font = ExtResource("2_s6nn1")
 theme_override_font_sizes/normal_font_size = 100
 text = "GAME_ELEMENTS"
 
-[node name="CardHeader" type="RichTextLabel" parent="."]
+[node name="CardHeader" type="RichTextLabel" parent="." unique_id=2132786162]
 layout_mode = 0
 offset_left = 264.0
 offset_top = 424.0
@@ -41,7 +41,7 @@ theme_override_fonts/normal_font = ExtResource("2_s6nn1")
 theme_override_font_sizes/normal_font_size = 70
 text = "Feature"
 
-[node name="CardHeader2" type="RichTextLabel" parent="."]
+[node name="CardHeader2" type="RichTextLabel" parent="." unique_id=718402217]
 layout_mode = 0
 offset_left = 1000.0
 offset_top = 424.0
@@ -52,7 +52,7 @@ theme_override_fonts/normal_font = ExtResource("2_s6nn1")
 theme_override_font_sizes/normal_font_size = 70
 text = "Feature"
 
-[node name="SPDescription" type="RichTextLabel" parent="."]
+[node name="SPDescription" type="RichTextLabel" parent="." unique_id=390308388]
 layout_mode = 0
 offset_top = 432.0
 offset_right = 176.0
@@ -64,7 +64,7 @@ text = "NEEDED_STORYPOINTS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HeaderDescription2" type="RichTextLabel" parent="."]
+[node name="HeaderDescription2" type="RichTextLabel" parent="." unique_id=1569870494]
 layout_mode = 0
 offset_left = 696.0
 offset_top = 464.0
@@ -77,7 +77,7 @@ text = "TYPE_OF_TICKET"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CardDescription" type="RichTextLabel" parent="."]
+[node name="CardDescription" type="RichTextLabel" parent="." unique_id=1551153138]
 layout_mode = 0
 offset_left = 200.0
 offset_top = 840.0
@@ -90,7 +90,7 @@ text = "SAMPLE_FRONT_TEXT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CardEffectDescription2" type="RichTextLabel" parent="."]
+[node name="CardEffectDescription2" type="RichTextLabel" parent="." unique_id=1157984377]
 layout_mode = 0
 offset_left = 936.0
 offset_top = 768.0
@@ -103,7 +103,7 @@ text = "SAMPLE_EFFECT_TEXT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CardBackDescription3" type="RichTextLabel" parent="."]
+[node name="CardBackDescription3" type="RichTextLabel" parent="." unique_id=2071356174]
 layout_mode = 0
 offset_left = 928.0
 offset_top = 528.0
@@ -116,7 +116,7 @@ text = "SAMPLE_BACK_TEXT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FrontendDescription" type="RichTextLabel" parent="."]
+[node name="FrontendDescription" type="RichTextLabel" parent="." unique_id=127632593]
 layout_mode = 0
 offset_left = 224.0
 offset_top = 288.0
@@ -129,7 +129,7 @@ text = "frontend"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BackendDescription2" type="RichTextLabel" parent="."]
+[node name="BackendDescription2" type="RichTextLabel" parent="." unique_id=1145564955]
 layout_mode = 0
 offset_left = 608.0
 offset_top = 216.0
@@ -142,7 +142,7 @@ text = "backend"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BugDescription" type="RichTextLabel" parent="."]
+[node name="BugDescription" type="RichTextLabel" parent="." unique_id=1193551949]
 layout_mode = 0
 offset_left = 896.0
 offset_top = 152.0
@@ -155,7 +155,7 @@ text = "bug"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FeatureDescription" type="RichTextLabel" parent="."]
+[node name="FeatureDescription" type="RichTextLabel" parent="." unique_id=880209710]
 layout_mode = 0
 offset_left = 1016.0
 offset_top = 232.0
@@ -168,7 +168,7 @@ text = "feature"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PermanentDescription" type="RichTextLabel" parent="."]
+[node name="PermanentDescription" type="RichTextLabel" parent="." unique_id=1123707555]
 layout_mode = 0
 offset_left = 1368.0
 offset_top = 424.0
@@ -181,7 +181,7 @@ text = "PERMANENT_STORYPOINT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FrontendDebtDZescription" type="RichTextLabel" parent="."]
+[node name="FrontendDebtDZescription" type="RichTextLabel" parent="." unique_id=1652986135]
 layout_mode = 0
 offset_left = 1360.0
 offset_top = 704.0
@@ -194,7 +194,7 @@ text = "technical debt frontend"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BackendDebtDZescription2" type="RichTextLabel" parent="."]
+[node name="BackendDebtDZescription2" type="RichTextLabel" parent="." unique_id=171249975]
 layout_mode = 0
 offset_left = 1608.0
 offset_top = 704.0
@@ -207,7 +207,7 @@ text = "technical debt backend"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TemporalDescription" type="RichTextLabel" parent="."]
+[node name="TemporalDescription" type="RichTextLabel" parent="." unique_id=1079828633]
 layout_mode = 0
 offset_left = 1616.0
 offset_top = 424.0
@@ -220,7 +220,7 @@ text = "TEMPORAL_STORYPOINT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TicketDescription" type="RichTextLabel" parent="."]
+[node name="TicketDescription" type="RichTextLabel" parent="." unique_id=1574880873]
 layout_mode = 0
 offset_left = 568.0
 offset_top = 968.0
@@ -233,7 +233,7 @@ text = "TICKET_DESCRIPTION"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HintDescription" type="RichTextLabel" parent="."]
+[node name="HintDescription" type="RichTextLabel" parent="." unique_id=1665136241]
 layout_mode = 0
 offset_left = 624.0
 offset_top = 560.0
@@ -246,7 +246,7 @@ text = "EFFECT_IMPLICATION"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BackDescription" type="RichTextLabel" parent="."]
+[node name="BackDescription" type="RichTextLabel" parent="." unique_id=1933598005]
 layout_mode = 0
 offset_left = 664.0
 offset_top = 784.0
@@ -259,7 +259,7 @@ text = "TICKET_CONSEQUENZ"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EffectDescription2" type="RichTextLabel" parent="."]
+[node name="EffectDescription2" type="RichTextLabel" parent="." unique_id=1800421413]
 layout_mode = 0
 offset_left = 1312.0
 offset_top = 944.0
@@ -272,7 +272,7 @@ text = "TICKET_EFFECT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" parent="." instance=ExtResource("5_f2yy7")]
+[node name="Button" parent="." unique_id=1249383207 instance=ExtResource("5_f2yy7")]
 layout_mode = 1
 offset_left = 1536.0
 offset_top = 872.0

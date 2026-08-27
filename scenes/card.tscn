@@ -1,17 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://cca71wt6yarn6"]
+[gd_scene format=3 uid="uid://cca71wt6yarn6"]
 
 [ext_resource type="Script" uid="uid://6tn2x8hyeb63" path="res://scripts/card.gd" id="1_ktuci"]
 [ext_resource type="FontFile" uid="uid://dx3frt8gg61kj" path="res://assets/fonts/SFCartoonistHand.ttf" id="3_kg30u"]
 [ext_resource type="AudioStream" uid="uid://dvbks8dg6aouh" path="res://assets/sounds/select_card.mp3" id="3_ktuci"]
+[ext_resource type="Texture2D" uid="uid://dtudo6elqvdrk" path="res://assets/cards/event_back.png" id="3_nvopj"]
 [ext_resource type="FontFile" uid="uid://bvl257efbrrn5" path="res://assets/fonts/Hey Comic.ttf" id="4_sy11y"]
+[ext_resource type="Texture2D" uid="uid://0vjoptomnnkc" path="res://assets/cards/event_front.png" id="6_1yd6c"]
 [ext_resource type="Texture2D" uid="uid://35nh5akbsc3" path="res://assets/cards/positive_effect.png" id="6_8w5pg"]
 [ext_resource type="Texture2D" uid="uid://bnju2klgcgcxm" path="res://assets/cards/selected.png" id="8_nvopj"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6ligt"]
-load_path = "res://.godot/imported/back_back.png-9d2f518569cc06bf851767925ecb2eff.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8w5pg"]
-load_path = "res://.godot/imported/feat_frontend_front.png-3d53d716c71b56443b1af8c08bf3eb8a.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rjlel"]
 size = Vector2(142.5, 206)
@@ -101,21 +97,21 @@ _data = {
 &"card_flip": SubResource("Animation_6u4wf")
 }
 
-[node name="Card" type="Node2D"]
+[node name="Card" type="Node2D" unique_id=1900541137]
 script = ExtResource("1_ktuci")
 
-[node name="SelectionBorder" type="Sprite2D" parent="."]
+[node name="SelectionBorder" type="Sprite2D" parent="." unique_id=1939249191]
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("8_nvopj")
 
-[node name="CardBackImage" type="Sprite2D" parent="."]
+[node name="CardBackImage" type="Sprite2D" parent="." unique_id=1702705556]
 visible = false
 z_index = -1
 texture_filter = 1
 scale = Vector2(0.2, 0.2)
-texture = SubResource("CompressedTexture2D_6ligt")
+texture = ExtResource("3_nvopj")
 
-[node name="TypeText" type="RichTextLabel" parent="CardBackImage"]
+[node name="TypeText" type="RichTextLabel" parent="CardBackImage" unique_id=2037918873]
 texture_filter = 2
 offset_left = -211.0
 offset_top = -515.0
@@ -131,7 +127,7 @@ text = "Feature"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BackText" type="RichTextLabel" parent="CardBackImage"]
+[node name="BackText" type="RichTextLabel" parent="CardBackImage" unique_id=294258437]
 texture_filter = 1
 offset_left = -355.0
 offset_top = -323.0
@@ -146,7 +142,7 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EffectText" type="RichTextLabel" parent="CardBackImage"]
+[node name="EffectText" type="RichTextLabel" parent="CardBackImage" unique_id=1833336305]
 texture_filter = 1
 offset_left = -355.0
 offset_top = 81.0
@@ -161,20 +157,20 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CardImage" type="Sprite2D" parent="."]
+[node name="CardImage" type="Sprite2D" parent="." unique_id=1022523994]
 z_index = 1
 texture_filter = 2
 rotation = 0.00098535
 scale = Vector2(0.2, 0.2)
-texture = SubResource("CompressedTexture2D_8w5pg")
+texture = ExtResource("6_1yd6c")
 
-[node name="EffectImage" type="Sprite2D" parent="CardImage"]
+[node name="EffectImage" type="Sprite2D" parent="CardImage" unique_id=328891093]
 texture_filter = 2
 position = Vector2(173.042, 132.196)
 scale = Vector2(0.479447, 0.488061)
 texture = ExtResource("6_8w5pg")
 
-[node name="FrontText" type="RichTextLabel" parent="CardImage"]
+[node name="FrontText" type="RichTextLabel" parent="CardImage" unique_id=518955267]
 texture_filter = 2
 offset_left = -352.01
 offset_top = 217.0
@@ -191,7 +187,7 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TypeText" type="RichTextLabel" parent="CardImage"]
+[node name="TypeText" type="RichTextLabel" parent="CardImage" unique_id=48811863]
 texture_filter = 2
 offset_left = -213.581
 offset_top = -569.0
@@ -207,7 +203,7 @@ text = "Feature"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StorypointText" type="RichTextLabel" parent="CardImage"]
+[node name="StorypointText" type="RichTextLabel" parent="CardImage" unique_id=1095867935]
 texture_filter = 2
 offset_left = -200.0
 offset_top = 50.0
@@ -223,7 +219,7 @@ text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="IterationText" type="RichTextLabel" parent="CardImage"]
+[node name="IterationText" type="RichTextLabel" parent="CardImage" unique_id=1061175646]
 texture_filter = 2
 offset_left = -352.424
 offset_top = -203.0
@@ -240,18 +236,16 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1345418017]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1932962819]
 position = Vector2(-0.25, 0)
 shape = SubResource("RectangleShape2D_rjlel")
 
-[node name="CardFlip" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_sy11y")
-}
+[node name="CardFlip" type="AnimationPlayer" parent="." unique_id=1404989007]
+libraries/ = SubResource("AnimationLibrary_sy11y")
 
-[node name="Storypoints" type="Node2D" parent="."]
+[node name="Storypoints" type="Node2D" parent="." unique_id=1867008168]
 
-[node name="ChooseCard" type="AudioStreamPlayer2D" parent="."]
+[node name="ChooseCard" type="AudioStreamPlayer2D" parent="." unique_id=755940028]
 stream = ExtResource("3_ktuci")
